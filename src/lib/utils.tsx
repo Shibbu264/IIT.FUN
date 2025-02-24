@@ -3,3 +3,7 @@ export const validateEmail = (email: string): boolean => {
     const regex = /^(?=.*(iitbhu|itbhu|iitr)).*\.ac\.in$/;
     return regex.test(email);
   };
+
+export const cn = (...classes: string[]): string => {
+    return classes.filter(Boolean).join(' ');
+};
