@@ -1,3 +1,4 @@
+import { validateEmail } from "@/lib/utils";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -9,6 +10,15 @@ const handler = NextAuth({
       }),
     // Add more providers as needed
   ],
+  callbacks: {
+    async signIn({ user }) {
+      // Validate the user's email
+      if (user.email && validateEmail(user.email)) {
+        return true; // Allow sign-in
+      }
+      return false; // Reject sign-in
+    },
+  },
   // Add any additional NextAuth configuration here
 });
 
