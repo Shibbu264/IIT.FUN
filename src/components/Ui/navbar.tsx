@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { openDialog } from '@/lib/store/slices/dialogSlice';
+import { Button } from './Button';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
+    const router = usePathname();
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        setActiveSection(router)
+    }, [router])
 
     useEffect(() => {
         if (isOpen) {
@@ -40,27 +51,35 @@ export default function Navbar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center justify-center flex-1">
-                            <Link href="/about" 
-                                className={`px-3 py-2 rounded-md ${activeSection === 'about' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
-                                onClick={() => handleSectionClick('about')}>
+                            <Link href="/about"
+                                className={`px-3 py-2 rounded-md ${activeSection === '/about' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
+                                onClick={() => handleSectionClick('/about')}>
                                 About
                             </Link>
-                            <Link href="/community" 
-                                className={`px-3 py-2 rounded-md ${activeSection === 'community' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
-                                onClick={() => handleSectionClick('community')}>
+                            <Link href="/community"
+                                className={`px-3 py-2 rounded-md ${activeSection === '/community' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
+                                onClick={() => handleSectionClick('/community')}>
                                 Community
                             </Link>
-                            <Link href="/leaderboard" 
-                                className={`px-3 py-2 rounded-md ${activeSection === 'leaderboard' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
-                                onClick={() => handleSectionClick('leaderboard')}>
+                            <Link href="/leaderboard"
+                                className={`px-3 py-2 rounded-md ${activeSection === '/leaderboard' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
+                                onClick={() => handleSectionClick('/leaderboard')}>
                                 Leaderboard
                             </Link>
-                            <Link href="#contribute" 
-                                className={`px-3 py-2 rounded-md ${activeSection === 'contribute' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
-                                onClick={() => handleSectionClick('contribute')}>
+                            <Link href="/contribute"
+                                className={`px-3 py-2 rounded-md ${activeSection === '/contribute' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
+                                onClick={() => handleSectionClick('/contribute')}>
                                 Start Contributing
                             </Link>
                         </div>
+
+                        <Button variant="outline" onClick={() => dispatch(openDialog(
+                            {
+                                type: "login"
+                            }
+                        ))} >
+                            Enter arena
+                        </Button>
 
                         {/* Hamburger - minimal right padding */}
                         <div className="px-2 md:hidden">
@@ -78,22 +97,22 @@ export default function Navbar() {
             {isOpen && (
                 <div className="fixed inset-0 w-full h-full min-h-screen z-50 bg-black flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center space-y-8">
-                        <Link href="/about" 
+                        <Link href="/about"
                             className={`px-3 py-2 rounded-md ${activeSection === 'about' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('about')}>
                             About
                         </Link>
-                        <Link href="/community" 
+                        <Link href="/community"
                             className={`px-3 py-2 rounded-md ${activeSection === 'community' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('community')}>
                             Community
                         </Link>
-                        <Link href="/leaderboard" 
+                        <Link href="/leaderboard"
                             className={`px-3 py-2 rounded-md ${activeSection === 'leaderboard' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('leaderboard')}>
                             Leaderboard
                         </Link>
-                        <Link href="/contribute" 
+                        <Link href="/contribute"
                             className={`px-3 py-2 rounded-md ${activeSection === 'contribute' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('contribute')}>
                             Start Contributing

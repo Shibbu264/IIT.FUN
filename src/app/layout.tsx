@@ -11,7 +11,7 @@ import { Toaster } from "@/components/Ui/Sonner";
 import { Button } from "@/components/Ui/Button";
 import { Inria_Sans } from 'next/font/google';
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
-import MockButton from "@/components/MockButton";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +44,6 @@ export default function RootLayout({
               <div className="flex  flex-col items-center justify-center">
               <Navbar />
               {children}
-              <MockButton/>
               <Toaster />
               </div>
             </GlobalDialogWrapper>
