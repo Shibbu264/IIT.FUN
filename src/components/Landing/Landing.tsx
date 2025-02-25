@@ -8,6 +8,7 @@ import CustomWindow from '../Ui/CustomWindow';
 import PartnersDiv from '../Ui/PartnersDiv';
 import CustomWindowStack from './CustomWindowStack';
 import CustomComponent from './CustomComponent';
+import { cn } from '@/lib/utils';
 
 export default function Landing() {
     const messages = [
@@ -19,39 +20,46 @@ export default function Landing() {
 
     return (
         <div className={`flex flex-col max-md:px-4 justify-center items-center mt-8 mx-auto text-primaryGray`}>
-            
+
             {/* Text Section */}
-            <div className="flex max-md:hidden flex-col mx-4 leading-[0.8] tracking-[-0.05em]  
-                text-[1.5rem] sm:text-[1.8rem] md:text-[2.15rem] lg:text-[2.55rem] xl:text-[2.55rem] 2xl:text-[2.55rem]">
-                    <div className="grid grid-cols-3 gap-0 -my-[3px]">
-                        <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
-                        <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
-                        <div className="whitespace-nowrap min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
-                    </div>
+            <div className="flex mr-12 flex-col leading-[0.8] tracking-[-0.05em]  
+                text-[1.5rem] max-sm:text-[0.95rem] sm:text-[1.4rem] md:text-[2.05rem] xl:text-[2.55rem] 2xl:text-[2.55rem]">
+                <div className="grid grid-cols-3 gap-0 -my-[3px]">
+                    <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
+                    <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
+                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.95rem] max-xl:text-[2.45rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
+                </div>
+                <div className="grid grid-cols-3 gap-0 -my-[3px]">
+                    <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
+                    <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
+                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.95rem] max-xl:text-[2.45rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
+                </div>
                 {Array.from({ length: 20 }, (_, i) => (
                     <div key={i} className="grid grid-cols-3 gap-0 -my-[3px]">
                         <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
                         <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
-                        <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
+                        <div className="whitespace-nowrap max-lg:ml-12 min-w-0 text-center">JEE TOPPED</div>
                     </div>
                 ))}
             </div>
 
             {/* Speech Bubbles */}
-            <div className="flex flex-wrap gap-4 justify-center mt-24">
+            <div className="flex max-lg:hidden flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
                 {messages.map((msg, i) => (
                     <div key={i} className={`
-                        relative p-4 max-w-xs text-sm ${msg.color} 
+                        relative p-4 max-w-[240px] text-sm ${msg.color} 
                     `}>
+                        <div className={cn("absolute left-1 -bottom-3  w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[14px]",i%2==0?"border-t-[#151515]":"border-t-lime-400")}
+                        />
                         {msg.text}
                     </div>
                 ))}
             </div>
 
             {/* Image Section */}
-            <div className="w-[80%] mt-6">
+            <div className="w-[80%] max-lg:hidden mt-6">
                 <Image
-                    src="/people.png" 
+                    src="/people.png"
                     alt="img"
                     layout="responsive"
                     width={100}
@@ -59,44 +67,110 @@ export default function Landing() {
                 />
             </div>
 
-            <PartnersDiv/>
-            <div className='flex items-start max-md:hidden w-[70%]'>
-            <CustomComponent/>
-            </div>
-            <CustomWindowStack/>
-            <div className="bg-bgBlack md:w-[55%] max-md:w-[90%] flex flex-col items-center py-10">
-            <PromoSection
-                heading="Join the Community"
-                text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
-                image="/phone.png"
-                link="https://t.me/iit_fun"
-            />   
-            <PromoSection
-                heading="Join the Leaderboard"
-                text="We will track your engagement and add your scores in our Drop out meter, Let’s see which IIT mints the most $IIT and breaks the drop-o-meter."
-                image="/second.png"
-                link="https://yourlink.com"
-            />   
-            <PromoSection
-                heading="Who are We??"
-                text="We are just like you crazy IITians who don’t wanna go by rules, RULES ARE OUTDATED!!"
-                image="/"
-                link="https://yourlink.com"
-            />  
-            </div> 
+            <div className='flex lg:hidden gap-4  flex-col items-center w-full h-full'>
+                <div className='flex gap-6'>
+                    <div className="flex  flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
+                        <div className={`
+                        relative p-4 max-w-[240px] text-sm ${messages[0].color} 
+                    `}>
+                            <div className="absolute left-1 -bottom-3 
+    w-0 h-0 
+    border-l-[10px] border-l-transparent 
+    border-r-[10px] border-r-transparent 
+    border-t-[14px] border-t-[#151515]"
+                            />
 
-            <CustomWindow 
-                topContent="Gallery" 
+
+                            {messages[0].text}
+                        </div>
+                    </div>
+                    <div className="flex  flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
+                        <div className={`
+                        relative p-4 max-w-[240px] text-sm ${messages[1].color} 
+                    `}>
+                            <div className="absolute left-1 -bottom-3 
+    w-0 h-0 
+    border-l-[10px] border-l-transparent 
+    border-r-[10px] border-r-transparent 
+    border-t-[14px] border-t-lime-400"
+                            />
+                            {messages[1].text}
+                        </div>
+                    </div>
+                </div>
+                <img className='relative h-full w-[450px]' src={"/Group48.png"} />
+                <div className='flex gap-6'>
+                    <div className="flex flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
+                        <div className={`
+                        relative p-4 max-w-[240px] text-sm ${messages[2].color} 
+                    `}>
+                            <div className="absolute left-1 -bottom-3 
+    w-0 h-0 
+    border-l-[10px] border-l-transparent 
+    border-r-[10px] border-r-transparent 
+    border-t-[14px] border-t-[#151515]"
+                            />
+                            {messages[2].text}
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
+                        <div className={`
+                        relative p-4 max-w-[240px] text-sm ${messages[3].color} 
+                    `}>
+                            <div className="absolute left-1 -bottom-3 
+    w-0 h-0 
+    border-l-[10px] border-l-transparent 
+    border-r-[10px] border-r-transparent 
+    border-t-[14px] border-t-lime-400"
+                            />
+                            {messages[3].text}
+                        </div>
+                    </div>
+                </div>
+                <img className='relative h-full w-[450px]' src={"/Group47.png"} />
+            </div>
+
+            <PartnersDiv />
+            <div className='flex items-start max-xl:hidden w-[70%]'>
+                <CustomComponent />
+            </div>
+            <CustomWindowStack />
+            <div className="bg-bgBlack md:w-[75%] max-md:w-[90%] flex flex-col items-center py-10">
+                <PromoSection
+                    className='lg:min-h-[430px] min-h-[270px]'
+                    heading="Join the Community"
+                    text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
+                    image="/phone.png"
+                    link="https://t.me/iit_fun"
+                />
+                <PromoSection
+                    className='lg:min-h-[430px] min-h-[270px]'
+                    heading="Join the Leaderboard"
+                    text="We will track your engagement and add your scores in our Drop out meter, Let’s see which IIT mints the most $IIT and breaks the drop-o-meter."
+                    image="/second.png"
+                    link="https://yourlink.com"
+                />
+                <PromoSection
+                    className='lg:min-h-[430px] min-h-[270px]'
+                    heading="Who are We??"
+                    text="We are just like you crazy IITians who don’t wanna go by rules, RULES ARE OUTDATED!!"
+                    image="/second.png"
+                    link="https://yourlink.com"
+                />
+            </div>
+
+            <CustomWindow
+                topContent="Gallery"
                 bottomContent={
                     <div className="h-full w-full flex">
-                        <img  src="/groupMeme.png" alt="Citrea" className="h-full max-md:hidden w-full" />
+                        <img src="/groupMeme.png" alt="Citrea" className="h-full max-md:hidden w-full" />
                         <img src="/memePhone.png" alt="Citrea" className="h-full md:hidden w-full" />
                     </div>
-                } 
-                className='mb-20 mt-20' 
+                }
+                className='mb-20 max-md:!w-[90%] md:!w-[75%] mt-20'
             />
 
-         
+
         </div>
     );
 }

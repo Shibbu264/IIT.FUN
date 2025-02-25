@@ -42,7 +42,7 @@ export default function RootLayout({
           <SessionProvider>
             <GlobalDialogWrapper>
               <div className="flex  flex-col items-center">
-              <Navbar />
+              {/* <Navbar /> */}
               {children}
               <MockButton/>
               <Toaster />

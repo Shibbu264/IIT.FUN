@@ -5,7 +5,7 @@ export default function CustomWindowStack() {
 
     return (
        <>
-    <div className="flex max-md:hidden justify-center md:-top-36 md:-left-12 items-center md:w-full max-md:w-[80%] relative">
+    <div className="flex max-xl:hidden justify-center md:-top-36 md:-left-12 items-center md:w-full max-md:w-[80%] relative">
         {windows.map((_, i) => (
             <CustomWindow
                 key={i}
@@ -35,7 +35,7 @@ export default function CustomWindowStack() {
                         <p className="text-5xl font-bold text-center">$IIT LAUNCHING SOON</p>
                     </div>
                 } 
-                className="md:hidden"
+                className="xl:hidden"
             />
     </> 
     );
