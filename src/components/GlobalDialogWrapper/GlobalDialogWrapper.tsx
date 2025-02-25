@@ -1,12 +1,7 @@
 import React, { ReactNode } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+    Dialog
 } from "@/components/Ui/Dialog"
 import { toggleDialog } from "@/lib/store/slices/dialogSlice"
 import Login from './Modals/Login';

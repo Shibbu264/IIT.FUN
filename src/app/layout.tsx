@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "@/lib/store/store";
 import { SessionProvider } from "next-auth/react";
 import GlobalDialogWrapper from "@/components/GlobalDialogWrapper/GlobalDialogWrapper";
+import Navbar from "@/components/Ui/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Provider store={store}>
           <SessionProvider>
             <GlobalDialogWrapper>
+              <Navbar />
               {children}
             </GlobalDialogWrapper>
           </SessionProvider>

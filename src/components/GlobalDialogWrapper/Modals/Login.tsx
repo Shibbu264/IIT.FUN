@@ -5,9 +5,10 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 function Login() {
-    const dispatch=useDispatch()
     return (
-        <div onClick={()=>signIn()} className='min-w-20'>Login karo bc</div>
+        <DialogContent>
+            <div onClick={() => signIn()} className='min-w-20'>Login karo bc</div>
+        </DialogContent>
     )
 }
 
