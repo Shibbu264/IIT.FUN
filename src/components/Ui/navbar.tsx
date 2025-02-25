@@ -5,15 +5,16 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { openDialog } from '@/lib/store/slices/dialogSlice';
 import { Button } from './Button';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './Dropdown';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
     const router = usePathname();
     const dispatch = useDispatch();
-    const session = useSession()
+    const session = useSession();
 
 
     useEffect(() => {
@@ -76,11 +77,21 @@ export default function Navbar() {
                             </Link>
                         </div>
 
-                        {session?.status == "authenticated" ?
-                            <Avatar>
-                                <AvatarImage src={session?.data?.user?.image as string} alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar> :
+                        {session?.status == "authenticated" && session?.data?.user ?
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <Avatar>
+                                        <AvatarImage src={session?.data?.user?.image ?? "/sponge.gif"} alt="@shadcn" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className='bg-black pb-2'>
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem className='!cursor-pointer hover:bg-gray-800' onClick={() => signOut().then(() => window.location.reload())}>
+                                        Logout</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu> :
                             <Button variant="outline" onClick={() => dispatch(openDialog(
                                 {
                                     type: "login"
