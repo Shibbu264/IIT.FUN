@@ -1,0 +1,29 @@
+.bannerContainer {
+    margin-top: 50px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstBanner, .secondBanner {
+    position: absolute;
+    width: 95%;
+    height: 42.75px;
+    background-color: #CBFC02;
+    color: #000000;
+    font-weight: 700;
+    font-size: 25px;
+    padding-top: 5px;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.firstBanner {
+    transform: rotate(4.12deg);
+}
+
+.secondBanner {
+    transform: rotate(-4.12deg); 
+}
