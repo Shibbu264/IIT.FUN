@@ -41,8 +41,7 @@ export default function RootLayout({
         <Provider store={store}>
           <SessionProvider>
             <GlobalDialogWrapper>
-              <div className="flex  flex-col items-center">
-                <div className="mt-20"/>
+              <div className="flex  flex-col items-center justify-center">
               <Navbar />
               {children}
               <MockButton/>

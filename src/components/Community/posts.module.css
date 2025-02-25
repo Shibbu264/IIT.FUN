@@ -4,17 +4,20 @@
   padding-left: 150px;
   padding-right: 150px;
   @apply flex flex-col w-full items-start md:gap-6 gap-4;
+  @apply max-md:p-2 max-md:gap-14 max-md:m-2;
 }
 .container1 { 
-  @apply flex w-fit;
+  @apply flex w-fit ;
    background-color: transparent;
    border: 2px solid #CBFC02;
    height: 162px;
    width: 310px;
+  @apply max-md:h-24 max-md:w-32;
 }
 .skewedBox1{
   background-color: white;
   height: 162px;
   width: 310px;
   transform: rotate(-4.12deg);
+  @apply max-md:h-24 max-md:w-32;
 }
