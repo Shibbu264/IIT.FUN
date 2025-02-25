@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-    Dialog
+    Dialog,
+    DialogTitle
 } from "@/components/Ui/Dialog"
 import { toggleDialog } from "@/lib/store/slices/dialogSlice"
 import Login from './Modals/Login';
@@ -23,6 +24,7 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
     <>
     {children}
     <Dialog open={isOpen} onOpenChange={() => dispatch(toggleDialog())}>
+      <DialogTitle></DialogTitle>
       {renderComponentFromType()}
   </Dialog>
   </>

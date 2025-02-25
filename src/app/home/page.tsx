@@ -7,12 +7,6 @@ import { useDispatch } from 'react-redux'
 export default function page() {
     const dispatch = useDispatch()
     return (
-        <div onClick={() => {
-            dispatch(openDialog(
-                {
-                    type: "login"
-                }
-            ))
-        }}>hiii</div>
+<></>
     )
 }

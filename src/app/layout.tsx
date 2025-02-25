@@ -11,6 +11,7 @@ import { Toaster } from "@/components/Ui/Sonner";
 import { Button } from "@/components/Ui/Button";
 import { Inria_Sans } from 'next/font/google';
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
+import MockButton from "@/components/MockButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,15 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${inriaSans.className}`}
+        className={`${geistSans.variable} ${geistMono.variable} relative antialiased`}
       >
         <Provider store={store}>
           <SessionProvider>
             <GlobalDialogWrapper>
-              <div className="flex relative flex-col items-center">
+              <div className="flex  flex-col items-center">
               <Navbar />
               {children}
-              <Button className="absolute bottom-4 right-4">LOGIN</Button>
+              <MockButton/>
               <Toaster />
               </div>
             </GlobalDialogWrapper>
