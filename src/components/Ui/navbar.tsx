@@ -78,26 +78,26 @@ export default function Navbar() {
             {isOpen && (
                 <div className="fixed inset-0 w-full h-full min-h-screen z-50 bg-black flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center space-y-8">
-                        <a href="#about" 
+                        <Link href="/about" 
                             className={`px-3 py-2 rounded-md ${activeSection === 'about' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('about')}>
                             About
-                        </a>
-                        <a href="#community" 
+                        </Link>
+                        <Link href="/community" 
                             className={`px-3 py-2 rounded-md ${activeSection === 'community' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('community')}>
                             Community
-                        </a>
-                        <a href="#leaderboard" 
+                        </Link>
+                        <Link href="/leaderboard" 
                             className={`px-3 py-2 rounded-md ${activeSection === 'leaderboard' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('leaderboard')}>
                             Leaderboard
-                        </a>
-                        <a href="#contribute" 
+                        </Link>
+                        <Link href="/contribute" 
                             className={`px-3 py-2 rounded-md ${activeSection === 'contribute' ? 'bg-white text-black' : 'text-white'} text-2xl`}
                             onClick={() => handleSectionClick('contribute')}>
                             Start Contributing
-                        </a>
+                        </Link>
                         <button onClick={toggleMenu} className="mt-6 px-6 py-2 bg-red-600 text-white rounded-lg">
                             Close
                         </button>
