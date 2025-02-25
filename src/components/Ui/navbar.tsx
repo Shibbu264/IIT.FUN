@@ -8,6 +8,7 @@ import { Button } from './Button';
 import { signOut, useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './Dropdown';
+import { toast } from 'sonner';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -88,7 +89,9 @@ export default function Navbar() {
                                 <DropdownMenuContent className='bg-black pb-2'>
                                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className='!cursor-pointer hover:bg-gray-800' onClick={() => signOut().then(() => window.location.reload())}>
+                                    <DropdownMenuItem className='!cursor-pointer hover:bg-gray-800' onClick={() => signOut().then(() => {window.location.reload();
+                                        toast("Signed out successfully !")
+                                    })}>
                                         Logout</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu> :

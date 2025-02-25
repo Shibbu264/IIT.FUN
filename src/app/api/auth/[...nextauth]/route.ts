@@ -1,6 +1,8 @@
 import { validateEmail } from "@/lib/utils";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import prisma from "@/lib/prisma";
+import { toast } from "sonner";
 
 const handler = NextAuth({
   providers: [
@@ -14,6 +16,21 @@ const handler = NextAuth({
     async signIn({ user }) {
       // Validate the user's email
       if (user.email && validateEmail(user.email)) {
+        // Check if the user already exists in the database
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+        
+        // If the user does not exist, create a new user
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name, // Assuming user.name is available
+              // Add any other user fields as necessary
+            },
+          });
+        }
         return true; // Allow sign-in
       }
       return false; // Reject sign-in

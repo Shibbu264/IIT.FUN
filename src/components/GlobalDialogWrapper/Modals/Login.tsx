@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { toast } from 'sonner'
 
 function getRandomQuote() {
     const quotes = [
