@@ -40,26 +40,26 @@ export default function Navbar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center justify-center flex-1">
-                            <a href="#about" 
+                            <Link href="/about" 
                                 className={`px-3 py-2 rounded-md ${activeSection === 'about' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
                                 onClick={() => handleSectionClick('about')}>
                                 About
-                            </a>
-                            <a href="#community" 
+                            </Link>
+                            <Link href="/community" 
                                 className={`px-3 py-2 rounded-md ${activeSection === 'community' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
                                 onClick={() => handleSectionClick('community')}>
                                 Community
-                            </a>
-                            <a href="#leaderboard" 
+                            </Link>
+                            <Link href="/leaderboard" 
                                 className={`px-3 py-2 rounded-md ${activeSection === 'leaderboard' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
                                 onClick={() => handleSectionClick('leaderboard')}>
                                 Leaderboard
-                            </a>
-                            <a href="#contribute" 
+                            </Link>
+                            <Link href="#contribute" 
                                 className={`px-3 py-2 rounded-md ${activeSection === 'contribute' ? 'bg-white text-black' : 'text-white hover:bg-secondaryBlack'}`}
                                 onClick={() => handleSectionClick('contribute')}>
                                 Start Contributing
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Hamburger - minimal right padding */}
