@@ -43,6 +43,7 @@ export default function RootLayout({
             <GlobalDialogWrapper>
               <div className="flex  flex-col items-center justify-center">
               <Navbar />
+              <div className="mb-12"/>
               {children}
               <Toaster />
               </div>
