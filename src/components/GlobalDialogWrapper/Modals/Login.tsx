@@ -7,11 +7,21 @@ import { useDispatch } from 'react-redux'
 
 function getRandomQuote() {
     const quotes = [
-        "IITians: Web3's future leaders!",
-        "Web3: Where IITians shine bright.",
-        "9-5? IITians choose Web3!",
-        "IITians innovate, 9-5ers wait.",
-        "Web3: The IITian advantage."
+        "Enter the matrix. Build the future.",
+        "Smartest degens in the room.",
+        "Web3 isn’t ready for what’s coming.",
+        "Login? More like mint your fate.",
+        "IITians don’t join. They lead.",
+        "Tap in. Take over.",
+        "This isn’t a website. It’s a portal.",
+        "History gets written on-chain.",
+        "The revolution doesn’t pause.",
+        "You’re not late. You’re early.",
+        "Brains, blocks, and zero brakes.",
+        "From campus to consensus.",
+        "Build. Break. Repeat.",
+        "Reality is optional.",
+        "IIT.fun — where the game flips.",
     ];
     return quotes[Math.floor(Math.random() * quotes.length)];
 }

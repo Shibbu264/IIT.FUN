@@ -1,22 +1,23 @@
 import CustomWindow from "../Ui/CustomWindow";
 
 export default function CustomWindowStack() {
-    const windows = Array.from({ length: 4 });
+    let windows = Array.from({ length: 4 }); // Default to 4 windows
 
     return (
-        
-    <div className="flex justify-center items-center w-full relative">
+       <>
+    <div className="flex max-md:hidden justify-center md:-top-36 md:-left-12 items-center md:w-full max-md:w-[80%] relative">
         {windows.map((_, i) => (
             <CustomWindow
                 key={i}
+                index={i}
                 topContent="Contribute and mint some $IIT" 
                 bottomContent={
-                    <div className="bg-[#1e1e1e] h-[20rem] text-white p-8 flex flex-col items-center justify-center">
-                        <img src="/rainMoney.gif" alt="Animation" className="w-[80%] h-[80%] mb-4" />
-                        <p className="text-2xl font-bold text-center">$IIT LAUNCHING SOON</p>
+                    <div className="bg-[#1e1e1e] text-white p-8 flex flex-col items-center justify-center">
+                        <img src="/rainMoney.gif" alt="Animation" className="md:w-full md:h-full max-w-[160px] max-h-[112px] max-md:w-[60%] max-md:h-[60%] mb-4" />
+                        <p className="text-5xl font-bold text-center">$IIT LAUNCHING SOON</p>
                     </div>
                 } 
-                className="absolute"
+                className="md:absolute md:!w-[850px]"
                 style={{ 
                     top: `calc(50% + ${i * 10}px)`, 
                     left: `calc(50% + ${i * 10}px)`, 
@@ -26,6 +27,16 @@ export default function CustomWindowStack() {
             />
         ))}
     </div>
-
+    <CustomWindow
+                topContent="Contribute and mint some $IIT" 
+                bottomContent={
+                    <div className="bg-[#1e1e1e] text-white p-8 flex flex-col items-center justify-center">
+                        <img src="/rainMoney.gif" alt="Animation" className="md:w-full md:h-full max-w-[160px] max-h-[112px] max-md:w-[60%] max-md:h-[60%] mb-4" />
+                        <p className="text-5xl font-bold text-center">$IIT LAUNCHING SOON</p>
+                    </div>
+                } 
+                className="md:hidden"
+            />
+    </> 
     );
 }

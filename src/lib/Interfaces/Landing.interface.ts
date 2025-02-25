@@ -3,4 +3,5 @@ export interface CustomWindowProps {
     bottomContent: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
+    index?:number
 }

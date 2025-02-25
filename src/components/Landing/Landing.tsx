@@ -18,10 +18,10 @@ export default function Landing() {
     ];
 
     return (
-        <div className={`flex flex-col justify-center items-center mt-8 mx-auto text-primaryGray`}>
+        <div className={`flex flex-col max-md:px-4 justify-center items-center mt-8 mx-auto text-primaryGray`}>
             
             {/* Text Section */}
-            <div className="flex flex-col mx-4 leading-[0.8] tracking-[-0.05em]  
+            <div className="flex max-md:hidden flex-col mx-4 leading-[0.8] tracking-[-0.05em]  
                 text-[1.5rem] sm:text-[1.8rem] md:text-[2.15rem] lg:text-[2.55rem] xl:text-[2.55rem] 2xl:text-[2.55rem]">
                     <div className="grid grid-cols-3 gap-0 -my-[3px]">
                         <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
@@ -60,11 +60,11 @@ export default function Landing() {
             </div>
 
             <PartnersDiv/>
-            
+            <div className='flex items-start max-md:hidden w-[70%]'>
             <CustomComponent/>
-        
+            </div>
             <CustomWindowStack/>
-            <div className="bg-bgBlack w-[55%] flex flex-col items-center py-10">
+            <div className="bg-bgBlack md:w-[55%] max-md:w-[90%] flex flex-col items-center py-10">
             <PromoSection
                 heading="Join the Community"
                 text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
@@ -89,7 +89,8 @@ export default function Landing() {
                 topContent="Gallery" 
                 bottomContent={
                     <div className="h-full w-full flex">
-                        <img src="/groupMeme.png" alt="Citrea" className="h-full w-full" />
+                        <img  src="/groupMeme.png" alt="Citrea" className="h-full max-md:hidden w-full" />
+                        <img src="/memePhone.png" alt="Citrea" className="h-full md:hidden w-full" />
                     </div>
                 } 
                 className='mb-20 mt-20' 
