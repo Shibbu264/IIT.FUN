@@ -5,12 +5,15 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { openDialog } from '@/lib/store/slices/dialogSlice';
 import { Button } from './Button';
+import { useSession } from 'next-auth/react';
+import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
     const router = usePathname();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const session = useSession()
 
 
     useEffect(() => {
@@ -73,13 +76,18 @@ export default function Navbar() {
                             </Link>
                         </div>
 
-                        <Button variant="outline" onClick={() => dispatch(openDialog(
-                            {
-                                type: "login"
-                            }
-                        ))} >
-                            Enter arena
-                        </Button>
+                        {session?.status == "authenticated" ?
+                            <Avatar>
+                                <AvatarImage src={session?.data?.user?.image as string} alt="@shadcn" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar> :
+                            <Button variant="outline" onClick={() => dispatch(openDialog(
+                                {
+                                    type: "login"
+                                }
+                            ))} >
+                                Enter arena
+                            </Button>}
 
                         {/* Hamburger - minimal right padding */}
                         <div className="px-2 md:hidden">
