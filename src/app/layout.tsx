@@ -9,6 +9,8 @@ import GlobalDialogWrapper from "@/components/GlobalDialogWrapper/GlobalDialogWr
 import Navbar from "@/components/Ui/navbar";
 import { Toaster } from "@/components/Ui/Sonner";
 import { Button } from "@/components/Ui/Button";
+import { Inria_Sans } from 'next/font/google';
+const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${inriaSans.className}`}
       >
         <Provider store={store}>
           <SessionProvider>
