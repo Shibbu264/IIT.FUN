@@ -18,7 +18,7 @@ export default function Landing() {
     ];
 
     return (
-        <div className={`flex flex-col justify-center items-center mt-8 max-w-auto ${inriaSans.className} text-primaryGray`}>
+        <div className={`flex flex-col justify-center items-center mt-8 mx-auto ${inriaSans.className} text-primaryGray`}>
             
             {/* Text Section */}
             <div className="flex flex-col mx-4 leading-[0.8] tracking-[-0.05em]  

@@ -7,6 +7,8 @@ import store from "@/lib/store/store";
 import { SessionProvider } from "next-auth/react";
 import GlobalDialogWrapper from "@/components/GlobalDialogWrapper/GlobalDialogWrapper";
 import Navbar from "@/components/Ui/navbar";
+import { Toaster } from "@/components/Ui/Sonner";
+import { Button } from "@/components/Ui/Button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,8 +38,12 @@ export default function RootLayout({
         <Provider store={store}>
           <SessionProvider>
             <GlobalDialogWrapper>
+              <div className="flex relative flex-col items-center">
               <Navbar />
               {children}
+              <Button className="absolute bottom-4 right-4">LOGIN</Button>
+              <Toaster />
+              </div>
             </GlobalDialogWrapper>
           </SessionProvider>
         </Provider>
