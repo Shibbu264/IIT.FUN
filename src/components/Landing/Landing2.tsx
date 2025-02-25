@@ -100,7 +100,7 @@ function PartnersDiv() {
 
 function CustomComponent() {
     return (
-        <div className="flex mb-20 h-[35rem] text-white w-[50%]">
+        <div className="flex h-auto mb-20 h-[35rem] text-white w-[50%]">
             {/* Left Sidebar */}
             <div className="w-1/5 bg-[#333333] p-4 flex flex-col items-center">
                 <img src="/sponge.gif" alt="Meme" className="w-full h-auto mb-2" />
