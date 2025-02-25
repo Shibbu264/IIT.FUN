@@ -16,7 +16,8 @@ export default {
         primaryBlack: "var(--primaryBlack)",
         secondaryBlack: "var(--secondaryBlack)",
         primaryWhite: "var(--primaryWhite)",
-        primaryGray: "var(--primaryGray)"
+        primaryGray: "var(--primaryGray)",
+        bgBlack: "var(--bgBlack)"
       },
     },
   },

@@ -62,23 +62,38 @@ export default function Landing() {
             <CustomComponent/>
         
             <CustomWindowStack/>
+            <div className="bg-bgBlack w-[55%] flex flex-col items-center py-10">
+            <PromoSection
+                heading="Join the Community"
+                text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
+                image="/phone.png"
+                link="https://t.me/iit_fun"
+            />   
+            <PromoSection
+                heading="Join the Leaderboard"
+                text="We will track your engagement and add your scores in our Drop out meter, Let’s see which IIT mints the most $IIT and breaks the drop-o-meter."
+                image="/second.png"
+                link="https://yourlink.com"
+            />   
+            <PromoSection
+                heading="Who are We??"
+                text="We are just like you crazy IITians who don’t wanna go by rules, RULES ARE OUTDATED!!"
+                image=""
+                link="https://yourlink.com"
+            />  
+            </div> 
 
             <CustomWindow 
-    topContent="Gallery" 
-    bottomContent={
-        <div className="h-full w-full flex">
-            <img src="/groupMeme.png" alt="Citrea" className="h-full w-full" />
-        </div>
-    } 
-    className='mb-20 mt-20' 
-/>
+                topContent="Gallery" 
+                bottomContent={
+                    <div className="h-full w-full flex">
+                        <img src="/groupMeme.png" alt="Citrea" className="h-full w-full" />
+                    </div>
+                } 
+                className='mb-20 mt-20' 
+            />
 
-    <PromoSection
-        heading="Join the Community"
-        text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
-        image="/phone.png"
-        link="https://yourlink.com"
-    />        
+         
         </div>
     );
 }
@@ -214,7 +229,7 @@ function PromoSection({
     link: string;
 }) {
     return (
-        <div className="bg-primaryGreen text-black p-10 flex items-center justify-between border-2 border-black rounded-lg">
+        <div className="bg-primaryGreen text-black p-10 flex items-center justify-between border-2 border-black rounded-lg w-[90%] my-4">
             {/* Left Content */}
             <div className="max-w-md">
                 <h1 className="text-4xl font-bold">{heading}</h1>

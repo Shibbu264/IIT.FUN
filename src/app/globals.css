@@ -11,6 +11,7 @@
   --secondaryBlack: #010101;
   --primaryWhite: #FFFFFD;
   --primaryGray: #333333;
+  --bgBlack: #151515;
 }
 
 @media (prefers-color-scheme: dark) {
