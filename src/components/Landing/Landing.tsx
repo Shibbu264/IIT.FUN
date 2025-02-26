@@ -38,6 +38,11 @@ export default function Landing() {
                     <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
                     <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.55rem] max-xl:text-[1.95rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
                 </div>
+                <div className="grid grid-cols-3 gap-0 -my-[3px]">
+                    <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
+                    <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
+                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.95rem] max-xl:text-[2.45rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
+                </div>
                 {Array.from({ length: 20 }, (_, i) => (
                     <div key={i} className="grid grid-cols-3 gap-0 -my-[3px]">
                         <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
