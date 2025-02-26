@@ -20,23 +20,23 @@ export default function Landing() {
     ];
 
     return (
-        <div className={`flex flex-col max-md:px-4 justify-center items-center mt-8 mx-auto text-primaryGray`}>
+        <div className={`flex flex-col max-md:px-4 w-full justify-center items-center mx-auto text-primaryGray`}>
             {/* Text Section */}
             <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }} 
-            className="flex mr-12 flex-col leading-[0.8] tracking-[-0.05em]  
-                text-[1.5rem] max-sm:text-[0.95rem] sm:text-[1.4rem] md:text-[2.05rem] xl:text-[2.55rem] 2xl:text-[2.55rem]">
+            className="flex px-8 mt-6 flex-col max-md:hidden leading-[0.8] tracking-[-0.05em]  
+                text-[1.5rem] max-sm:text-[0.95rem] sm:text-[1.4rem] md:text-[1.75rem] lg:text-[2.05rem]  xl:text-[2.55rem] 2xl:text-[2.55rem]">
                 <div className="grid grid-cols-3 gap-0 -my-[3px]">
                     <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
                     <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
-                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.95rem] max-xl:text-[2.45rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
+                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.55rem] max-xl:text-[1.95rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
                 </div>
                 <div className="grid grid-cols-3 gap-0 -my-[3px]">
                     <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
                     <div className="whitespace-nowrap min-w-0 text-center">IIT FUN'D</div>
-                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.95rem] max-xl:text-[2.45rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
+                    <div className="whitespace-nowrap max-sm:text-[0.85rem] max-md:text-[1.3rem] max-lg:text-[1.55rem] max-xl:text-[1.95rem] text-[2.40rem] min-w-0 text-center">DEGENGOD COMPLEXGEN</div>
                 </div>
                 {Array.from({ length: 20 }, (_, i) => (
                     <div key={i} className="grid grid-cols-3 gap-0 -my-[3px]">
@@ -46,6 +46,10 @@ export default function Landing() {
                     </div>
                 ))}
             </motion.div>
+
+            <div className='relative md:hidden w-full aspect-video h-full'>
+                <Image layout='fill' alt=''  src={"/iit.png"}/>
+            </div>
 
             {/* Speech Bubbles */}
             <motion.div
@@ -145,6 +149,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className='flex w-full mx-auto'
             >
             <PartnersDiv />
             </motion.div>
@@ -157,9 +162,7 @@ export default function Landing() {
                 <CustomComponent />
             </motion.div>
 
-            <div>
                 <CustomWindowStack />
-            </div>
             <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

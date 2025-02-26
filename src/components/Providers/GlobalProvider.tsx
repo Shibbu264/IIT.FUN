@@ -33,7 +33,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
                     <WalletProvider wallets={wallets} autoConnect>
                         <WalletModalProvider>
                             <GlobalDialogWrapper>
-                                <div className="flex  flex-col items-center justify-center">
+                                <div className="flex  flex-col items-center !w-screen justify-center">
                                     <Navbar />
                                     <div className="mb-16" />
                                     <AuthGuardProvider>

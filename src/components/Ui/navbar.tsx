@@ -50,15 +50,14 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 w-full bg-secondaryBlack z-40">
-                <div className="max-w-7xl ml-10">
-                    <div className="flex justify-between items-center h-16">
+            <nav className="fixed top-0 w-screen  bg-secondaryBlack z-40">
+                    <div className="flex justify-between items-center h-16 px-4">
                         {/* Logo with minimal padding and guaranteed visibility */}
-                        <div className="min-w-[80px] px-2">
+                        <div className="min-w-[80px]">
                             <Link href="/">
-                            <div className="text-white text-sm sm:text-xl font-bold whitespace-nowrap">
-                                IIT.FUN
-                            </div>
+                                <div className="text-white text-sm sm:text-xl font-bold whitespace-nowrap">
+                                    IIT.FUN
+                                </div>
                             </Link>
                         </div>
 
@@ -123,17 +122,14 @@ export default function Navbar() {
                                 ))} >
                                     Enter arena
                                 </Button>}
-                        </div>
-                        {/* Hamburger - minimal right padding */}
-                        <div className="px-2 md:hidden">
-                            <button onClick={toggleMenu} className="text-white p-1">
+                            <button onClick={toggleMenu} className="bg-gray-800 flex md:hidden text-white w-8 h-8 p-1 rounded">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                                 </svg>
                             </button>
                         </div>
+                        {/* Hamburger - minimal right padding */}
                     </div>
-                </div>
             </nav>
 
             {/* Mobile Menu Overlay */}

@@ -18,7 +18,7 @@ export default function WalletModal() {
 
   useEffect(() => {
     const loadableWallets = wallets.filter(
-      (wallet) => wallet.readyState === "Loadable"
+      (wallet) => wallet.readyState === "Loadable"||wallet.readyState ==="Installed"
     );
     setInstalledWallets(loadableWallets);
   }, [wallets]);
