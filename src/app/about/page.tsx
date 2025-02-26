@@ -80,7 +80,7 @@ export default function About() {
         <div className={styles.container}>
             <div className={cn(styles.container1, "ml-auto")}> 
                 <div className={cn(styles.skewedBox1)}>
-                <Image src="/giphy 8.gif" alt="meme" width={310} height={162} className={styles.image}/>
+                <Image src="/giphy 8.jpeg" alt="meme" width={310} height={162} className={styles.image}/>
                 </div>
             </div>
         </div>
