@@ -20,6 +20,15 @@ export default {
         bgBlack: "var(--bgBlack)"
       },
     },
+    keyframes: {
+      'mirror-flip': {
+        '0%, 100%': { transform: 'scaleX(1)' },
+        '50%': { transform: 'scaleX(-1)' }
+      }
+    },
+    animation: {
+      'mirror-flip': 'mirror-flip 4s ease-in-out infinite'
+    }
   },
   plugins: [],
 } satisfies Config;
