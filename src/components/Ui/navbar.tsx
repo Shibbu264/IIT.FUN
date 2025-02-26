@@ -64,14 +64,16 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 w-full bg-secondaryBlack z-40 ">
+            <nav className="fixed top-0 w-full bg-secondaryBlack z-40">
                 <div className="max-w-7xl ml-10">
                     <div className="flex justify-between items-center h-16">
                         {/* Logo with minimal padding and guaranteed visibility */}
                         <div className="min-w-[80px] px-2">
+                            <Link href="/">
                             <div className="text-white text-sm sm:text-xl font-bold whitespace-nowrap">
                                 IIT.FUN
                             </div>
+                            </Link>
                         </div>
 
                         {/* Desktop Navigation */}

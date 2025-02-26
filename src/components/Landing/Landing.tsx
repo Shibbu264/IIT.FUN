@@ -1,5 +1,5 @@
 "use client"
-
+import React, { useEffect, useRef } from 'react';
 import { Inria_Sans } from 'next/font/google';
 import Image from 'next/image';
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
@@ -9,6 +9,7 @@ import PartnersDiv from '../Ui/PartnersDiv';
 import CustomWindowStack from './CustomWindowStack';
 import CustomComponent from './CustomComponent';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export default function Landing() {
     const messages = [
@@ -20,9 +21,12 @@ export default function Landing() {
 
     return (
         <div className={`flex flex-col max-md:px-4 justify-center items-center mt-8 mx-auto text-primaryGray`}>
-
             {/* Text Section */}
-            <div className="flex mr-12 flex-col leading-[0.8] tracking-[-0.05em]  
+            <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }} 
+            className="flex mr-12 flex-col leading-[0.8] tracking-[-0.05em]  
                 text-[1.5rem] max-sm:text-[0.95rem] sm:text-[1.4rem] md:text-[2.05rem] xl:text-[2.55rem] 2xl:text-[2.55rem]">
                 <div className="grid grid-cols-3 gap-0 -my-[3px]">
                     <div className="whitespace-nowrap min-w-0 text-center">JEE TOPPED</div>
@@ -41,23 +45,33 @@ export default function Landing() {
                         <div className="whitespace-nowrap max-lg:ml-12 min-w-0 text-center">JEE TOPPED</div>
                     </div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Speech Bubbles */}
-            <div className="flex max-lg:hidden flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
+            <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }} 
+            className="flex max-lg:hidden flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
                 {messages.map((msg, i) => (
-                    <div key={i} className={`
-                        relative p-4 max-w-[240px] text-sm ${msg.color} 
-                    `}>
+                    <motion.div key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className={`relative p-4 max-w-[240px] text-sm ${msg.color}`}>
                         <div className={cn("absolute left-1 -bottom-3  w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[14px]",i%2==0?"border-t-[#151515]":"border-t-lime-400")}
                         />
                         {msg.text}
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Image Section */}
-            <div className="w-[80%] max-lg:hidden mt-6">
+            <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="w-[80%] max-lg:hidden mt-6">
                 <Image
                     src="/people.png"
                     alt="img"
@@ -65,7 +79,7 @@ export default function Landing() {
                     width={100}
                     height={50}
                 />
-            </div>
+            </motion.div>
 
             <div className='flex lg:hidden gap-4  flex-col items-center w-full h-full'>
                 <div className='flex gap-6'>
@@ -79,8 +93,6 @@ export default function Landing() {
     border-r-[10px] border-r-transparent 
     border-t-[14px] border-t-[#151515]"
                             />
-
-
                             {messages[0].text}
                         </div>
                     </div>
@@ -129,13 +141,36 @@ export default function Landing() {
                 </div>
                 <img className='relative h-full w-[450px]' src={"/Group47.png"} />
             </div>
-
+            <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            >
             <PartnersDiv />
-            <div className='flex items-start max-xl:hidden w-[70%]'>
+            </motion.div>
+
+            <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className='flex items-start max-xl:hidden w-[70%]'>
                 <CustomComponent />
+            </motion.div>
+
+            <div>
+                <CustomWindowStack />
             </div>
-            <CustomWindowStack />
-            <div className="bg-bgBlack md:w-[75%] max-md:w-[90%] flex flex-col items-center py-10">
+            <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }}          
+            className="bg-bgBlack md:w-[75%] max-md:w-[90%] flex flex-col items-center py-10">
+
+            <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            >
                 <PromoSection
                     className='lg:min-h-[430px] min-h-[270px]'
                     heading="Join the Community"
@@ -143,6 +178,17 @@ export default function Landing() {
                     image="/phone.png"
                     link="https://t.me/iit_fun"
                 />
+                </motion.div>
+
+                <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15,
+                  delay: 0.2
+                }}>
                 <PromoSection
                     className='lg:min-h-[430px] min-h-[270px]'
                     heading="Join the Leaderboard"
@@ -150,6 +196,22 @@ export default function Landing() {
                     image="/second.png"
                     link="https://yourlink.com"
                 />
+                </motion.div>
+            
+                <motion.div
+                initial={{ opacity: 0, y: 50, rotate: -10 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  rotate: 0,
+                  scale: [0.9, 1.1, 1],
+                }}
+                transition={{
+                  duration: 0.8,
+                  times: [0, 0.6, 1],
+                  ease: [0.6, -0.05, 0.01, 0.99],
+                }}>
+
                 <PromoSection
                     className='lg:min-h-[430px] min-h-[270px]'
                     heading="Who are We??"
@@ -157,7 +219,9 @@ export default function Landing() {
                     image="/second.png"
                     link="https://yourlink.com"
                 />
-            </div>
+
+                </motion.div>
+            </motion.div>
 
             <CustomWindow
                 topContent="Gallery"
@@ -169,10 +233,6 @@ export default function Landing() {
                 }
                 className='mb-20 max-md:!w-[90%] md:!w-[75%] mt-20'
             />
-
-
         </div>
     );
 }
-
-
