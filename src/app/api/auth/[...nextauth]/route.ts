@@ -2,7 +2,7 @@ import { validateEmail } from "@/lib/utils";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/lib/prisma";
-import { toast } from "sonner";
+
 
 const handler = NextAuth({
   providers: [
@@ -30,7 +30,9 @@ const handler = NextAuth({
           await prisma.user.create({
             data: {
               email: user.email,
-              name: user.name, // Assuming user.name is available
+              name: user.name,
+              image:user?.image,
+               // Assuming user.name is available
               // Add any other user fields as necessary
             },
           });
