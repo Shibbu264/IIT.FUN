@@ -21,3 +21,8 @@
   transform: rotate(-4.12deg);
   @apply max-md:h-24 max-md:w-32;
 }
+.image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
