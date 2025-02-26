@@ -13,7 +13,7 @@ const handler = NextAuth({
     // Add more providers as needed
   ],
   callbacks: {
-    async signIn({ user }) {
+    async signIn({user}:any) {
       // Validate the user's email
       if (user.email && validateEmail(user.email)) {
         // Check if the user already exists in the database

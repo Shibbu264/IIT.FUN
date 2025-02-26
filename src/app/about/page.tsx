@@ -14,7 +14,7 @@ export default function About() {
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* First Row */}
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
             <Image 
             src="/nerd 1.gif" 
             alt="Image 1" 
@@ -23,35 +23,35 @@ export default function About() {
             width={300}
             />
           </div>
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
+          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
             <h2 className="font-bold text-center px-4">
                 <span className="text-xl text-white">Founded in</span><br/>
                 <span className="text-4xl text-primaryGreen">IIT</span>
             </h2>
           </div>
-          <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
             <Image src="/giphy31.gif" alt="Image 3"  className="object-cover"  height={300} width={300}/>
           </div>
-          <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
             <Image src="/giphy61.gif" alt="Image 4"  className="object-cover" height={500} width={300} />
           </div>
 
           {/* Second Row */}
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
             <Image src="/giphy51.gif" alt="Image 5"  className="object-cover"  height={300} width={300}/>
           </div>
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
             <Image src="/giphy41.gif" alt="Image 6" className="object-cover"  height={300} width={300}/>
           </div>
 
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
+          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
             <h2 className="font-bold text-center px-4">
                 <span className="text-xl text-primaryGreen">the brainy</span><br/>
                 <span className="text-4xl text-primaryGreen">DEGENS</span>
             </h2>
           </div>
           
-          <div className="relative h-40 sm:h-56 md:maqx-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform">
+          <div className="relative h-40 sm:h-56 md:maqx-h-80 overflow-hidden hover:scale-105 transition-transform">
             <Image src="/giphy21.gif" alt="Image 8" className="object-cover"  height={300} width={300}/>
           </div>
         </div>
