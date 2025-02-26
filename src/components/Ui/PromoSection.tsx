@@ -8,7 +8,8 @@ export default function PromoSection({
     image,
     link,
     className,
-    headingClassName
+    headingClassName,
+    imageClassName
 }: {
     heading: string;
     text: string;
@@ -16,6 +17,7 @@ export default function PromoSection({
     link: string;
     className?: string;
     headingClassName?: string;
+    imageClassName?: string;
 }) {
     return (
         <div className={cn("bg-primaryGreen max-md:w-full grid grid-cols-10 text-black md:p-10 max-md:p-4  items-center justify-between border-2 border-black rounded-lg w-[90%] my-4", className as string)}>
@@ -31,7 +33,7 @@ export default function PromoSection({
             </div>
 
             {/* Right Image */}
-            <div className="col-span-4 relative w-full h-full">
+            <div className={cn("col-span-4 relative w-full h-full", imageClassName as string)}>
                 <Image src={image} layout="fill" alt="Promo Image" className="drop-shadow-lg" />
             </div>
         </div>
