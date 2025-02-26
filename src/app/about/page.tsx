@@ -30,18 +30,18 @@ export default function About() {
             </h2>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
-            <Image src="/giphy31.gif" alt="Image 3"  className=" w-full h-full object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy31.gif" alt="Image 3"  className="object-cover"  height={300} width={300}/>
           </div>
-          <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden hover:scale-105 transition-transform">
-            <Image src="/giphy 63.gif" alt="Image 4"  className=" w-full h-full object-cover" height={300} width={300}  />
+          <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
+            <Image unoptimized src="/giphy61.gif" alt="Image 4"  className="object-cover" height={500} width={300} />
           </div>
 
           {/* Second Row */}
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
-            <Image src="/giphy51.gif" alt="Image 5"  className=" w-full h-fulll object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy51.gif" alt="Image 5"  className="object-cover"  height={300} width={300}/>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
-            <Image src="/giphy41.gif" alt="Image 6" className="w-full h-full object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy41.gif" alt="Image 6" className="object-cover"  height={300} width={300}/>
           </div>
 
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
