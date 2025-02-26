@@ -13,7 +13,7 @@ export default function WalletModal() {
   const session = useSession();
   const { user } = useAppSelector(state => state.user)
   const dispatch = useDispatch()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(-1)
   console.log(wallets)
 
   const [installedWallets, setInstalledWallets] = useState<Wallet[]>([]);
@@ -33,7 +33,9 @@ export default function WalletModal() {
         select(walletToConnect.adapter.name);
       }
     }
-    if (publicKey && publicKey.toString() !== user?.wallet) {
+    console.log(publicKey)
+    if (publicKey && (!user?.wallet || publicKey.toString() !== user?.wallet)) {
+      console.log("here")
       updateWallet(publicKey.toString());
     }
   }, [publicKey, user?.wallet]);
@@ -50,15 +52,16 @@ export default function WalletModal() {
       dispatch(setUser({ ...user, wallet: wallet }))
       dispatch(closeDialog())
     };
+    setLoading(-1)
   };
 
   return (
     <DialogContent className='flex flex-col gap-2'>
       <h2 className='font-bold text-xl'>Connect to a Wallet</h2>
       <div className='flex flex-col gap-3'>
-        {installedWallets.map((wallet: Wallet) => (
+        {installedWallets.map((wallet: Wallet, index) => (
           <div key={wallet.adapter.name}>
-            <Button loading={loading} variant="outline" className='flex w-44 p-4 gap-2 items-center' onClick={() => { setLoading(true); select(wallet.adapter.name) }} >
+            <Button loading={loading == index} variant="outline" className='flex w-44 p-4 gap-2 items-center' onClick={() => { setLoading(index); select(wallet.adapter.name) }} >
               Connect to {wallet.adapter.name}
               <img className='w-8 h-8' src={wallet.adapter.icon} />
             </Button>

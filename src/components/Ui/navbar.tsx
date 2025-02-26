@@ -11,6 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { toast } from 'sonner';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useAppSelector } from '@/lib/store/store';
+import { setUser } from '@/lib/store/slices/userSlice';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Navbar() {
     const session = useSession();
     const { publicKey, select, disconnect, connected, wallets,wallet } = useWallet();
     const {user}=useAppSelector(state=>state.user)
-console.log(user)
+
 
     useEffect(() => {
         setActiveSection(router)
@@ -103,7 +104,9 @@ console.log(user)
                                             <DropdownMenuItem className='!cursor-pointer rounded-xl flex max-md:flex-col gap-3 md:items-center'
                                            >
                                             <span className='max-md:max-w-36 whitespace-normal overflow-x-auto'>{user?.wallet}</span>
-                                                <Button  onClick={disconnect} variant="destructive"> Disconnect </Button></DropdownMenuItem>
+                                                <Button  onClick={()=>disconnect().finally(()=>{
+                                                    dispatch(setUser({...user,wallet:null}))
+                                                })} variant="destructive"> Disconnect </Button></DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                        
