@@ -1,14 +1,24 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import styles from '@/components/Community/posts.module.css'
 import { cn } from '@/lib/utils'
 
-export default function posts() {
+const images = [
+  '/zoblr.jpeg',
+  '/zodubai.jpeg',
+  '/zosf.jpeg'
+];
+
+export default function Posts() {
     return(
         <div className={styles.container}>
-       {[0,1,2].map((x:any,i:number)=>  <div key={i} className={cn(styles.container1,i%2==0?"ml-auto ":"mr-auto")}>
-     <div  className={cn(styles.skewedBox1)}></div>
-    </div>)}
+            {images.map((src, i) => (
+                <div key={i} className={cn(styles.container1, i % 2 === 0 ? "ml-auto" : "mr-auto")}>
+                    <div className={cn(styles.skewedBox1)}>
+                        <img src={src} alt={`Image ${i + 1}`} className={styles.image} />
+                    </div>
+                </div>
+            ))}
         </div>
     )
 }
