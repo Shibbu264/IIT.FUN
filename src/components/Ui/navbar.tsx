@@ -25,11 +25,6 @@ export default function Navbar() {
         setActiveSection(router)
     }, [router])
 
-    useEffect(() => {
-        if (publicKey && publicKey.toString() !== walletAddress) {
-            updateWallet(publicKey.toString());
-        }
-    }, [publicKey]);
 
     useEffect(() => {
         if (isOpen) {
@@ -51,16 +46,7 @@ export default function Navbar() {
         setIsOpen(false);
     };
 
-    const updateWallet = async (wallet: any) => {
-        if (!session?.data?.user?.email) return;
-        const response = await fetch("/api/save-wallet", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: session.data?.user.email, wallet }),
-        });
-        const data = await response.json();
-        if (data.success) setWalletAddress(wallet);
-    };
+
 
     return (
         <>
