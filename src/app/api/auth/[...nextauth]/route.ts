@@ -7,9 +7,9 @@ import { toast } from "sonner";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-        clientId: '809328833359-t6inuf1bllcbrhvnro3a03f0pd0kovqu.apps.googleusercontent.com' as string,
-        clientSecret: process.env.AUTH_SECRET as string,
-      }),
+      clientId: '809328833359-t6inuf1bllcbrhvnro3a03f0pd0kovqu.apps.googleusercontent.com' as string,
+      clientSecret: process.env.AUTH_SECRET as string,
+    }),
     // Add more providers as needed
   ],
   callbacks: {
@@ -20,7 +20,11 @@ const handler = NextAuth({
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
-        
+        if (existingUser) {
+          if (existingUser?.wallet) {
+            user.wallet = existingUser?.wallet
+          }
+        }
         // If the user does not exist, create a new user
         if (!existingUser) {
           await prisma.user.create({

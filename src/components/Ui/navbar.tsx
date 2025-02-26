@@ -9,6 +9,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './Dropdown';
 import { toast } from 'sonner';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +17,19 @@ export default function Navbar() {
     const router = usePathname();
     const dispatch = useDispatch();
     const session = useSession();
+    const { publicKey, select, disconnect, connected, wallets } = useWallet();
+    const [walletAddress, setWalletAddress] = useState(session?.data?.user?.wallet || "");
 
 
     useEffect(() => {
         setActiveSection(router)
     }, [router])
+
+    useEffect(() => {
+        if (publicKey && publicKey.toString() !== walletAddress) {
+            updateWallet(publicKey.toString());
+        }
+    }, [publicKey]);
 
     useEffect(() => {
         if (isOpen) {
@@ -40,6 +49,17 @@ export default function Navbar() {
     const handleSectionClick = (section: string) => {
         setActiveSection(section);
         setIsOpen(false);
+    };
+
+    const updateWallet = async (wallet: any) => {
+        if (!session?.data?.user?.email) return;
+        const response = await fetch("/api/save-wallet", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: session.data?.user.email, wallet }),
+        });
+        const data = await response.json();
+        if (data.success) setWalletAddress(wallet);
     };
 
     return (
@@ -77,32 +97,45 @@ export default function Navbar() {
                                 Start Contributing
                             </Link>
                         </div>
-
-                        {session?.status == "authenticated" && session?.data?.user ?
-                            <DropdownMenu>
-                                <DropdownMenuTrigger>
-                                    <Avatar>
-                                        <AvatarImage src={session?.data?.user?.image ?? "/sponge.gif"} alt="@shadcn" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className='bg-black pb-2'>
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem className='!cursor-pointer hover:bg-gray-800' onClick={() => signOut().then(() => {window.location.reload();
-                                        toast("Signed out successfully !")
-                                    })}>
-                                        Logout</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu> :
-                            <Button variant="outline" onClick={() => dispatch(openDialog(
-                                {
-                                    type: "login"
-                                }
-                            ))} >
-                                Enter arena
-                            </Button>}
-
+                        <div className='flex md:gap-5 max-md:gap-3'>
+                            {session?.status == "authenticated" && (
+                                <>
+                                    {walletAddress && <p>Wallet: {walletAddress}</p>}
+                                    {connected ? (
+                                        <button className='text-red-500' onClick={disconnect}>Disconnect Wallet</button>
+                                    ) : (
+                                        <button className='text-secondaryGreen' onClick={() => dispatch(openDialog({
+                                            type: 'wallet'
+                                        }))}>Connect Wallet</button>
+                                    )}
+                                </>
+                            )}
+                            {session?.status == "authenticated" && session?.data?.user ?
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger>
+                                        <Avatar>
+                                            <AvatarImage src={session?.data?.user?.image ?? "/sponge.gif"} alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className='bg-black pb-2'>
+                                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem className='!cursor-pointer hover:bg-gray-800' onClick={() => signOut().then(() => {
+                                            window.location.reload();
+                                            toast("Signed out successfully !")
+                                        })}>
+                                            Logout</DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu> :
+                                <Button variant="outline" onClick={() => dispatch(openDialog(
+                                    {
+                                        type: "login"
+                                    }
+                                ))} >
+                                    Enter arena
+                                </Button>}
+                        </div>
                         {/* Hamburger - minimal right padding */}
                         <div className="px-2 md:hidden">
                             <button onClick={toggleMenu} className="text-white p-1">
