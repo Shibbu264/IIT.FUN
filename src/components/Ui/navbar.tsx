@@ -17,7 +17,7 @@ export default function Navbar() {
     const router = usePathname();
     const dispatch = useDispatch();
     const session = useSession();
-    const { publicKey, select, disconnect, connected, wallets } = useWallet();
+    const { publicKey, select, disconnect, connected, wallets,wallet } = useWallet();
     const [walletAddress, setWalletAddress] = useState(session?.data?.user?.wallet || "");
 
 
