@@ -81,7 +81,16 @@ export default function About() {
             </div>
         </div>
 
-        <PromoSection className='w-[69%] mt-16 ml-12' headingClassName='w-[30%]' heading="Join the Community" text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event Come on, we heard you." image="/images/1.jpg" link="https://www.iit.fun"/>
+        <div className="flex justify-center w-full">
+          <PromoSection 
+            className='w-[90%] lg:w-[69%] px-4 md:px-8 max-w-7xl mt-16' 
+            headingClassName='w-[30%]' 
+            heading="Join the Community" 
+            text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event Come on, we heard you." 
+            image="/phone.png" 
+            link="https://www.iit.fun"
+          />
+        </div>
 
       </div>
     </div>
