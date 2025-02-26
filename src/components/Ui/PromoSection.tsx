@@ -20,13 +20,13 @@ export default function PromoSection({
     imageClassName?: string;
 }) {
     return (
-        <div className={cn("bg-primaryGreen max-md:w-full grid grid-cols-10 text-black md:p-10 max-md:p-4  items-center justify-between border-2 border-black rounded-lg w-[90%] my-4", className as string)}>
+        <div className={cn("bg-primaryGreen max-md:w-full grid grid-cols-10 text-black md:p-10 max-md:p-4  items-center justify-between border-2 border-black  w-[90%] my-4", className as string)}>
             {/* Left Content */}
             <div className="col-span-6">
-                <h1 className={cn("text-4xl max-md:text-2xl font-bold", headingClassName as string)}>{heading}</h1>
+                <h1 className={cn("text-[49.2px] max-md:text-2xl font-[700] leading-[62.97px]", headingClassName as string)}>{heading}</h1>
                 <p className="mt-4 max-md:hidden text-lg">{text}</p>
                 <Link href={link} target="_blank">
-                    <button className="mt-6 bg-black text-white md:px-6 md:py-3 max-md:p-4 md:text-lg max-md:text-sm font-semibold rounded-md">
+                    <button className="mt-6 bg-black text-white md:px-6 md:py-3 max-md:p-4 md:text-lg max-md:text-sm font-semibold">
                         Explore Now
                     </button>
                 </Link>

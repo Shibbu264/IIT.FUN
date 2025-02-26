@@ -26,7 +26,7 @@ export default function About() {
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden rounded-lg hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
             <h2 className="font-bold text-center px-4">
                 <span className="text-xl text-white">Founded in</span><br/>
-                <span className="text-4xl text-primaryGreen">IIT BHU</span>
+                <span className="text-4xl text-primaryGreen">IIT</span>
             </h2>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden rounded-lg hover:scale-105 transition-transform">

@@ -150,7 +150,7 @@ export default function Landing() {
             </motion.div>
 
             <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -75 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className='flex items-start max-xl:hidden w-[70%]'>
@@ -161,67 +161,57 @@ export default function Landing() {
                 <CustomWindowStack />
             </div>
             <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}          
-            className="bg-bgBlack md:w-[75%] max-md:w-[90%] flex flex-col items-center py-10">
-
-            <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            >
-                <PromoSection
-                    className='lg:min-h-[430px] min-h-[270px]'
-                    heading="Join the Community"
-                    text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
-                    image="/phone.png"
-                    link="https://t.me/iit_fun"
-                />
-                </motion.div>
-
-                <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15,
-                  delay: 0.2
-                }}>
-                <PromoSection
-                    className='lg:min-h-[430px] min-h-[270px]'
-                    heading="Join the Leaderboard"
-                    text="We will track your engagement and add your scores in our Drop out meter, Let’s see which IIT mints the most $IIT and breaks the drop-o-meter."
-                    image="/second.png"
-                    link="https://yourlink.com"
-                />
-                </motion.div>
+              initial={{ opacity: 0.2, y: -70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, staggerChildren: 0.2 }}          
+              className="bg-bgBlack md:w-[75%] max-md:w-[90%] flex flex-col items-center py-10">
             
-                <motion.div
-                initial={{ opacity: 0, y: 50, rotate: -10 }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  rotate: 0,
-                  scale: [0.9, 1.1, 1],
-                }}
-                transition={{
-                  duration: 0.8,
-                  times: [0, 0.6, 1],
-                  ease: [0.6, -0.05, 0.01, 0.99],
-                }}>
-
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full flex justify-center"
+              >
                 <PromoSection
-                    className='lg:min-h-[430px] min-h-[270px]'
-                    heading="Who are We??"
-                    text="We are just like you crazy IITians who don’t wanna go by rules, RULES ARE OUTDATED!!"
-                    image="/second.png"
-                    link="https://yourlink.com"
+                  className='lg:min-h-[430px] min-h-[270px]'
+                  heading="Join the Community"
+                  text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
+                  image="/phone.png"
+                  link="https://t.me/iit_fun"
                 />
-
-                </motion.div>
+              </motion.div>
+            
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full flex justify-center"
+              >
+                <PromoSection
+                  className='lg:min-h-[430px] min-h-[270px]'
+                  heading="Join the Leaderboard"
+                  text="We will track your engagement and add your scores in our Drop out meter, Let's see which IIT mints the most $IIT and breaks the drop-o-meter."
+                  image="/second.png"
+                  link="https://yourlink.com"
+                />
+              </motion.div>
+            
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-full flex justify-center"
+              >
+                <PromoSection
+                  className='lg:min-h-[430px] min-h-[270px]'
+                  heading="Who are We??"
+                  text="We are just like you crazy IITians who don't wanna go by rules, RULES ARE OUTDATED!!"
+                  image="/second.png"
+                  link="https://yourlink.com"
+                />
+              </motion.div>
             </motion.div>
+
 
             <CustomWindow
                 topContent="Gallery"
