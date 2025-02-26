@@ -1,5 +1,6 @@
 import { Button } from '@/components/Ui/Button';
 import { DialogContent } from '@/components/Ui/Dialog';
+import { closeDialog } from '@/lib/store/slices/dialogSlice';
 import { setUser } from '@/lib/store/slices/userSlice';
 import { useAppSelector } from '@/lib/store/store';
 import { useWallet, Wallet } from '@solana/wallet-adapter-react';
@@ -12,13 +13,14 @@ export default function WalletModal() {
   const session = useSession();
   const { user } = useAppSelector(state => state.user)
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
   console.log(wallets)
 
   const [installedWallets, setInstalledWallets] = useState<Wallet[]>([]);
 
   useEffect(() => {
     const loadableWallets = wallets.filter(
-      (wallet) => wallet.readyState === "Loadable"||wallet.readyState ==="Installed"
+      (wallet) => wallet.readyState === "Loadable" || wallet.readyState === "Installed"
     );
     setInstalledWallets(loadableWallets);
   }, [wallets]);
@@ -43,8 +45,10 @@ export default function WalletModal() {
       body: JSON.stringify({ email: session?.data?.user?.email, wallet }),
     });
     const data = await response.json();
+    console.log(data)
     if (data.success) {
       dispatch(setUser({ ...user, wallet: wallet }))
+      dispatch(closeDialog())
     };
   };
 
@@ -54,7 +58,7 @@ export default function WalletModal() {
       <div className='flex flex-col gap-3'>
         {installedWallets.map((wallet: Wallet) => (
           <div key={wallet.adapter.name}>
-            <Button variant="outline" className='flex p-4 gap-2 items-center' onClick={() => select(wallet.adapter.name)} >
+            <Button loading={loading} variant="outline" className='flex w-44 p-4 gap-2 items-center' onClick={() => { setLoading(true); select(wallet.adapter.name) }} >
               Connect to {wallet.adapter.name}
               <img className='w-8 h-8' src={wallet.adapter.icon} />
             </Button>

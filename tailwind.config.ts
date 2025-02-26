@@ -27,7 +27,8 @@ export default {
       }
     },
     animation: {
-      'mirror-flip': 'mirror-flip 4s ease-in-out infinite'
+      'mirror-flip': 'mirror-flip 4s ease-in-out infinite',
+      'spin': 'spin 1s linear infinite'
     }
   },
   plugins: []

@@ -11,7 +11,12 @@ export async function POST(request: Request) {
             data: { wallet },
         });
 
-        return NextResponse.json({ success: true, user: updatedUser });
+        // Convert BigInt values to strings
+        const userResponse = JSON.parse(JSON.stringify(updatedUser, (key, value) =>
+            typeof value === 'bigint' ? value.toString() : value
+        ));
+
+        return NextResponse.json({ success: true, user: userResponse });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ success: false, message: 'Error updating wallet' }, { status: 500 });

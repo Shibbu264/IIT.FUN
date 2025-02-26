@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './Dropdown';
 import { toast } from 'sonner';
 import { useWallet } from '@solana/wallet-adapter-react';
+import { useAppSelector } from '@/lib/store/store';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,8 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const session = useSession();
     const { publicKey, select, disconnect, connected, wallets,wallet } = useWallet();
-    const [walletAddress, setWalletAddress] = useState(session?.data?.user?.wallet || "");
-
+    const {user}=useAppSelector(state=>state.user)
+console.log(user)
 
     useEffect(() => {
         setActiveSection(router)
@@ -51,7 +52,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="fixed top-0 w-screen  bg-secondaryBlack z-40">
-                    <div className="flex justify-between items-center h-16 px-4">
+                    <div className="flex md:max-w-[90%] mx-auto justify-between items-center h-16 max-md:px-4 md:px-6">
                         {/* Logo with minimal padding and guaranteed visibility */}
                         <div className="min-w-[80px]">
                             <Link href="/">
@@ -87,9 +88,25 @@ export default function Navbar() {
                         <div className='flex md:gap-5 max-md:gap-3'>
                             {session?.status == "authenticated" && (
                                 <>
-                                    {walletAddress && <p>Wallet: {walletAddress}</p>}
+        
                                     {connected ? (
-                                        <button className='text-red-500' onClick={disconnect}>Disconnect Wallet</button>
+                                        <DropdownMenu>
+                                        <DropdownMenuTrigger>
+                                            <Avatar>
+                                                <AvatarImage src={wallet?.adapter?.icon} alt="@shadcn" />
+                                                <AvatarFallback>CN</AvatarFallback>
+                                            </Avatar>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className='bg-black md:p-6 max-md:p-4'>
+                                            <DropdownMenuLabel className='text-lg'>My Wallets</DropdownMenuLabel>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem className='!cursor-pointer rounded-xl flex max-md:flex-col gap-3 md:items-center'
+                                           >
+                                            <span className='max-md:max-w-36 whitespace-normal overflow-x-auto'>{user?.wallet}</span>
+                                                <Button  onClick={disconnect} variant="destructive"> Disconnect </Button></DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                       
                                     ) : (
                                         <button className='text-secondaryGreen' onClick={() => dispatch(openDialog({
                                             type: 'wallet'
