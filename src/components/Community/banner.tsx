@@ -17,11 +17,11 @@ const Banner = () => {
       <div className=" relative md:hidden max-md:!block max-md: mt-16 max-md:w-[90%]">
      <img 
      className='absolute top-2 z-10'
-      src="/Group 8.png"
+      src="/Group 8.jpeg"
      />
      <img 
      className=' z-0'
-     src="/Group 9.png"
+     src="/Group 9.jpeg"
      />
 </div>
     </>

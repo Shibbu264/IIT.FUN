@@ -45,7 +45,7 @@ function Login() {
                 <p className='text-sm text-[#C0C0C0]'>Welcome! Please enter your institute email.</p>
             </div>
             <div className='relative w-full aspect-video'>
-                <Image layout="fill" alt='' src={"/login.gif"} />
+                <Image layout="fill" alt='' src={"/login.jpeg"} />
             </div>
             <div onClick={() => signIn('google')} className='flex items-center justify-center bg-white text-black rounded-lg p-2 cursor-pointer'>
                 <img src="/google-icon.svg" alt="Google Icon" className='w-5 h-5 mr-2' />

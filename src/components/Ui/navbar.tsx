@@ -121,7 +121,7 @@ export default function Navbar() {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger>
                                         <Avatar>
-                                            <AvatarImage src={session?.data?.user?.image ?? "/sponge.gif"} alt="@shadcn" />
+                                            <AvatarImage src={session?.data?.user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
                                             <AvatarFallback>CN</AvatarFallback>
                                         </Avatar>
                                     </DropdownMenuTrigger>

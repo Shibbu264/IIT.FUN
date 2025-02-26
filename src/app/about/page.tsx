@@ -16,7 +16,7 @@ export default function About() {
           {/* First Row */}
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
             <Image 
-            src="/nerd 1.gif" 
+            src="/nerd 1.jpeg" 
             alt="Image 1" 
             className="w-full h-full object-cover"
             height={300}
@@ -30,18 +30,18 @@ export default function About() {
             </h2>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
-            <Image unoptimized src="/giphy31.gif" alt="Image 3"  className="object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy31.jpeg" alt="Image 3"  className="object-cover"  height={300} width={300}/>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80  overflow-hidden  hover:scale-105 transition-transform">
-            <Image unoptimized src="/giphy61.gif" alt="Image 4"  className="object-cover" height={500} width={300} />
+            <Image unoptimized src="/giphy61.jpeg" alt="Image 4"  className="object-cover" height={500} width={300} />
           </div>
 
           {/* Second Row */}
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
-            <Image unoptimized src="/giphy51.gif" alt="Image 5"  className="object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy51.jpeg" alt="Image 5"  className="object-cover"  height={300} width={300}/>
           </div>
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform">
-            <Image unoptimized src="/giphy41.gif" alt="Image 6" className="object-cover"  height={300} width={300}/>
+            <Image unoptimized src="/giphy41.jpeg" alt="Image 6" className="object-cover"  height={300} width={300}/>
           </div>
 
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden  hover:scale-105 transition-transform flex items-center justify-center bg-secondaryBlack">
@@ -52,7 +52,7 @@ export default function About() {
           </div>
           
           <div className="relative h-40 sm:h-56 md:max-h-80 overflow-hidden hover:scale-105 transition-transform">
-            <Image src="/giphy21.gif" alt="Image 8" className="w-full h-full object-cover"  height={300} width={300}/>
+            <Image src="/giphy21.jpeg" alt="Image 8" className="w-full h-full object-cover"  height={300} width={300}/>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function About() {
         <div className={styles.container}>
             <div className={cn(styles.container1, "mr-auto")}> 
                 <div className={cn(styles.skewedBox1)}>
-                  <Image src="/giphy 7.gif" alt="meme" width={245} height={150} className={styles.image}/>
+                  <Image src="/giphy 7.jpeg" alt="meme" width={245} height={150} className={styles.image}/>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@ export default function About() {
         <div className={styles.container}>
             <div className={cn(styles.container1, "ml-auto")}> 
                 <div className={cn(styles.skewedBox1)}>
-                <Image src="/giphy 8.gif" alt="meme" width={310} height={162} className={styles.image}/>
+                <Image src="/giphy 8.jpeg" alt="meme" width={310} height={162} className={styles.image}/>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@ export default function About() {
             headingClassName='w-[30%]' 
             heading="Join the Community" 
             text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event Come on, we heard you." 
-            image="/phone.png" 
+            image="/phone.jpeg" 
             link="https://www.iit.fun"
           />
         </div>

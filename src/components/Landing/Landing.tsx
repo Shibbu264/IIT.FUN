@@ -53,7 +53,7 @@ export default function Landing() {
             </motion.div>
 
             <div className='relative md:hidden w-full aspect-video h-full'>
-                <Image layout='fill' alt=''  src={"/iit.png"}/>
+                <Image layout='fill' alt=''  src={"/iit.jpeg"}/>
             </div>
 
             {/* Speech Bubbles */}
@@ -82,7 +82,7 @@ export default function Landing() {
             transition={{ duration: 1 }}
             className="w-[80%] max-lg:hidden mt-6">
                 <Image
-                    src="/people.png"
+                    src="/people.jpeg"
                     alt="img"
                     layout="responsive"
                     width={100}
@@ -119,7 +119,7 @@ export default function Landing() {
                         </div>
                     </div>
                 </div>
-                <img className='relative h-full w-[450px]' src={"/Group48.png"} />
+                <img className='relative h-full w-[450px]' src={"/Group48.jpeg"} />
                 <div className='flex gap-6'>
                     <div className="flex flex-wrap gap-4 justify-center md:mt-24 max-md:mt-6">
                         <div className={`
@@ -148,7 +148,7 @@ export default function Landing() {
                         </div>
                     </div>
                 </div>
-                <img className='relative h-full w-[450px]' src={"/Group47.png"} />
+                <img className='relative h-full w-[450px]' src={"/Group47.jpeg"} />
             </div>
             <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -184,7 +184,7 @@ export default function Landing() {
                   className='lg:min-h-[430px] min-h-[270px]'
                   heading="Join the Community"
                   text="Inter IIT got you Medals?? We got you $$, If Meme-wars was an inter IIT event, Come on, we heard you."
-                  image="/phone.png"
+                  image="/phone.jpeg"
                   link="https://t.me/iit_fun"
                 />
               </motion.div>
@@ -199,7 +199,7 @@ export default function Landing() {
                   className='lg:min-h-[430px] min-h-[270px]'
                   heading="Join the Leaderboard"
                   text="We will track your engagement and add your scores in our Drop out meter, Let's see which IIT mints the most $IIT and breaks the drop-o-meter."
-                  image="/second.png"
+                  image="/second.jpeg"
                   link="https://yourlink.com"
                 />
               </motion.div>
@@ -214,7 +214,7 @@ export default function Landing() {
                   className='lg:min-h-[430px] min-h-[270px]'
                   heading="Who are We??"
                   text="We are just like you crazy IITians who don't wanna go by rules, RULES ARE OUTDATED!!"
-                  image="/second.png"
+                  image="/second.jpeg"
                   link="https://yourlink.com"
                 />
               </motion.div>
@@ -225,8 +225,8 @@ export default function Landing() {
                 topContent="Gallery"
                 bottomContent={
                     <div className="h-full w-full flex">
-                        <img src="/groupMeme.png" alt="Citrea" className="h-full max-md:hidden w-full" />
-                        <img src="/memePhone.png" alt="Citrea" className="h-full md:hidden w-full" />
+                        <img src="/groupMeme.jpeg" alt="Citrea" className="h-full max-md:hidden w-full" />
+                        <img src="/memePhone.jpeg" alt="Citrea" className="h-full md:hidden w-full" />
                     </div>
                 }
                 className='mb-20 max-md:!w-[90%] md:!w-[75%] mt-20'
