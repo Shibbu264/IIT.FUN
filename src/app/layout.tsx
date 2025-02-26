@@ -1,4 +1,3 @@
-"use client"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -12,12 +11,9 @@ import { Button } from "@/components/Ui/Button";
 import { Inria_Sans } from 'next/font/google';
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
+import GlobalProvider from "@/components/Providers/GlobalProvider";
 
 
-const wallets = [new PhantomWalletAdapter()];
-const network = clusterApiUrl("devnet");
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
 
 
@@ -46,24 +42,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} relative antialiased`}
       >
-        <Provider store={store}>
-          <SessionProvider>
-            <GlobalDialogWrapper>
-              <ConnectionProvider endpoint={network}>
-                <WalletProvider wallets={wallets} autoConnect>
-                  <WalletModalProvider>
-                    <div className="flex  flex-col items-center justify-center">
-                      <Navbar />
-                      <div className="mb-12" />
-                      {children}
-                      <Toaster />
-                    </div>
-                  </WalletModalProvider>
-                </WalletProvider>
-              </ConnectionProvider>
-            </GlobalDialogWrapper>
-          </SessionProvider>
-        </Provider>
+        <GlobalProvider>
+            {children}
+            <Toaster />
+        </GlobalProvider>
       </body>
     </html >
   );
