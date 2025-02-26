@@ -3,7 +3,7 @@ export default function CustomComponent() {
         <div className="flex mb-20 md:h-[35rem] max-md:h-[720px] text-white md:w-[85%]">
             {/* Left Sidebar */}
             <div className="w-1/5 bg-[#333333] p-4 flex flex-col items-center">
-                <img src="/sponge.gif" alt="Meme" className="w-full h-auto mb-2" />
+                <img src="/sponge.jpeg" alt="Meme" className="w-full h-auto mb-2" />
                 <p className="text-m text-center">F*CK 9-5, Let me follow my heart</p>
                 <button className="mt-auto border-2 border-[#333333] text-sm font-medium text-white px-4 py-2"> $IIT coming soon </button>
             </div>
