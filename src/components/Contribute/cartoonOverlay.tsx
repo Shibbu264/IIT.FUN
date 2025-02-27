@@ -10,23 +10,23 @@ export default function CartoonOverlay() {
         {/* Upper two images */}
         <div className="flex justify-between w-[70%] pt-4 mt-4">
         <div className='relative w-32 h-44 aspect-video'>
-          <Image layout='fill' src="/Vector 29.png" alt="Arrow"/>
+          <Image layout='fill' src="/Vector 29.jpeg" alt="Arrow"/>
         </div>
         <div className='relative w-32 h-44 aspect-video'>
-          <Image layout='fill' src="/Group 177013.png" alt="Surprised Face" />
+          <Image layout='fill' src="/Group 177013.jpeg" alt="Surprised Face" />
           </div>
         </div>
 
         {/* Lower three images */}
         <div className="flex justify-between items-start w-4/5">
         <div className='relative w-56 aspect-square'>
-          <Image layout='fill' src="/Group 1000006154.png" alt="Angry Face"  />
+          <Image layout='fill' src="/Group 1000006154.jpeg" alt="Angry Face"  />
           </div>
           <div className='relative w-44 aspect-square'>
-          <Image layout='fill' src="/Group 177025.png" alt="Sunglasses" />
+          <Image layout='fill' src="/Group 177025.jpeg" alt="Sunglasses" />
           </div>
           <div className='relative w-36 aspect-square'>
-          <Image layout='fill' src="/Group 1000006158.png" alt="Monkey Face" />
+          <Image layout='fill' src="/Group 1000006158.jpeg" alt="Monkey Face" />
           </div>
         </div>
       </div>
