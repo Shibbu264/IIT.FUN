@@ -9,7 +9,7 @@ export default function CartoonOverlay() {
       {/* Parent div */}
       <div className="w-full relative h-full flex flex-col items-center gap-4">
         {/* Upper two images */}
-        <div className="flex justify-between w-[70%] pt-4 mt-4">
+        <div className="flex justify-between w-[70%] pt-4 mt-4 lg:ml-16">
           <div className='relative max-md:w-28  md:h-44 aspect-video'>
             <Image layout='fill' src="/Vector 29.jpeg" alt="Arrow" />
           </div>
@@ -26,11 +26,11 @@ export default function CartoonOverlay() {
           <div className='relative max-md:w-28 mt-24 md:w-[227px] aspect-square'>
             <Image layout='fill' src="/Group 177025.jpeg" alt="Sunglasses" />
           </div>
-          <div className='relative max-md:w-28 md:w-52 lg:w-[227px] lg:h-[279px]'>
+          <div className='relative max-md:w-28 md:w-52 lg:w-[227px] lg:h-[279px] aspect-square'>
             <Image layout='fill' src="/Group 1000006158.jpeg" alt="Monkey Face" />
           </div>
         </div>
-        <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 !text-center xl:!text-8xl lg:text-6xl md:text-4xl text-3xl !w-full text-white font-[500] tracking-widest">
+        <div className="absolute  sm:top-[35%] top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 !text-center xl:!text-8xl lg:text-6xl md:text-4xl text-3xl !w-full text-white font-[500] tracking-widest">
           Let&apos;s hunt some <br />
           bounties
         </div>

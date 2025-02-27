@@ -13,7 +13,7 @@ const JobList = () => {
 
   return (
     <div className="bg-black w-full min-h-screen p-4 sm:p-6 mt-14">
-      <h1 className="text-white text-lg sm:text-xl font-bold mb-4">All Open</h1>
+      <h1 className="text-white text-lg sm:text-xl font-bold mb-4 mt-6">All Open</h1>
       <div className="space-y-4">
         {jobs.map((job) => (
           <div
