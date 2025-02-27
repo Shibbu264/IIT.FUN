@@ -26,3 +26,8 @@
   height: 100%;
   object-fit: cover;
 }
+.text {
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
