@@ -12,18 +12,18 @@ const JobList = () => {
   ];
 
   return (
-    <div className="bg-black w-full min-h-screen p-4 sm:p-6 mt-14 overflow-x-hidden">
+    <div className="bg-black w-full min-h-screen p-4 sm:p-6 mt-14">
       <h1 className="text-white text-lg sm:text-xl font-bold mb-4">All Open</h1>
-      <div className="items-center space-y-4 w-full">
+      <div className="space-y-4">
         {jobs.map((job) => (
           <div
             key={job.id}
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-900 text-white rounded-lg p-4 sm:p-6 md:p-8 border border-lime-500 hover:bg-gray-800 transition cursor-pointer"
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-900 text-white p-4 sm:p-6 md:p-8 border border-lime-500 hover:bg-gray-800 transition cursor-pointer"
           >
             {/* Left Section */}
             <div className="flex items-center gap-4 mb-4 sm:mb-0">
               {/* Placeholder Image */}
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700 rounded-md flex-shrink-0"></div>
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700  flex-shrink-0"></div>
               {/* Job Info */}
               <div>
                 <h2 className="font-semibold text-sm sm:text-base">{job.title}</h2>
