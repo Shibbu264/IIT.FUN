@@ -12,13 +12,8 @@ import {
     Umi,
     createBigInt,
     generateSigner,
-    none,
     publicKey,
     signAllTransactions,
-    signTransaction,
-    sol,
-    some,
-    transactionBuilder,
   } from "@metaplex-foundation/umi";
   import {
     DigitalAsset,
@@ -29,21 +24,7 @@ import {
   } from "@metaplex-foundation/mpl-token-metadata";
   import { mintText } from "../NFTUtils/settings";
   import {
-    Box,
-    Button,
-    Flex,
-    HStack,
-    Heading,
-    SimpleGrid,
     Text,
-    Tooltip,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
-    VStack,
-    Divider,
     createStandaloneToast,
   } from "@chakra-ui/react";
   import {
@@ -61,6 +42,7 @@ import {
   import { useSolanaTime } from "../NFTUtils/solanaTimeContext";
   import { verifyTx } from "../NFTUtils/verifyTx";
   import { base58 } from "@metaplex-foundation/umi/serializers";
+import { Button } from "../Ui/Button";
   
   const updateLoadingText = (
     loadingText: string | undefined,
@@ -538,9 +520,11 @@ import {
       };
       buttonGuardList.push(buttonElement);
     }
+    console.log(buttonGuardList)
   
     const listItems = buttonGuardList.map((buttonGuard, index) => (
               <Button
+               variant={"outline"}
                 onClick={() =>
                   mintClick(
                     umi,
@@ -560,20 +544,17 @@ import {
                 key={buttonGuard.label}
                 size="sm"
                 
-                isDisabled={!buttonGuard.allowed}
-                isLoading={
+                // isDisabled={!buttonGuard.allowed}
+                loading={
                   guardList.find((elem) => elem.label === buttonGuard.label)
                     ?.minting
-                }
-                loadingText={
-                  guardList.find((elem) => elem.label === buttonGuard.label)
-                    ?.loadingText
                 }
               >
                 {buttonGuard.buttonLabel}
               </Button>
     ));
+    console.log(listItems[0])
   
-    return <>{listItems}</>;
+    return <div className="flex flex-col gap-2">{listItems[0]}</div>;
   }
   

@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useAppSelector } from '@/lib/store/store';
 import { setUser } from '@/lib/store/slices/userSlice';
+import NFTButton from '../NFT/NFTButton';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +111,7 @@ export default function Navbar() {
                                                 })} variant="destructive"> Disconnect </Button></DropdownMenuItem>
                                             <DropdownMenuSeparator className='bg-gray-700 ml-2 mb-2 w-[90%]' />
                                             <DropdownMenuItem>
-                                                <Button variant={"outline"}>Mint NFTs</Button>
+                                                <NFTButton/>
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
