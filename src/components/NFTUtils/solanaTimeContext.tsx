@@ -23,6 +23,7 @@ export const SolanaTimeProvider = ({
   useEffect(() => {
     const fetchSolanaTime = async () => {
       const tempSolanaTime = await getSolanaTime(umi);
+      console.log("Temp solana time: ", tempSolanaTime);
       setSolanaTime(tempSolanaTime);
     };
     fetchSolanaTime();

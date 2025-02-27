@@ -321,6 +321,8 @@ import {
   
       if (singleGuard.startDate.__option === "Some") {
         const startDate = singleGuard.startDate as Some<StartDate>;
+        console.log("Start date is: ", startDate);
+        console.log("Current solana time: ", solanaTime)
         if (solanaTime < startDate.value.date) {
           guardReturn.push({
             label: eachGuard.label,

@@ -18,7 +18,7 @@ import {
 
   
 
-  import { useSolanaTime } from "@/components/NFTUtils/SolanaTimeContext";
+  import { useSolanaTime } from "@/components/NFTUtils/solanaTimeContext";
   
   const WalletMultiButtonDynamic = dynamic(
     async () =>
@@ -120,7 +120,7 @@ import {
   
   export default function Page() {
     const umi = useUmi();
-    const solanaTime = useSolanaTime();
+    const solanaTime = BigInt(9999999999)
     const toast = useToast();
     const { isOpen: isShowNftOpen, onOpen: onShowNftOpen, onClose: onShowNftClose } = useDisclosure();
     const { isOpen: isInitializerOpen, onOpen: onInitializerOpen, onClose: onInitializerClose } = useDisclosure();

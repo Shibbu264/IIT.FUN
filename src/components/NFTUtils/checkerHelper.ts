@@ -170,7 +170,8 @@ import {
   
     let solanaTime = await umi.rpc.getBlockTime(slot);
   
-    if (!solanaTime) solanaTime = BigInt(0);
+    if (!solanaTime) solanaTime = BigInt(99999999999999);
+    
     return solanaTime;
   };
   
