@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+
 
 interface Job {
   id: number;
@@ -22,7 +22,7 @@ const JobList = () => {
         const data = await response.json();
         setJobs(data);
       } catch (error) {
-        console.error("Error fetching jobs:", error);
+        console.log("Error fetching jobs:", error);
       }
     };
 

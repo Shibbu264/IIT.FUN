@@ -7,7 +7,7 @@ export async function GET(req: Request) {
     const bounties = await prisma.bounty.findMany();
     return NextResponse.json(bounties);
   } catch (error) {
-    console.error('Error fetching bounties:', error);
+    console.log('Error fetching bounties:', error);
     return NextResponse.json({ error: 'Failed to fetch bounties' }, { status: 500 });
   }
 }
