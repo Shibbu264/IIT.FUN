@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useAppSelector } from '@/lib/store/store';
 import { setUser } from '@/lib/store/slices/userSlice';
+import NFTButton from '../NFT/NFTButton';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +111,7 @@ export default function Navbar() {
                                                 })} variant="destructive"> Disconnect </Button></DropdownMenuItem>
                                             <DropdownMenuSeparator className='bg-gray-700 ml-2 mb-2 w-[90%]' />
                                             <DropdownMenuItem>
-                                                <Button variant={"outline"}>Mint NFTs</Button>
+                                                <NFTButton/>
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
@@ -157,28 +158,36 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu */}
             {isOpen && (
-                <div className="fixed inset-0 w-full h-full min-h-screen z-50 bg-black flex items-center justify-center overflow-hidden">
+                <div className="fixed inset-0 w-full h-full min-h-screen z-[70] bg-primaryBlack flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center space-y-8">
                         <Link href="/about"
-                            className={`px-3 py-2 rounded-md ${activeSection === 'about' ? 'bg-white text-black' : 'text-white'} text-2xl`}
-                            onClick={() => handleSectionClick('about')}>
+                            className={`px-3 py-2 rounded-md ${activeSection === '/about' 
+                                ? 'bg-secondaryBlack text-white' 
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack transition-colors'} text-2xl`}
+                            onClick={() => handleSectionClick('/about')}>
                             About
                         </Link>
                         <Link href="/community"
-                            className={`px-3 py-2 rounded-md ${activeSection === 'community' ? 'bg-white text-black' : 'text-white'} text-2xl`}
-                            onClick={() => handleSectionClick('community')}>
+                            className={`px-3 py-2 rounded-md ${activeSection === '/community' 
+                                ? 'bg-secondaryBlack text-white' 
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack transition-colors'} text-2xl`}
+                            onClick={() => handleSectionClick('/community')}>
                             Community
                         </Link>
                         <Link href="/leaderboard"
-                            className={`px-3 py-2 rounded-md ${activeSection === 'leaderboard' ? 'bg-white text-black' : 'text-white'} text-2xl`}
-                            onClick={() => handleSectionClick('leaderboard')}>
+                            className={`px-3 py-2 rounded-md ${activeSection === '/leaderboard' 
+                                ? 'bg-secondaryBlack text-white' 
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack transition-colors'} text-2xl`}
+                            onClick={() => handleSectionClick('/leaderboard')}>
                             Leaderboard
                         </Link>
                         <Link href="/contribute"
-                            className={`px-3 py-2 rounded-md ${activeSection === 'contribute' ? 'bg-white text-black' : 'text-white'} text-2xl`}
-                            onClick={() => handleSectionClick('contribute')}>
+                            className={`px-3 py-2 rounded-md ${activeSection === '/contribute' 
+                                ? 'bg-secondaryBlack text-white' 
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack transition-colors'} text-2xl`}
+                            onClick={() => handleSectionClick('/contribute')}>
                             Start Contributing
                         </Link>
                         <button onClick={toggleMenu} className="mt-6 px-6 py-2 bg-red-600 text-white rounded-lg">

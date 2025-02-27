@@ -63,27 +63,61 @@ export default function About() {
           </h2>
         </div>
 
-        <div className={styles.container}>
-            <div className={cn(styles.container1, "mr-auto")}> 
-                <div className={cn(styles.skewedBox1)}>
-                  <Image src="/giphy 7.jpeg" alt="meme" width={245} height={150} className={styles.image}/>
-                </div>
-            </div>
-        </div>
+        <div className="flex justify-center">
+  <div className="flex flex-1 bg-primaryBlack text-white p-4 mt-4 md:mt-0 max-w-[1200px] min-h-[160px] md:h-auto items-center mx-auto">
+    {/* Image Container */}
+    <div className={cn(styles.container1)}>
+      <div className={cn(styles.skewedBox1)}>
+        <Image 
+          src="/giphy 7.jpeg" 
+          alt="meme" 
+          width={245} 
+          height={150} 
+          className={styles.image}
+        />
+      </div>
+    </div>
+
+    {/* Text Content */}
+    <div className="ml-6 md:ml-24 lg:ml-44 text-[10px] lg:text-[20px] md:text-[15px]">
+      IIT.fun is the Talent Layer of IITians in Web 3<br/>
+      Got an idea? Send a proposal and get a grant.<br/>
+      Have a skill? Start contributing to projects and earn rewards.
+    </div>
+  </div>
+</div>
+
 
         <div className="w-full py-16 mt-12">
-           <h2 className="text-[50px] md:text-[90px] lg:text-[150px] font-extrabold text-center bg-gradient-to-r bg-primaryGreen bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer transform scale-x-[-1] rotate-180">
+          <h2 className="text-[50px] md:text-[90px] lg:text-[150px] font-extrabold text-center bg-gradient-to-r bg-primaryGreen bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer transform scale-x-[-1] rotate-180">
             WHAT IS $IIT?
-           </h2>
+          </h2>
         </div>
 
-        <div className={styles.container}>
-            <div className={cn(styles.container1, "ml-auto")}> 
-                <div className={cn(styles.skewedBox1)}>
-                <Image src="/giphy 8.jpeg" alt="meme" width={310} height={162} className={styles.image}/>
-                </div>
-            </div>
-        </div>
+        <div className="flex justify-center">
+  <div className="flex flex-1 bg-primaryBlack text-white p-4 mt-4 md:mt-0 max-w-[1200px] min-h-[160px] md:h-auto items-center mx-auto">
+    
+    {/* Text Content - Appears on the Left */}
+    <div className="mr-6 md:mr-24 lg:mr-44 text-[10px] lg:text-[20px] md:text-[15px]">
+    If you had an opportunity to invest in IITians building internet 20 years back you can calculate the returns you would get.<br/>
+    You have the same opportunity now.   
+     </div>
+
+    {/* Image Container */}
+    <div className={cn(styles.container1)}>
+      <div className={cn(styles.skewedBox1)}>
+        <Image 
+          src="/giphy 8.jpeg" 
+          alt="meme" 
+          width={310} 
+          height={162} 
+          className={styles.image}
+        />
+      </div>
+    </div>
+
+  </div>
+</div>
 
         <div className="flex justify-center w-full">
           <PromoSection 

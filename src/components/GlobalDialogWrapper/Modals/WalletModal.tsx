@@ -69,7 +69,7 @@ export default function WalletModal() {
       <div className='flex flex-col gap-3'>
         {installedWallets.map((wallet: Wallet, index) => (
           <div key={wallet.adapter.name}>
-            <Button loading={loading == index} variant="outline" className='flex w-44 p-4 gap-2 items-center' onClick={() => { setLoading(index); select(wallet.adapter.name) }} >
+            <Button loading={loading == index} variant="outline" className='flex min-w-44 p-4 gap-2 items-center' onClick={() => { setLoading(index); select(wallet.adapter.name) }} >
               Connect to {wallet.adapter.name}
               <img className='w-8 h-8' src={wallet.adapter.icon} />
             </Button>
