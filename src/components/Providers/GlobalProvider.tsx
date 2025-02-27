@@ -10,7 +10,7 @@ import { CoinbaseWalletAdapter, PhantomWalletAdapter, SolflareWalletAdapter, Tor
 import { clusterApiUrl } from "@solana/web3.js";
 import AuthGuardProvider from "./AuthGuard";
 import { useMemo } from "react";
-
+import { UmiProvider } from "../NFTUtils/UmiProvider";
 
 
 
@@ -25,7 +25,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
         ],
         [network]
     );
-
+    let endpoint = "https://api.devnet.solana.com";
     return (
         <Provider store={store}>
             <SessionProvider>
@@ -33,6 +33,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
                     <WalletProvider wallets={wallets} autoConnect>
                         <WalletModalProvider>
                             <GlobalDialogWrapper>
+                                <UmiProvider endpoint={endpoint}>
                                 <div className="flex  flex-col items-center w-full justify-center">
                                     <Navbar />
                                     <div className="mb-16" />
@@ -40,6 +41,7 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
                                         {children}
                                     </AuthGuardProvider>
                                 </div>
+                                </UmiProvider>
                             </GlobalDialogWrapper>
                         </WalletModalProvider>
                     </WalletProvider>
