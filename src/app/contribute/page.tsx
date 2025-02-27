@@ -9,7 +9,6 @@ import NFTButton from '@/components/NFT/NFTButton';
 export default function page() {
   return (
   <>
-   <NFTButton/>
     <CartoonOverlay />
     {/* <Banner /> */}
     <JobList />

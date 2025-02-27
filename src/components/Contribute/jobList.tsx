@@ -34,7 +34,7 @@ const JobList = () => {
       <h1 className="text-white text-lg sm:text-xl font-bold mb-4 mt-12">All Open</h1>
       <div className="space-y-4">
         {jobs.map((job) => (
-          <div
+          <a href={job.Link} target="_blank" rel="noopener noreferrer"
             key={job.id}
             className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-900 text-white p-4 sm:p-6 md:p-8 border border-lime-500 hover:bg-gray-800 transition cursor-pointer"
           >
@@ -45,9 +45,9 @@ const JobList = () => {
               {/* Job Info */}
               <div>
                 <h2 className="font-semibold text-sm sm:text-base">
-                  <a href={job.Link} target="_blank" rel="noopener noreferrer">
+                  <span>
                     {job.title}
-                  </a>
+                  </span>
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-400">{job.description}</p>
               </div>
@@ -58,7 +58,7 @@ const JobList = () => {
               <p className="font-semibold text-sm sm:text-base">{job.amount}</p>
               <p className="text-xs sm:text-sm text-gray-400">{job.unit}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
