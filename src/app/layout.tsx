@@ -12,9 +12,10 @@ import { Inria_Sans } from 'next/font/google';
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import GlobalProvider from "@/components/Providers/GlobalProvider";
+import Head from "next/head";
 
 
-const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'] });
+const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'],variable: "--font-inria-sans", });
 
 
 const geistSans = Geist({
@@ -39,8 +40,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+       <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative antialiased`}
+        className={`${inriaSans.variable} relative antialiased`}
       >
         <GlobalProvider>
             {children}
