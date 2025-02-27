@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { TailSpin } from "react-loader-spinner";
 
 interface Job {
   id: number;
@@ -14,23 +14,50 @@ interface Job {
 
 const JobList = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const response = await fetch("/api/get-bounties");
         const data = await response.json();
-        setJobs(data);
+        // console.log("Fetched Data:", data, "Type:", typeof data, "Is Array:", Array.isArray(data));
+
+  
+        if (Array.isArray(data)) {
+          setJobs(data);
+        } else {
+          console.error("Expected an array but got:", data);
+          setJobs([]); // Ensure jobs is always an array
+        }
+        setIsLoading(false);
       } catch (error) {
-        console.log("Error fetching jobs:", error);
+        console.error("Error fetching jobs:", error);
+        setIsLoading(false);
+        setJobs([]); // Handle fetch failure gracefully
       }
     };
-
+  
     fetchJobs();
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <TailSpin
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          visible={true}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-black w-full min-h-screen p-4 sm:p-6 mt-14">
+    <div className="bg-primaryBlack w-full min-h-screen p-4 sm:p-6 mt-14">
       <h1 className="text-white text-lg sm:text-xl font-bold mb-4 mt-12">All Open</h1>
       <div className="space-y-4">
         {jobs.map((job) => (
