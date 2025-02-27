@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from "next/image";
-import NFTButton from '../NFT/NFTButton';
+
 
 export default function CartoonOverlay() {
   return (

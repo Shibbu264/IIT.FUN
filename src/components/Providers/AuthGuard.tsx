@@ -2,6 +2,7 @@ import { protectedRoutes } from "@/lib/protectedRoutes";
 import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { setUser } from "@/lib/store/slices/userSlice";
 import { useAppSelector } from "@/lib/store/store";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -12,12 +13,17 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     const dispatch = useDispatch();
     const pathname = usePathname();
     const {user} = useAppSelector(state => state.user);
+    const {wallet}=useWallet()
 
     useEffect(() => {
         if (!user && status === "loading") return;
-        if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
+        if (status === "unauthenticated") {
+            if(protectedRoutes.includes(pathname)){
             dispatch(openDialog({ type: "login" }));
+            }
+           wallet?.adapter.disconnect();
         }
+
         if (status == "authenticated" && !user) {
             fetch('/api/me', {
                 method: 'POST', // Use 'POST' if you want to send data in the body
