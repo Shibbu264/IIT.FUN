@@ -1,0 +1,34 @@
+ .bannerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @apply max-md:w-10/12 !important;
+} 
+
+.firstBanner{
+    position: absolute;
+    width: 95%;
+    height: 42.75px;
+    background-color: #CBFC02;
+    color: #000000;
+    font-weight: 700;
+    font-size: 25px;
+    padding-top: 0px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    border: 5px dashed #000000;
+border-image: repeating-linear-gradient(
+  to right,
+  #000000 0,
+  #000000 3%,
+  transparent 3%,
+  transparent 6%
+) 1;
+    overflow-y: hidden;
+} 
+
+.firstBanner {
+    transform: rotate(-4.12deg);
+}
+

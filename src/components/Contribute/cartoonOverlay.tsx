@@ -1,6 +1,8 @@
 "use client"
 import React from 'react'
 import Image from "next/image";
+import styles from './banner.module.css';
+import { cn } from '@/lib/utils';
 
 export default function CartoonOverlay() {
   return (
