@@ -20,7 +20,6 @@ const JobList = () => {
       try {
         const response = await fetch("/api/get-bounties");
         const data = await response.json();
-        console.log(data);
         setJobs(data);
       } catch (error) {
         console.error("Error fetching jobs:", error);
