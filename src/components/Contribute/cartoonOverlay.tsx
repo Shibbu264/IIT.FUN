@@ -36,7 +36,7 @@ export default function CartoonOverlay() {
       </div>
 
 
-      <div className="bg-primaryGreen absolute -bottom-12 max-sm:-bottom-16 w-full -rotate-[4.12deg] text-primaryBlack text-center py-2 font-bold text-lg uppercase border-t-2 border-dashed border-black z-50">
+      <div className="bg-primaryGreen absolute -bottom-12 max-sm:-bottom-16 w-full -rotate-[4.12deg] text-primaryBlack text-center py-2 font-bold text-lg uppercase border-t-4 border-b-4 border-dashed border-black z-50">
         <span className='xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl'>Bug bounties, meme bounties, tech bounties—free money</span>
       </div>
 
