@@ -530,7 +530,7 @@ import {
         mintText: text ? text.mintText : "mintText missing in settings.tsx",
         buttonLabel: text
           ? text.buttonLabel
-          : "buttonLabel missing in settings.tsx",
+          : "Loading...",
         startTime,
         endTime,
         tooltip: guard.reason,
@@ -540,70 +540,6 @@ import {
     }
   
     const listItems = buttonGuardList.map((buttonGuard, index) => (
-      <Box key={index} marginTop={"20px"}>
-        <Divider my="10px" />
-        <HStack>
-          <Heading size="xs" textTransform="uppercase">
-            {buttonGuard.header}
-          </Heading>
-          <Flex justifyContent="flex-end" marginLeft="auto">
-            {buttonGuard.endTime > createBigInt(0) &&
-              buttonGuard.endTime - solanaTime > createBigInt(0) &&
-              (!buttonGuard.startTime ||
-                buttonGuard.startTime - solanaTime <= createBigInt(0)) && (
-                <>
-                  <Text fontSize="sm" marginRight={"2"}>
-                    Ending in:{" "}
-                  </Text>
-                  <Timer
-                    toTime={buttonGuard.endTime}
-                    solanaTime={solanaTime}
-                    setCheckEligibility={setCheckEligibility}
-                  />
-                </>
-              )}
-            {buttonGuard.startTime > createBigInt(0) &&
-              buttonGuard.startTime - solanaTime > createBigInt(0) &&
-              (!buttonGuard.endTime ||
-                solanaTime - buttonGuard.endTime <= createBigInt(0)) && (
-                <>
-                  <Text fontSize="sm" marginRight={"2"}>
-                    Starting in:{" "}
-                  </Text>
-                  <Timer
-                    toTime={buttonGuard.startTime}
-                    solanaTime={solanaTime}
-                    setCheckEligibility={setCheckEligibility}
-                  />
-                </>
-              )}
-          </Flex>
-        </HStack>
-        <SimpleGrid columns={2} spacing={5}>
-          <Text pt="2" fontSize="sm">
-            {buttonGuard.mintText}
-          </Text>
-          <VStack>
-            {process.env.NEXT_PUBLIC_MULTIMINT && buttonGuard.allowed ? (
-              <NumberInput
-                value={numberInputValues[buttonGuard.label] || 1}
-                min={1}
-                max={buttonGuard.maxAmount < 1 ? 1 : buttonGuard.maxAmount}
-                size="sm"
-                isDisabled={!buttonGuard.allowed}
-                onChange={(valueAsString, valueAsNumber) =>
-                  handleNumberInputChange(buttonGuard.label, valueAsNumber)
-                }
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            ) : null}
-  
-            <Tooltip label={buttonGuard.tooltip} aria-label="Mint button">
               <Button
                 onClick={() =>
                   mintClick(
@@ -623,7 +559,7 @@ import {
                 }
                 key={buttonGuard.label}
                 size="sm"
-                backgroundColor="teal.100"
+                
                 isDisabled={!buttonGuard.allowed}
                 isLoading={
                   guardList.find((elem) => elem.label === buttonGuard.label)
@@ -636,10 +572,6 @@ import {
               >
                 {buttonGuard.buttonLabel}
               </Button>
-            </Tooltip>
-          </VStack>
-        </SimpleGrid>
-      </Box>
     ));
   
     return <>{listItems}</>;

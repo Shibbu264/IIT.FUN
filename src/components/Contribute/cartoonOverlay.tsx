@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import Image from "next/image";
+import NFTButton from '../NFT/NFTButton';
 
 export default function CartoonOverlay() {
   return (
@@ -30,12 +31,14 @@ export default function CartoonOverlay() {
           </div>
         </div>
       </div>
-
+      
       {/* Centered text */}
       <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 !text-center !text-7xl !w-full text-white font-[500] tracking-widest">
           Let&apos;s hunt some <br />
           bounties
+          
       </div>
+      
     </div>
   );
 }

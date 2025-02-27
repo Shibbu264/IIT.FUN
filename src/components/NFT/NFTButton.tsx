@@ -118,7 +118,7 @@ import {
   };
   
   
-  export default function Page() {
+  export default function NFTButton() {
     const umi = useUmi();
     const solanaTime = BigInt(9999999999)
     const toast = useToast();
