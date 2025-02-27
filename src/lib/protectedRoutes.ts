@@ -1,1 +1,1 @@
-export const protectedRoutes=["/contribute"]
+export const protectedRoutes=[""]

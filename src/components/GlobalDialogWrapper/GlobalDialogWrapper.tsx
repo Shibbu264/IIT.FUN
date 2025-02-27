@@ -10,14 +10,14 @@ import WalletModal from './Modals/WalletModal';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
-  const { isOpen, type } = useSelector((state: any) => state.dialog);
+  const { isOpen, type,data } = useSelector((state: any) => state.dialog);
 
   const renderComponentFromType = () => {
     switch (type) {
       case 'login':
-        return <Login />;
+        return <Login {...data} />;
       case 'wallet':
-        return <WalletModal />;   // Replace with your actual component
+        return <WalletModal {...data} />;   // Replace with your actual component
       default:
         return null; // Or a default component
     }
@@ -28,7 +28,7 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       {children}
       <Dialog open={isOpen} onOpenChange={() => dispatch(toggleDialog())}>
         <DialogTitle></DialogTitle>
-        {renderComponentFromType()}
+        {isOpen && renderComponentFromType()}
       </Dialog>
     </>
   )

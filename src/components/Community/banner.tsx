@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const Banner = () => {
   return (
     <>
-    <div className={cn(styles.bannerContainer, 'max-md:!hidden !mt-[10%]')}>
+  <div className={cn(styles.bannerContainer, 'max-md:!hidden !mt-[8%]')}>
     <div className={styles.firstBanner}>
       Joining IIT.fun: 69% smarter * Joining IIT.fun: 69% smarter * Joining IIT.fun: 69% smarter * Joining IIT.fun: 69% smarter
     </div>

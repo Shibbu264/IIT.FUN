@@ -9,12 +9,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 
 export default function WalletModal() {
-  const { publicKey, select, disconnect, connected, wallets } = useWallet();
+  const { publicKey, select, disconnect, connected, wallets} = useWallet();
   const session = useSession();
   const { user } = useAppSelector(state => state.user)
+  const isOpen=useAppSelector(state=>state.dialog.isOpen)
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(-1)
-  console.log(wallets)
 
   const [installedWallets, setInstalledWallets] = useState<Wallet[]>([]);
 
@@ -25,20 +25,28 @@ export default function WalletModal() {
     setInstalledWallets(loadableWallets);
   }, [wallets]);
 
+  useEffect(()=>{
+  if(!isOpen){
+    setLoading(-1)
+  }
+  },[isOpen])
+
   useEffect(() => {
-    if (user?.wallet) {
-      const walletAddress = user.wallet;
-      const walletToConnect = wallets.find(wallet => wallet.adapter.publicKey?.toString() === walletAddress);
-      if (walletToConnect) {
-        select(walletToConnect.adapter.name);
-      }
+    // if (user?.wallet) {
+    //   console.log('hiii')
+    //   const walletAddress = user.wallet;
+    //   console.log(walletAddress)
+    //   const walletToConnect = wallets.find(wallet => wallet.adapter.publicKey?.toString() === walletAddress);
+    //   if (walletToConnect) {
+    //     console.log('heyy')
+    //     select(walletToConnect.adapter.name);
+    //   }
+    // }
+    
+    if (connected) {
+      updateWallet(publicKey?.toString());
     }
-    console.log(publicKey)
-    if (publicKey && (!user?.wallet || publicKey.toString() !== user?.wallet)) {
-      console.log("here")
-      updateWallet(publicKey.toString());
-    }
-  }, [publicKey, user?.wallet]);
+  }, [publicKey, user?.wallet,connected]);
 
   const updateWallet = async (wallet: any) => {
     const response = await fetch("/api/save-wallet", {
@@ -50,8 +58,8 @@ export default function WalletModal() {
     console.log(data)
     if (data.success) {
       dispatch(setUser({ ...user, wallet: wallet }))
-      dispatch(closeDialog())
     };
+    dispatch(closeDialog())
     setLoading(-1)
   };
 
