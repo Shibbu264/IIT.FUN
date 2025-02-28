@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Provider } from "react-redux";
-import store from "@/lib/store/store";
-import { SessionProvider } from "next-auth/react";
-import GlobalDialogWrapper from "@/components/GlobalDialogWrapper/GlobalDialogWrapper";
-import Navbar from "@/components/Ui/navbar";
 import { Toaster } from "@/components/Ui/Sonner";
-import { Button } from "@/components/Ui/Button";
 import { Inria_Sans } from 'next/font/google';
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import GlobalProvider from "@/components/Providers/GlobalProvider";
 import Head from "next/head";
+import { Analytics } from '@vercel/analytics/next';
 
 
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'],variable: "--font-inria-sans", });
@@ -45,6 +38,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap"
           rel="stylesheet"
         />
+        <meta property="og:title" content="IIT.fun - The Talent Layer of IITians in Web 3" />
+        <meta property="og:description" content="Got an idea? Send a proposal and get a grant. Have a skill? Start contributing to projects and earn rewards." />
+        <meta property="og:image" content="/giphy 63.jpeg" />
+        <meta property="og:url" content="https://iit.fun" />
+        <meta property="og:type" content="website" />
       </Head>
       <body
         className={`${inriaSans.variable} relative antialiased`}
@@ -53,6 +51,7 @@ export default function RootLayout({
             {children}
             <Toaster />
         </GlobalProvider>
+        <Analytics/>
       </body>
     </html >
   );
