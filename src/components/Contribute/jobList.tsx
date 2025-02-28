@@ -16,6 +16,7 @@ interface Job {
 const JobList = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showButton, setShowButton] = useState(true);
   const bountiesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -43,7 +44,27 @@ const JobList = () => {
 
   const scrollToBounties = () => {
     bountiesRef.current?.scrollIntoView({ behavior: "smooth" });
+    setShowButton(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const bountiesOffset = bountiesRef.current?.offsetTop ?? 0;
+
+      // Show the button if the user scrolls back up above the bounties section
+      if (scrollTop + viewportHeight < scrollHeight - 100) {
+        setShowButton(true);
+      } else if (scrollTop + viewportHeight >= bountiesOffset) {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isLoading) {
     return (
@@ -56,13 +77,15 @@ const JobList = () => {
   return (
     <div className="bg-primaryBlack w-full min-h-screen p-4 sm:p-6 mt-14 relative">
       {/* Floating Button */}
-      <Button
-        variant="outline"
-        className="fixed top-28 right-4 p-4 rounded-full shadow-lg bg-primaryBlack hover:bg-gray-100"
-        onClick={scrollToBounties}
-      >
-        ↓
-      </Button>
+      {showButton && (
+        <Button
+          variant="outline"
+          className="fixed bottom-auto lg:bottom-1 left-1/2 transform -translate-x-1/2 p-4 rounded-full shadow-lg bg-primaryBlack hover:bg-gray-100 transition-opacity duration-300"
+          onClick={scrollToBounties}
+        >
+          ↓
+        </Button>
+      )}
 
       {/* Bounties Section */}
       <h1 className="text-white text-lg sm:text-xl font-bold mb-4 mt-12">All Open</h1>
