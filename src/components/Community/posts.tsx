@@ -10,7 +10,7 @@ const images = [
 ];
 
 const labels = [
-  'ZO HOUSE BLR',
+  'ZO HOUSE BANGALORE',
   'ZO HOUSE DUBAI',
   'ZO HOUSE SF'
 ];
@@ -23,7 +23,7 @@ export default function Posts() {
                     {/* "ZO" text positioned dynamically */}
                     {i % 2 !== 0 && (
                     <div className="flex flex-1 justify-center items-center">
-                        <span className="text-8xl font-extrabold text-gray-300 -rotate-[30deg]">
+                        <span className="md:text-8xl max-md:hidden text-6xl font-extrabold text-primaryGreen -rotate-[30deg]">
                             ZO
                         </span>
                     </div>
@@ -42,7 +42,7 @@ export default function Posts() {
                     {/* "ZO" text positioned dynamically */}
                     {i % 2 === 0 && (
                          <div className="flex flex-1 justify-center items-center">
-                        <span className="text-8xl font-extrabold text-gray-300 -rotate-[30deg]">
+                        <span className="md:text-8xl max-md:hidden text-6xl font-extrabold text-white -rotate-[30deg]">
                             ZO
                             </span>
                         </div>
