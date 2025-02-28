@@ -80,7 +80,7 @@ const JobList = () => {
       {showButton && (
         <Button
           variant="outline"
-          className="fixed bottom-auto lg:bottom-1 left-1/2 transform -translate-x-1/2 p-4 rounded-full shadow-lg bg-primaryBlack hover:bg-gray-100 transition-opacity duration-300"
+          className="fixed bottom-auto lg:bottom-1 left-1/2 transform -translate-x-1/2 p-4 rounded-full shadow-lg bg-primaryBlack hover:scale-[1.05] transition-opacity duration-300"
           onClick={scrollToBounties}
         >
           ↓
