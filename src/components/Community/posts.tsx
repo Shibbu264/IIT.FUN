@@ -33,7 +33,7 @@ export default function Posts() {
                     <div className={cn(styles.container1)}>
                         <div className={cn(styles.skewedBox1)}>
                             <img src={src} alt={`Image ${i + 1}`} className={styles.image} />
-                            <div className={cn(styles.text, "text-center font-bold mt-2")}>
+                            <div className={cn(styles.text, "text-center font-bold my-2")}>
                                 {labels[i]}
                             </div>
                         </div>

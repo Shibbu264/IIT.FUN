@@ -10,7 +10,7 @@
    border: 2px solid #CBFC02;
    height: 162px;
    width: 310px;
-  @apply max-md:h-24 max-md:w-32;
+  @apply max-md:h-24 max-md:my-6 max-md:w-32;
 }
 .skewedBox1{
   background-color: white;
@@ -21,6 +21,15 @@
 }
 .image{
   @apply max-md:min-w-44 xl:min-w-[400px] aspect-video md:w-full ;
+  object-fit: cover;
+}
+.image1{
+  @apply max-md:min-w-36 xl:min-w-[400px] aspect-video md:w-full ;
+  object-fit: cover;
+}
+
+.image2{
+  @apply max-md:min-w-48 xl:min-w-[400px] aspect-video md:w-full ;
   object-fit: cover;
 }
 .text {
