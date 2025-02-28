@@ -18,7 +18,7 @@ const Banner = () => {
         <span className='max-lg:hidden'>* WE ARE INCUBATED IN ZO HOUSE</span>
       </div>
       </div>
-      <div className=" relative md:hidden max-md:!block max-md: mt-8 max-md:w-[90%]">
+      <div className=" relative md:hidden max-md:!block max-md: mt-8 max-md:w-[99%]">
      <img 
      className='absolute top-2 z-10'
       src="/Group 8.jpeg"
