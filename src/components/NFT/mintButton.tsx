@@ -163,7 +163,7 @@ const mintClick = async (
       const fetchedLut = await fetchAddressLookupTable(umi, lutPubKey);
       tables = [fetchedLut];
     } else {
-      toast("The developer should really set a lookup table!", {
+      toast("Minting....!", {
         duration: 900,
       });
     }
