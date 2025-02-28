@@ -32,17 +32,17 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
                 <ConnectionProvider endpoint={network}>
                     <WalletProvider wallets={wallets} autoConnect>
                         <WalletModalProvider>
-                            <GlobalDialogWrapper>
-                                <UmiProvider endpoint={endpoint}>
-                                <div className="flex  flex-col items-center w-full justify-center">
-                                    <Navbar />
-                                    <div className="mb-16" />
-                                    <AuthGuardProvider>
-                                        {children}
-                                    </AuthGuardProvider>
-                                </div>
-                                </UmiProvider>
-                            </GlobalDialogWrapper>
+                            <UmiProvider endpoint={endpoint}>
+                                <GlobalDialogWrapper>
+                                    <div className="flex  flex-col items-center w-full justify-center">
+                                        <Navbar />
+                                        <div className="mb-16" />
+                                        <AuthGuardProvider>
+                                            {children}
+                                        </AuthGuardProvider>
+                                    </div>
+                                </GlobalDialogWrapper>
+                            </UmiProvider>
                         </WalletModalProvider>
                     </WalletProvider>
                 </ConnectionProvider>

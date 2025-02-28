@@ -31,4 +31,11 @@ border-image: repeating-linear-gradient(
 .firstBanner {
     transform: rotate(-4.12deg);
 }
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px); /* Increased height */
+    margin-top: 6rem; /* Add top margin */
+}
 
