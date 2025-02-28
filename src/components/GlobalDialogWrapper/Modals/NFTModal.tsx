@@ -13,26 +13,22 @@ export default function NFTModal({ address }: { address: any }) {
         headers: myHeaders,
         redirect: 'follow'
     };
-    // const baseURL = `https://solana-devnet.g.alchemy.com/nft/v2/a4hPW2lwPOW8yu5ReKcS0RxtPZPpEpKK/getNFTsForOwner`;
-    // const url = `${baseURL}/getNFTs/?owner=${address}`;
-    // var requestOptions = {
-    //     method: 'get',
-    //     redirect: 'follow'
-    // };
     const [collections, setCollections] = useState<any[]>([]);
     useEffect(() => {
         fetch("https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=" + address, requestOptions as any)
             .then(response => response.json())
             .then((data) => {
                 setCollections(data.result.collections || []);
-                console.log(data);
+                return data;
             })
+            .then((data:any)=>fetchAllMetadata(data?.result?.collections))
             .catch(error => {
                 console.log('error', error);
-            });
+            })
+            
+            ;
     }, [])
 
-    useEffect(() => {
         const fetchMetadata = async (nft: { metadata_uri: string }) => {
             try {
                 const response = await fetch(nft.metadata_uri);
@@ -44,8 +40,8 @@ export default function NFTModal({ address }: { address: any }) {
             }
         };
 
-        const fetchAllMetadata = async () => {
-            const updatedCollections = await Promise.all(collections.map(async (collection: any) => {
+        const fetchAllMetadata = async (collections1:any) => {
+            const updatedCollections = await Promise.all(collections1.map(async (collection: any) => {
                 const nftsWithImages = await Promise.all(collection.nfts.map(async (nft: { metadata_uri: string }) => {
                     const imageUrl = await fetchMetadata(nft);
                     return { ...nft, image: imageUrl };
@@ -54,9 +50,6 @@ export default function NFTModal({ address }: { address: any }) {
             }));
             setCollections(updatedCollections);
         };
-
-        fetchAllMetadata();
-    }, [collections]);
 
     return (
         <DialogContent className="p-4 bg-primaryBlack text-white rounded-lg shadow-lg max-w-lg mx-auto">
@@ -69,27 +62,7 @@ export default function NFTModal({ address }: { address: any }) {
                         {collection.nfts.map((nft: any, nftIndex: number) => (
                             <>
                                 <div key={nftIndex} className="bg-secondaryGreen p-4 rounded-lg">
-                                    <img src={nft.image} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
-                                    <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
-                                    <p className="text-sm">Royalty: {nft.royalty}%</p>
-                                </div>
-                                <div key={nftIndex} className="bg-secondaryGreen p-4 rounded-lg">
-                                    <img src={nft.image} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
-                                    <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
-                                    <p className="text-sm">Royalty: {nft.royalty}%</p>
-                                </div>
-                                <div key={nftIndex} className="bg-secondaryGreen p-4 rounded-lg">
-                                    <img src={nft.image} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
-                                    <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
-                                    <p className="text-sm">Royalty: {nft.royalty}%</p>
-                                </div>
-                                <div key={nftIndex} className="bg-secondaryGreen p-4 rounded-lg">
-                                    <img src={nft.image} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
-                                    <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
-                                    <p className="text-sm">Royalty: {nft.royalty}%</p>
-                                </div>
-                                <div key={nftIndex} className="bg-secondaryGreen p-4 rounded-lg">
-                                    <img src={nft.image} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
+                                    <img src={nft.image??"/giphy21.jpeg"} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
                                     <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
                                     <p className="text-sm">Royalty: {nft.royalty}%</p>
                                 </div>
