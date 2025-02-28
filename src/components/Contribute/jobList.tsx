@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { TailSpin } from "react-loader-spinner";
+import { Button } from "@/components/Ui/Button";
 
 interface Job {
   id: number;
@@ -15,51 +16,57 @@ interface Job {
 const JobList = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const bountiesRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const response = await fetch("/api/get-bounties");
         const data = await response.json();
-        // console.log("Fetched Data:", data, "Type:", typeof data, "Is Array:", Array.isArray(data));
-
-  
+        
         if (Array.isArray(data)) {
           setJobs(data);
         } else {
           console.error("Expected an array but got:", data);
-          setJobs([]); // Ensure jobs is always an array
+          setJobs([]); 
         }
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching jobs:", error);
         setIsLoading(false);
-        setJobs([]); // Handle fetch failure gracefully
+        setJobs([]); 
       }
     };
   
     fetchJobs();
   }, []);
 
+  const scrollToBounties = () => {
+    bountiesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <TailSpin
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="tail-spin-loading"
-          radius="1"
-          visible={true}
-        />
+        <TailSpin height="80" width="80" color="#4fa94d" ariaLabel="tail-spin-loading" radius="1" visible={true} />
       </div>
     );
   }
 
   return (
-    <div className="bg-primaryBlack w-full min-h-screen p-4 sm:p-6 mt-14">
+    <div className="bg-primaryBlack w-full min-h-screen p-4 sm:p-6 mt-14 relative">
+      {/* Floating Button */}
+      <Button
+        variant="outline"
+        className="fixed top-28 right-4 p-4 rounded-full shadow-lg bg-primaryBlack hover:bg-gray-100"
+        onClick={scrollToBounties}
+      >
+        ↓
+      </Button>
+
+      {/* Bounties Section */}
       <h1 className="text-white text-lg sm:text-xl font-bold mb-4 mt-12">All Open</h1>
-      <div className="space-y-4">
+      <div ref={bountiesRef} className="space-y-4">
         {jobs.map((job) => (
           <a href={job.Link} target="_blank" rel="noopener noreferrer"
             key={job.id}
@@ -67,14 +74,10 @@ const JobList = () => {
           >
             {/* Left Section */}
             <div className="flex items-center gap-4 mb-4 sm:mb-0">
-              {/* Job Image */}
               <img src={job.image} alt={job.title} className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700 flex-shrink-0" />
-              {/* Job Info */}
               <div>
                 <h2 className="font-semibold text-sm sm:text-base">
-                  <span>
-                    {job.title}
-                  </span>
+                  <span>{job.title}</span>
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-400">{job.description}</p>
               </div>
