@@ -159,14 +159,18 @@ export default function NFTButton() {
       setIsAllowed(false);
 
       let allowed = false;
+      let notAllowedmsg;
       for (const guard of guardReturn) {
         if (guard.allowed) {
           allowed = true;
           break;
         }
+        else{
+          notAllowedmsg=guard?.reason
+        }
       }
       if (!allowed) {
-        toast("Minting limit reached, comeback later !", {
+        toast(notAllowedmsg, {
           duration: 3000,
         });
       }

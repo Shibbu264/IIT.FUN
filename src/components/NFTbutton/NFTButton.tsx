@@ -148,6 +148,7 @@ export default function NFTButton() {
       })
     }
   }
+
   const candyMachineId: PublicKey = useMemo(() => {
     if (process.env.NEXT_PUBLIC_CANDY_MACHINE_ID) {
       return publicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID);

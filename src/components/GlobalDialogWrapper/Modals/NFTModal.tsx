@@ -67,6 +67,9 @@ export default function NFTModal({ address }: { address: any }) {
                     color="green"
                     ariaLabel="loading"
                 /> :
+                collections?.length==0?
+                <>You haven't minted any NFTs yet</>
+                :
                 collections.map((collection: any, index: number) => (
                     <div key={index} className="mb-4">
                         <h3 className="text-xl font-bold mb-2">{collection.name}</h3>
