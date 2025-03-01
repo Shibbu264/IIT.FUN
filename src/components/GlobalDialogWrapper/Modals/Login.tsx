@@ -27,9 +27,9 @@ function getRandomQuote() {
     return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
-function Login() {
+function Login({closable=true}:{closable:boolean}) {
     const [quote, setQuote] = useState(getRandomQuote());
-
+    console.log(closable)
     useEffect(() => {
         const interval = setInterval(() => {
             setQuote(getRandomQuote());
@@ -39,7 +39,7 @@ function Login() {
     }, []);
 
     return (
-        <DialogContent className='md:px-14 flex flex-col md:gap-7 max-md:gap-4 max-md:py-[72px]'>
+        <DialogContent  closable={closable} className='md:px-14 flex flex-col md:gap-7 max-md:gap-4 max-md:py-[72px]'>
             <div className='flex flex-col gap-2'>
                 <p className='text-lg'>Sign up</p>
                 <p className='text-sm text-[#C0C0C0]'>Welcome! Please enter your institute email.</p>

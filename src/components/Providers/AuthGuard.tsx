@@ -19,7 +19,10 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
         if (!user && status === "loading") return;
         if (status === "unauthenticated") {
             if(protectedRoutes.includes(pathname)){
-            dispatch(openDialog({ type: "login" }));
+            dispatch(openDialog({ type: "login",data:{
+                closable:false,
+                route:pathname
+            } }));
             }
            wallet?.adapter.disconnect();
         }
