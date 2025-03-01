@@ -10,9 +10,9 @@ const images = [
 ];
 
 const labels = [
-  'ZO HOUSE BANGALORE',
+  'ZO HOUSE SF',
   'ZO HOUSE DUBAI',
-  'ZO HOUSE SF'
+  'ZO HOUSE BANGALORE'
 ];
 
 export default function Posts() {

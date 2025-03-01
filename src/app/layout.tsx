@@ -5,7 +5,7 @@ import { Toaster } from "@/components/Ui/Sonner";
 import { Inria_Sans } from 'next/font/google';
 import GlobalProvider from "@/components/Providers/GlobalProvider";
 import Head from "next/head";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 
 const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'],variable: "--font-inria-sans", });
