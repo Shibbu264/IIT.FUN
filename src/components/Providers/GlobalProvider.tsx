@@ -11,11 +11,16 @@ import { clusterApiUrl } from "@solana/web3.js";
 import AuthGuardProvider from "./AuthGuard";
 import { useMemo } from "react";
 import { UmiProvider } from "../NFTUtils/UmiProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+
+
 
 
 
 const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     const network = clusterApiUrl("devnet");
+    const queryClient = new QueryClient();
     const wallets = useMemo(
         () => [
             new PhantomWalletAdapter(),
@@ -29,23 +34,25 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <Provider store={store}>
             <SessionProvider>
-                <ConnectionProvider endpoint={network}>
-                    <WalletProvider wallets={wallets} autoConnect>
-                        <WalletModalProvider>
-                            <UmiProvider endpoint={endpoint}>
-                                <GlobalDialogWrapper>
-                                    <div className="flex  flex-col items-center w-full justify-center">
-                                        <Navbar />
-                                        <div className="mb-16" />
-                                        <AuthGuardProvider>
-                                            {children}
-                                        </AuthGuardProvider>
-                                    </div>
-                                </GlobalDialogWrapper>
-                            </UmiProvider>
-                        </WalletModalProvider>
-                    </WalletProvider>
-                </ConnectionProvider>
+                <QueryClientProvider client={queryClient}>
+                    <ConnectionProvider endpoint={network}>
+                        <WalletProvider wallets={wallets} autoConnect>
+                            <WalletModalProvider>
+                                <UmiProvider endpoint={endpoint}>
+                                    <GlobalDialogWrapper>
+                                        <div className="flex  flex-col items-center w-full justify-center">
+                                            <Navbar />
+                                            <div className="mb-16" />
+                                            <AuthGuardProvider>
+                                                {children}
+                                            </AuthGuardProvider>
+                                        </div>
+                                    </GlobalDialogWrapper>
+                                </UmiProvider>
+                            </WalletModalProvider>
+                        </WalletProvider>
+                    </ConnectionProvider>
+                </QueryClientProvider>
             </SessionProvider>
         </Provider>
     );
