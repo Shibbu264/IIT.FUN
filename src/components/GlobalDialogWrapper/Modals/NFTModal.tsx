@@ -2,37 +2,18 @@ import NFTButton from '@/components/NFTbutton/NFTButton';
 import { DialogContent } from '@/components/Ui/Dialog';
 import React, { useEffect, useState } from 'react'
 import { Audio } from 'react-loader-spinner';
+import { useQuery } from '@tanstack/react-query';
 
 export default function NFTModal({ address }: { address: any }) {
     const apiKey = process.env.ApiKey;
-    const [loading, setLoading] = useState(false)
-
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("x-api-key", "dMV2JLYJiEYQL5J-");
 
-    var requestOptions = {
+    const requestOptions = {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
     };
-    const [collections, setCollections] = useState<any[]>([]);
-    useEffect(() => {
-        setLoading(true)
-        fetch("https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=" + address, requestOptions as any)
-            .then(response => response.json())
-            .then((data) => {
-                setCollections(data.result.collections || []);
-                setLoading(false)
-                return data;
-            })
-            .then((data: any) => fetchAllMetadata(data?.result?.collections))
-            .catch(error => {
-                setLoading(true)
-                console.log('error', error);
-            })
-
-            ;
-    }, [])
 
     const fetchMetadata = async (nft: { metadata_uri: string }) => {
         try {
@@ -45,47 +26,64 @@ export default function NFTModal({ address }: { address: any }) {
         }
     };
 
-    const fetchAllMetadata = async (collections1: any) => {
-        const updatedCollections = await Promise.all(collections1.map(async (collection: any) => {
+    const fetchCollections = async () => {
+        const response = await fetch(
+            `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${address}`,
+            requestOptions as any
+        );
+        const data = await response.json();
+        const collections = data.result.collections || [];
+        
+        // Fetch metadata for all collections
+        const updatedCollections = await Promise.all(collections.map(async (collection: any) => {
             const nftsWithImages = await Promise.all(collection.nfts.map(async (nft: { metadata_uri: string }) => {
                 const imageUrl = await fetchMetadata(nft);
                 return { ...nft, image: imageUrl };
             }));
             return { ...collection, nfts: nftsWithImages };
         }));
-        setCollections(updatedCollections);
+        
+        return updatedCollections;
     };
 
+    const { data: collections, isLoading } = useQuery({
+        queryKey: ['nftCollections', address],
+        queryFn: fetchCollections
+    });
+
     return (
-        <DialogContent className="p-4 bg-primaryBlack text-white rounded-lg shadow-lg max-w-lg mx-auto">
+        <DialogContent className="p-4 bg-primaryBlack h-full max-h-[max(70%,620px)] max-md:min-h-screen max-md:min-w-[100vw] text-white max-md:border-none rounded-lg shadow-lg md:max-w-lg mx-auto">
             <h2 className="text-2xl font-bold text-primaryGreen mb-4">NFT Collections</h2>
             {/* <NFTButton/> */}
-            {loading ?
+            {isLoading ?
+            <div className='h-full flex flex-col items-center justify-center mx-auto'>
                 <Audio
                     height="90"
                     width="90"
                     color="green"
                     ariaLabel="loading"
-                /> :
-                collections?.length==0?
-                <>You haven't minted any NFTs yet</>
-                :
-                collections.map((collection: any, index: number) => (
-                    <div key={index} className="mb-4">
-                        <h3 className="text-xl font-bold mb-2">{collection.name}</h3>
-                        <div className="grid max-h-96 overflow-y-auto grid-cols-1 sm:grid-cols-2 gap-4">
-                            {collection.nfts.map((nft: any, nftIndex: number) => (
-                                <>
-                                    <div key={nftIndex} className="border-secondaryGreen border p-4 rounded-lg">
-                                        <img src={nft.image ?? "/giphy21.jpeg"} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
-                                        <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
-                                        <p className="text-sm">Royalty: {nft.royalty}%</p>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
+                /> 
+                </div>:
+                collections?.length == 0 ?
+                    <>You haven't minted any NFTs yet</>
+                    :
+                    <div className='flex flex-col gap-6 h-[95%] overflow-y-auto'>
+                        {collections?.map((collection: any, index: number) => (
+                            <div key={index} className="mb-4">
+                                <h3 className="text-xl font-bold mb-2">{collection.name}</h3>
+                                <div className="grid max-h-96 overflow-y-auto grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {collection.nfts.map((nft: any, nftIndex: number) => (
+                                        <div key={nftIndex} className="border-secondaryGreen border p-4 rounded-lg">
+                                            <img src={nft.image ?? "/giphy21.jpeg"} alt={nft.name} className="w-full h-32 object-cover rounded-md mb-2" />
+                                            <h4 className="text-lg font-semibold">{nft.name} ({nft.symbol})</h4>
+                                            <p className="text-sm">Royalty: {nft.royalty}%</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+            }
         </DialogContent>
     )
 }

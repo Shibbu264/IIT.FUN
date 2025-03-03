@@ -60,6 +60,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta property="og:title" content="IIT.fun - The Talent Layer of IITians in Web 3" />
         <meta property="og:description" content="Got an idea? Send a proposal and get a grant. Have a skill? Start contributing to projects and earn rewards." />
         <meta property="og:image" content="/giphy 63.jpeg" />
