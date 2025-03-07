@@ -17,13 +17,10 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
 
   useEffect(() => {
     if (isOpen && pathname != data?.pathname) {
-      console.log('here2')
       dispatch(closeDialog())
     }
   }, [pathname])
-
-
-
+  
   const renderComponentFromType = () => {
     switch (type) {
       case 'login':
@@ -31,9 +28,9 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       case 'wallet':
         return <WalletModal {...data} />;
       case 'nftModal':
-        return <NFTModal {...data} />     // Replace with your actual component
+        return <NFTModal {...data} />     
       default:
-        return null; // Or a default component
+        return null; 
     }
   };
 

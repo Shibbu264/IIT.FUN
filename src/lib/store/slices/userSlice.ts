@@ -4,7 +4,24 @@ interface User {
     name: string;
     email: string;
     image: string;
-    wallet: any; // Adjust type as necessary
+    wallet: any;
+    socialAccounts?: SocialAccount[];
+    instiId: boolean;
+    discord: boolean;
+    twitter: boolean
+}
+
+interface SocialAccount {
+    id: number;
+    provider: string;
+    providerId: string;
+    username?: string | null;
+    profileUrl?: string | null;
+    userId: number;
+    createdAt: Date;
+    accessToken: string;
+    refreshToken?: string | null;
+    expiresAt?: Date | null;
 }
 
 const userSlice = createSlice({
@@ -16,10 +33,10 @@ const userSlice = createSlice({
         setUser(state, action: PayloadAction<any>) {
             state.user = action.payload;
         },
-        updateWallet(state,action){
-         if(state.user?.wallet){
-            state.user.wallet=action.payload
-         }
+        updateWallet(state, action) {
+            if (state.user?.wallet) {
+                state.user.wallet = action.payload
+            }
         },
         clearUser(state) {
             state.user = null;

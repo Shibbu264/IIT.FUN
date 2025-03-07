@@ -5,11 +5,11 @@ import { Audio } from 'react-loader-spinner'
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center hover:scale-[1.05] justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center hover:scale-[1.05] justify-center gap-2 whitespace-nowrap rounded-md text-md font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-secondaryGreen text-primaryBlack hover:bg-primary/90",
         destructive:
           "bg-destructive text-red-500 hover:border-red-500 hover:border",
         outline:
@@ -53,7 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <Audio
             height="90"
             width="90"
-            color="green"
+            color="black"
             ariaLabel="loading"
           />
         ) : (

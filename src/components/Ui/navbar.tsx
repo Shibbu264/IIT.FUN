@@ -55,7 +55,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="fixed top-0 w-screen  bg-secondaryBlack z-[60]">
-                <div className="flex lg:mt-10 md:mt-8 mb-2 md:max-w-[90%] mx-auto justify-between items-center h-16 max-md:px-4 md:px-6">
+                <div className="flex lg:mt-10 md:mt-4 mb-2 md:max-w-[90%] mx-auto justify-between items-center h-8 max-md:px-4 md:px-6">
                     {/* Logo with minimal padding and guaranteed visibility */}
                     <div className="min-w-[80px]">
                         <Link href="/">
@@ -67,6 +67,13 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8 bg-primaryBlack justify-center px-7 py-2.5 rounded-[10px]">
+                        {session?.status == "authenticated" && <Link href="/"
+                            className={`px-3 py-2 rounded-md ${activeSection === '/'
+                                ? 'bg-secondaryBlack text-white'
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack'}`}
+                            onClick={() => handleSectionClick('/')}>
+                            Dashboard
+                        </Link>}
                         <Link href="/about"
                             className={`px-3 py-2 rounded-md ${activeSection === '/about' ? 'bg-secondaryBlack text-white' : 'text-white hover:bg-secondaryBlack'}`}
                             onClick={() => handleSectionClick('/about')}>
@@ -170,6 +177,13 @@ export default function Navbar() {
             {isOpen && (
                 <div className="fixed inset-0 w-full h-full min-h-screen z-[70] bg-primaryBlack flex items-center justify-center overflow-hidden">
                     <div className="flex flex-col items-center space-y-8">
+                        {session?.status == "authenticated" && <Link href="/"
+                            className={`px-3 py-2 rounded-md ${activeSection === '/'
+                                ? 'bg-secondaryBlack text-white'
+                                : 'text-white hover:bg-secondaryBlack active:bg-secondaryBlack transition-colors'} text-2xl`}
+                            onClick={() => handleSectionClick('/')}>
+                            Dashboard
+                        </Link>}
                         <Link href="/about"
                             className={`px-3 py-2 rounded-md ${activeSection === '/about'
                                 ? 'bg-secondaryBlack text-white'

@@ -3,8 +3,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/lib/prisma";
 
-
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: '809328833359-t6inuf1bllcbrhvnro3a03f0pd0kovqu.apps.googleusercontent.com' as string,
@@ -43,6 +42,8 @@ const handler = NextAuth({
     },
   },
   // Add any additional NextAuth configuration here
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

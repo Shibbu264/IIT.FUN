@@ -1,9 +1,20 @@
-"use client"
+import { getServerSession } from "next-auth";
 import Landing from "@/components/Landing/Landing";
-import { Button } from "@/components/Ui/Button";
+import Dashboard from "@/components/Dashboard/Dashboard";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export default function Home() {
+
+
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
   return (
-    <Landing/>
+    <>
+      {!session ? (
+        <Landing />
+      ) : (
+        <Dashboard />
+      )}
+    </>
   );
 }

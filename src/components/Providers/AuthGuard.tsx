@@ -37,6 +37,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     dispatch(setUser(data))
                 })
                 .catch(error => {
