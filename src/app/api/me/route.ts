@@ -14,7 +14,6 @@ export async function POST(req: Request) {
                 bounties:true
             }
         });
-     console.log(user)
 
         return NextResponse.json(user);
     }

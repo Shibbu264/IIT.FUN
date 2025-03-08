@@ -12,37 +12,52 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();
     const dispatch = useDispatch();
     const pathname = usePathname();
-    const {user} = useAppSelector(state => state.user);
-    const {wallet}=useWallet()
+    const { user } = useAppSelector(state => state.user);
+    const { wallet } = useWallet()
+
+    function updateTokenDiscord(){
+        
+    }
 
     useEffect(() => {
         if (!user && status === "loading") return;
         if (status === "unauthenticated") {
-            if(protectedRoutes.includes(pathname)){
-            dispatch(openDialog({ type: "login",data:{
-                closable:false,
-                route:pathname
-            } }));
+            if (protectedRoutes.includes(pathname)) {
+                dispatch(openDialog({
+                    type: "login", data: {
+                        closable: false,
+                        route: pathname
+                    }
+                }));
             }
-           wallet?.adapter.disconnect();
+            wallet?.adapter.disconnect();
         }
 
-        if (status == "authenticated" && !user) {
-            fetch('/api/me', {
-                method: 'POST', // Use 'POST' if you want to send data in the body
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: session?.user?.email }), // Include the email in the request body
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    dispatch(setUser(data))
+        if (status == "authenticated") {
+            if (!user) {
+                fetch('/api/me', {
+                    method: 'POST', // Use 'POST' if you want to send data in the body
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: session?.user?.email }), // Include the email in the request body
                 })
-                .catch(error => {
-                    console.error('Error:', error); // Handle any errors
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        dispatch(setUser(data))
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Handle any errors
+                    });
+            }
+        }
+        if (user) {
+           if(user.discord){
+
+           }
+           if(user.twitter){
+
+           }
         }
     }, [session, status, dispatch, pathname, user]);
 

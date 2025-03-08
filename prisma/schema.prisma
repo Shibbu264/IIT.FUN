@@ -54,7 +54,7 @@ model SocialAccount {
   userId     Int
   createdAt  DateTime @default(now())
   accessToken String    // Access token for API calls
-  refreshToken String?  // Refresh token (if provided)
+  refreshToken String? @unique  // Refresh token (if provided)
   expiresAt   DateTime? // Optional: Expiration time for the token
   user       User     @relation(fields: [userId], references: [id])
 

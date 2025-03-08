@@ -55,7 +55,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="fixed top-0 w-screen  bg-secondaryBlack z-[60]">
-                <div className="flex lg:mt-10 md:mt-4 mb-2 md:max-w-[90%] mx-auto justify-between items-center h-8 max-md:px-4 md:px-6">
+                <div className="flex lg:mt-10 mt-6 mb-2 md:max-w-[90%] mx-auto justify-between items-center h-8 max-lg:px-4 lg:px-6">
                     {/* Logo with minimal padding and guaranteed visibility */}
                     <div className="min-w-[80px]">
                         <Link href="/">
@@ -66,7 +66,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8 bg-primaryBlack justify-center px-7 py-2.5 rounded-[10px]">
+                    <div className="hidden lg:flex items-center lg:gap-6 gap-4 bg-primaryBlack justify-center px-6 py-2.5 rounded-[10px]">
                         {session?.status == "authenticated" && <Link href="/"
                             className={`px-3 py-2 rounded-md ${activeSection === '/'
                                 ? 'bg-secondaryBlack text-white'
@@ -163,7 +163,7 @@ export default function Navbar() {
                             ))} >
                                 Enter arena
                             </Button>}
-                        <button onClick={toggleMenu} className="bg-gray-800 flex md:hidden text-white w-8 h-8 p-1 rounded">
+                        <button onClick={toggleMenu} className="bg-gray-800 flex lg:hidden text-white w-8 h-8 p-1 rounded">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
