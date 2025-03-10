@@ -3,10 +3,12 @@ import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { setUser } from "@/lib/store/slices/userSlice";
 import { useAppSelector } from "@/lib/store/store";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { PanelLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useSidebar } from "../Ui/sidebar";
 
 const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();
@@ -64,8 +66,14 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
     }
+    const {toggleSidebar}=useSidebar()
 
-    return <div className="w-full">{children}</div>;
+    return <div className="w-full">
+        <div className="w-full md:hidden flex items-center justify-start p-4 h-16">
+        <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6" />
+        </div>
+        {children}
+        </div>;
 };
 
 export default AuthGuardProvider;

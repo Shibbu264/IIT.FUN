@@ -74,7 +74,7 @@ const SidebarProvider = React.forwardRef<
     ref
   ) => {
     const isMobile = useIsMobile()
-    const [openMobile, setOpenMobile] = React.useState(false)
+    const [openMobile, setOpenMobile] = React.useState(true)
 
     // This is the internal state of the sidebar.
     // We use openProp and setOpenProp for control from outside the component.
@@ -288,7 +288,7 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      <PanelLeft width={64} height={64} className="h-16 w-16" />
+      <PanelLeft width={64} height={64} className="min-h-7 min-w-7" />
       <span className="sr-only text-foreground">Toggle Sidebar</span>
     </Button>
   )

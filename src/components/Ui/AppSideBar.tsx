@@ -18,14 +18,16 @@ import NFTButton from "../NFTbutton/NFTButton";
 import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./Dropdown";
 import { toast } from "sonner";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function AppSidebar() {
     const dispatch = useDispatch();
     const session = useSession();
     const { publicKey, select, disconnect, connected, wallets, wallet } = useWallet();
     const { user } = useAppSelector(state => state.user)
+    const isMobile=useIsMobile()
     return (
-        <Sidebar>
+        <Sidebar defaultValue="open" collapsible={isMobile?"offcanvas":"icon"}>
             <SidebarHeader className="flex !flex-row items-center justify-between">
                 <span className="text-xl group-data-[collapsible=icon]:hidden">IIT.FUN</span>
                 <SidebarTrigger />

@@ -15,7 +15,8 @@ import { setUser } from '@/lib/store/slices/userSlice';
 import NFTButton from '../NFT/NFTButton';
 import { Popover, PopoverContent, PopoverTrigger } from './Popover';
 import { AppSidebar } from './AppSideBar';
-import { SidebarTrigger } from './sidebar';
+import { SidebarTrigger, useSidebar } from './sidebar';
+import { PanelLeft } from 'lucide-react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
