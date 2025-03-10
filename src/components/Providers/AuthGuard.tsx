@@ -65,7 +65,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
         return null;
     }
 
-    return <>{children}</>;
+    return <div className="w-full">{children}</div>;
 };
 
 export default AuthGuardProvider;

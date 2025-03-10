@@ -8,9 +8,9 @@ import PromoSection from '@/components/Ui/PromoSection'
 
 export default function About() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center">
       <div className="w-[95%] mx-auto">
-        <div className="text-4xl font-bold mb-8 mt-12 text-center text-primaryGreen">About Us</div>
+        <div className="text-4xl font-bold mb-8 mt-4 text-center text-primaryGreen">About Us</div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* First Row */}

@@ -8,10 +8,10 @@ import NFTButton from '@/components/NFT/NFTButton';
 
 export default function page() {
   return (
-  <>
+  <div className='flex flex-col w-full px-4'>
     <CartoonOverlay />
     {/* <Banner /> */}
     <JobList />
-  </>
+  </div>
   );
 }

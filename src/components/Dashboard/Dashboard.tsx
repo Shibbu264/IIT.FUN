@@ -3,9 +3,11 @@ import { useAppSelector } from '@/lib/store/store';
 import React from 'react'
 import { Button } from '../Ui/Button';
 
+
+
+
 export default function Dashboard() {
     const { user } = useAppSelector(state => state.user)
-    console.log(user?.email)
     function connectDiscord() {
         const state = encodeURIComponent(JSON.stringify({ email: user?.email }));
         const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_DISCORD_REDIRECT_URI as string);
@@ -23,16 +25,16 @@ export default function Dashboard() {
         const clientId = process.env.NEXT_PUBLIC_TWITTER_CLIENT_ID;
         const scope = encodeURIComponent("tweet.read users.read offline.access");
 
-    
+
         const twitterAuthUrl = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${state}&code_challenge=challenge&code_challenge_method=plain`;
-    
+
         // Redirect user to Twitter for authorization
         window.location.href = twitterAuthUrl;
     }
-    
+
 
     return (
-        <div className='mt-12 flex flex-col gap-6'>
+        <div className='flex flex-col items-center mt-8 w-full gap-6'>
             <h1>Dashboard</h1>
             <Button onClick={connectDiscord}>Connect Discord</Button>
             {user?.discord ? <>Discord is connected</> : <>Discord is not connected</>}
