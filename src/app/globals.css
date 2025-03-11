@@ -13,6 +13,8 @@
   --primaryGray: #333333;
   --bgBlack: #151515;
   --destructive: #FF0000;
+  --systemGray:#131313;
+  --secondaryGray:#7B7B7B;
 }
 
 @media (prefers-color-scheme: dark) {

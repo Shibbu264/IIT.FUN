@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface User {
+    id:number;
     name: string;
     email: string;
     image: string;
     wallet: any;
-    socialAccounts?: SocialAccount[];
-    instiId: boolean;
+    SocialAccount?: SocialAccount[];
+    InstiId: boolean;
     discord: boolean;
-    twitter: boolean
+    twitter: boolean;
+    telegram:boolean;
+    username:string|null;
+    instituteName?:string|null;
+    points:number;
 }
 
 interface SocialAccount {

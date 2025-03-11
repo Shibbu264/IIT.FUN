@@ -3,7 +3,7 @@ import axios from "axios";
 import prisma from "@/lib/prisma";
 import qs from "qs";
 
-export async function GET(req:any) {
+export async function GET(req: any) {
     try {
         // Extract the refresh token from query parameters
         const { searchParams } = new URL(req.url);
@@ -16,17 +16,18 @@ export async function GET(req:any) {
             );
         }
 
-        // Call Discord API to refresh the access token
+        // Call Twitter API to refresh the access token
         const response = await axios.post(
-            "https://discord.com/api/oauth2/token",
+            "https://api.twitter.com/2/oauth2/token",
             qs.stringify({
-                client_id: process.env.DISCORD_CLIENT_ID,
-                client_secret: process.env.DISCORD_CLIENT_SECRET,
                 grant_type: "refresh_token",
                 refresh_token: refreshToken,
             }),
             {
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": `Basic ${Buffer.from(`${process.env.NEXT_PUBLIC_TWITTER_CLIENT_ID}:${process.env.TWITTER_CLIENT_SECRET}`).toString('base64')}`
+                },
             }
         );
 
@@ -44,16 +45,16 @@ export async function GET(req:any) {
 
         // Return the new tokens in the response
         return NextResponse.json({
-            message:"Discord reconnected !",
+            message: "Twitter reconnected !",
             access_token,
             refresh_token: refresh_token || refreshToken,
             expires_in,
         });
-    } catch (error:any) {
+    } catch (error: any) {
         console.error("Failed to refresh access token:", error.response?.data || error);
         return new NextResponse(
             JSON.stringify({
-                error: "Failed to reconnect discord",
+                error: "Failed to reconnect twitter !",
                 details: error.response?.data || error.message,
             }),
             { status: 500 }

@@ -8,6 +8,9 @@ export default {
 	],
 	theme: {
 		extend: {
+			boxShadow: {
+				'custom': '0px 0px 10px rgba(0, 0, 0, 0.1)', // Custom shadow
+			},
 			colors: {
 				background: "var(--background)",
 				foreground: "var(--foreground)",
@@ -17,7 +20,9 @@ export default {
 				secondaryBlack: "var(--secondaryBlack)",
 				primaryWhite: "var(--primaryWhite)",
 				primaryGray: "var(--primaryGray)",
-				bgBlack: "var(--bgBlack)"
+				secondaryGray: "var(--secondaryGray)",
+				bgBlack: "var(--bgBlack)",
+				gray: "var(--systemGray)"
 			},
 			card: {
 				DEFAULT: '(var(--card))',

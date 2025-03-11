@@ -9,6 +9,7 @@ import Login from './Modals/Login';
 import WalletModal from './Modals/WalletModal';
 import NFTModal from './Modals/NFTModal';
 import { usePathname } from 'next/navigation';
+import AddUsername from './Modals/AddUsername';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
@@ -28,7 +29,9 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       case 'wallet':
         return <WalletModal {...data} />;
       case 'nftModal':
-        return <NFTModal {...data} />     
+        return <NFTModal {...data} />
+      case 'addUsername':
+        return <AddUsername {...data}/>       
       default:
         return null; 
     }

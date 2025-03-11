@@ -16,7 +16,7 @@ const discordInstance = axios.create({
 // Add request interceptor to dynamically attach the token
 discordInstance.interceptors.request.use(
   (config) => {
-    const token = store.getState().user?.user?.socialAccounts?.find(account=>account?.provider=="discord")?.accessToken; 
+    const token = store.getState().user?.user?.SocialAccount?.find(account=>account?.provider=="discord")?.accessToken; 
     // adjust this redux logic to wherever your token is (localStorage,DB anything)
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

@@ -8,18 +8,21 @@ datasource db {
 }
 
 model User {
-  email         String?         @unique
-  name          String?
-  createdAt     DateTime        @default(now())
-  image         String?
-  points        Int             @default(0)
-  wallet        String?         @unique
-  id            Int          @id @default(autoincrement())
-  InstiId       Boolean?        @default(false)
-  discord       Boolean?        @default(false)
-  twitter       Boolean?        @default(false)
-  SocialAccount SocialAccount[]
-  bounties      UserBounty[]
+  email          String?         @unique
+  name           String?
+  createdAt      DateTime        @default(now())
+  image          String?
+  points         Int             @default(0)
+  wallet         String?         @unique
+  id             Int             @id @default(autoincrement())
+  InstiId        Boolean?        @default(false)
+  discord        Boolean?        @default(false)
+  twitter        Boolean?        @default(false)
+  telegram       Boolean?        @default(false)
+  username       String?         @unique
+  InstituteName  String?
+  socialAccounts SocialAccount[]
+  bounties       UserBounty[]
 }
 
 model Bounty {
@@ -46,17 +49,17 @@ model UserBounty {
 }
 
 model SocialAccount {
-  id         Int      @id @default(autoincrement())
-  provider   String
-  providerId String
-  username   String?
-  profileUrl String?
-  userId     Int
-  createdAt  DateTime @default(now())
-  accessToken String    // Access token for API calls
-  refreshToken String? @unique  // Refresh token (if provided)
-  expiresAt   DateTime? // Optional: Expiration time for the token
-  user       User     @relation(fields: [userId], references: [id])
+  id           Int       @id @default(autoincrement())
+  provider     String
+  providerId   String
+  username     String?
+  profileUrl   String?
+  userId       Int
+  createdAt    DateTime  @default(now())
+  accessToken  String
+  expiresAt    DateTime?
+  refreshToken String?   @unique
+  user         User      @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerId])
 }

@@ -86,7 +86,7 @@ export async function GET(req:any) {
 
 
     // Allocate points for first-time connection
-    const pointsToAward = 10; 
+    const pointsToAward = 50; 
     await prisma.user.update({
       where: { email },
       data: {

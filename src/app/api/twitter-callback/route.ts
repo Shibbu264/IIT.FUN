@@ -92,7 +92,7 @@ export async function GET(req:any) {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (user && !user.twitter) {
-      const pointsToAward = 10;
+      const pointsToAward = 50;
       await prisma.user.update({
         where: { email },
         data: {
