@@ -3,12 +3,14 @@ import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { setUser } from "@/lib/store/slices/userSlice";
 import { useAppSelector } from "@/lib/store/store";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { PanelLeft } from "lucide-react";
+import { BellIcon, PanelLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSidebar } from "../Ui/sidebar";
+import UserDropdown from "../UserDropdown/UserDropdown";
+import Notification from "../Notification/Notification";
 
 const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();
@@ -17,8 +19,8 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     const { user } = useAppSelector(state => state.user);
     const { wallet } = useWallet()
 
-    function updateTokenDiscord(){
-        
+    function updateTokenDiscord() {
+
     }
 
     useEffect(() => {
@@ -54,26 +56,30 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             }
         }
         if (user) {
-           if(user.discord){
+            if (user.discord) {
 
-           }
-           if(user.twitter){
+            }
+            if (user.twitter) {
 
-           }
+            }
         }
     }, [session, status, dispatch, pathname, user]);
 
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
     }
-    const {toggleSidebar}=useSidebar()
+    const { toggleSidebar } = useSidebar()
 
     return <div className="w-full">
-        <div className="w-full md:hidden flex items-center justify-start p-4 h-16">
-        <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6" />
-        </div>
+        {status == "authenticated" && <div className="w-[90%]  flex items-center justify-start p-4 md:py-6 h-16 md:h-24">
+            <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6 md:hidden" />
+            <div className="flex ml-auto md:gap-8 gap-4 items-center">
+            <Notification/>
+            <UserDropdown/>
+            </div>
+        </div>}
         {children}
-        </div>;
+    </div>;
 };
 
 export default AuthGuardProvider;

@@ -12,6 +12,7 @@
   --primaryWhite: #FFFFFD;
   --primaryGray: #333333;
   --bgBlack: #151515;
+  --destructive: #FF0000;
 }
 
 @media (prefers-color-scheme: dark) {

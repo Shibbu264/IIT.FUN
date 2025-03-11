@@ -23,9 +23,6 @@ export default function Navbar() {
     const [activeSection, setActiveSection] = useState('');
     const router = usePathname();
     const dispatch = useDispatch();
-    const session = useSession();
-    const { publicKey, select, disconnect, connected, wallets, wallet } = useWallet();
-    const { user } = useAppSelector(state => state.user)
 
 
     useEffect(() => {
@@ -56,10 +53,6 @@ export default function Navbar() {
 
 
     return (
-        session?.status == "authenticated" ?
-            <>
-                <AppSidebar />
-            </> :
             <div>
                 <nav className="fixed top-0 w-full md:h-24 h-16 bg-secondaryBlack z-[25]">
                     <div className="flex lg:mt-10 mt-6 md:max-w-[90%] mx-auto justify-between items-center h-8 max-lg:px-4 lg:px-6">
