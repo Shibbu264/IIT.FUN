@@ -9,8 +9,8 @@ export default function UserDropdown() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <Avatar className='border-secondaryGreen hover:scale-105 border-2'>
-                    <AvatarImage src={session?.data?.user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
+                <Avatar className='border-secondaryGreen max-md:w-6 max-md:h-6 hover:scale-105 border-2'>
+                    <AvatarImage className='' src={session?.data?.user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>

@@ -7,7 +7,7 @@ export default function Notification() {
 
         <Popover>
             <PopoverTrigger className='relative'>
-                <BellIcon className="cursor-pointer hover:scale-105" width={32} height={32} />
+                <BellIcon className="cursor-pointer max-md:w-6 max-md:h-6 hover:scale-105" width={32} height={32} />
             </PopoverTrigger>
             <PopoverContent className='bg-black border-gray-400 border min-h-16 min-w-32 md:p-6 max-md:p-4'>
                 <span className='text-lg'>No new Notifications !</span>
