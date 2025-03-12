@@ -10,6 +10,9 @@ import WalletModal from './Modals/WalletModal';
 import NFTModal from './Modals/NFTModal';
 import { usePathname } from 'next/navigation';
 import AddUsername from './Modals/AddUsername';
+import ShowSocials from './Modals/ShowSocials';
+import VerifyEmail from './Modals/VerifyEmail';
+import JoinTelegram from './Modals/JoinTelegram';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
@@ -21,7 +24,7 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       dispatch(closeDialog())
     }
   }, [pathname])
-  
+
   const renderComponentFromType = () => {
     switch (type) {
       case 'login':
@@ -31,9 +34,15 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       case 'nftModal':
         return <NFTModal {...data} />
       case 'addUsername':
-        return <AddUsername {...data}/>       
+        return <AddUsername {...data} />
+      case 'showSocials':
+        return <ShowSocials {...data} />
+      case 'verifyEmail':
+        return <VerifyEmail {...data} />
+      case 'joinTelegram':
+        return <JoinTelegram {...data} />
       default:
-        return null; 
+        return null;
     }
   };
 

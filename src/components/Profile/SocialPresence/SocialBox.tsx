@@ -34,10 +34,10 @@ const SocialBox: React.FC<SocialBoxProps> = ({ variant, title, description, poin
             className={cn(
                 "p-4 rounded-2xl w-64",
                 "text-primaryWhite bg-primaryBlack",
-                isConnected()?"border-primaryGreen shadow-custom shadow-secondaryGreen  border":"border-secondaryBlack"
+                isConnected()?"border-primaryGreen !shadow-custom shadow-secondaryGreen  border":"border-secondaryBlack"
             )}
         >
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center max-md:items-start mb-2">
                 {React.cloneElement(icon as React.ReactElement<any>, { className: "w-7 h-7 bg-gray" })}
                 <span className={cn("text-lg", isConnected() ? "text-foreground" : "text-secondaryGray")}>
                     <span className="flex gap-1 items-center">
@@ -47,13 +47,13 @@ const SocialBox: React.FC<SocialBoxProps> = ({ variant, title, description, poin
                     points</span>
             </div>
             <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-secondaryGray min-h-[52px] text-lg mb-4">{description}</p>
+            <p className="text-secondaryGray max-md:hidden min-h-[85px] text-lg mb-4">{description}</p>
             <Button
                 onClick={onClick}
                 size={isMobile ? "default" : "lg"}
                 variant={variant=="connected"?"disabled":"secondary"}
                 className={cn(
-                    "w-full py-2 rounded-lg font-semibold text-center",
+                    "w-full py-2 max-md:mt-4 rounded-lg font-semibold text-center",
                 )}
             >
                 {buttonText?buttonText:getButtonText()}

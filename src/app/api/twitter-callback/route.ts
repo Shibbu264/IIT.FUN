@@ -59,9 +59,9 @@ export async function GET(req:any) {
         },
       }
     );
-    console.log(email)
+    
     const twitterUser = twitterUserResponse.data?.data;
-    console.log(twitterUser)
+    
 
     // Upsert the social account record in Prisma
     await prisma.socialAccount.upsert({
@@ -88,6 +88,15 @@ export async function GET(req:any) {
       },
     });
 
+    // axios.post(`https://api.twitter.com/2/users/${twitterUser.id}/following`, { target_user_id: "VXNlcjoxODg2ODYwNDE3MTU2NDE1NDg4" }, {
+    //   headers: {
+    //     Authorization: `Bearer ${access_token}`,
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    // .then(response => console.log("done done",response.data))
+    // .catch((err:any) => console.log(err.response,"qtt"));
+
     // Allocate points for first-time connection if applicable
     const user = await prisma.user.findUnique({ where: { email } });
 
@@ -102,9 +111,9 @@ export async function GET(req:any) {
       });
     }
 
-    return NextResponse.redirect(new URL("/", req.url));
-  } catch (error) {
-    console.error("Error connecting Twitter account:", error);
+    return NextResponse.redirect(new URL("/profile/me", req.url));
+  } catch (error:any) {
+    console.log("Error connecting Twitter account:", error?.message);
     return NextResponse.redirect(new URL("/500", req.url));
   }
 }

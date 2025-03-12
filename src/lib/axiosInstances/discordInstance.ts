@@ -8,18 +8,25 @@ import { toast } from "sonner";
  // Import Redux store
 
 const discordInstance = axios.create({
-  baseURL: "https://api.discord.com/2",
-  timeout: 1000,
+  baseURL: "https://discord.com/api/v10",
+  timeout: 5000,
   headers: { "Content-Type": "application/json" },
 });
 
 // Add request interceptor to dynamically attach the token
 discordInstance.interceptors.request.use(
   (config) => {
-    const token = store.getState().user?.user?.SocialAccount?.find(account=>account?.provider=="discord")?.accessToken; 
+    const token = store.getState().user?.user?.socialAccounts?.find(account=>account?.provider=="discord")?.accessToken; 
     // adjust this redux logic to wherever your token is (localStorage,DB anything)
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      // Discord expects "Bearer " prefix - ensure it's properly formatted
+      config.headers.Authorization = token.startsWith("Bearer ") 
+        ? token 
+        : `Bearer ${token}`;
+      // For debugging - remove in production
+      console.log("Making Discord request with token:", config.headers.Authorization.substring(0, 15) + "...");
+    } else {
+      console.log("No Discord token found in store");
     }
     return config;
   },

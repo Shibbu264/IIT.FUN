@@ -22,10 +22,10 @@ export default function UserProfile() {
         <div className='w-full px-2 flex justify-between'>
             <div className='flex flex-col gap-4'>
                 <h1 className='md:text-2xl text-xl'>{user?.username}</h1>
-                <p className='md:text-xl text-lg text-secondaryGray'>{user?.instituteName ? user?.instituteName : (self ? <> IIT Dholakpur,<span className='text-primaryGreen cursor-pointer'> Verify Institute mail to change it !</span> </> : null)}</p>
+                <p className='md:text-xl text-lg text-secondaryGray'>{user?.InstituteName ? user?.InstituteName : (self ? <> IIT Dholakpur,<span className='text-primaryGreen cursor-pointer'> Verify Institute mail to change it !</span> </> : null)}</p>
                 {self && <Button size={isMobile?"default":"lg"} className='mt-6 max-md:mt-2'>
                     <TwitterIcon width={32} height={32} className='min-w-8 h-8' />
-                    <span className='md:!text-2xl text-lg'> Tweet your progress</span>
+                    <span className='md:!text-2xl !text-md'> Tweet your progress</span>
                 </Button>}
             </div>
             <div className='flex flex-col gap-4'>

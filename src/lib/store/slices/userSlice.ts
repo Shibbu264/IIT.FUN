@@ -12,7 +12,8 @@ interface User {
     twitter: boolean;
     telegram:boolean;
     username:string|null;
-    instituteName?:string|null;
+    InstituteName?:string|null;
+    telegramId?:string;
     points:number;
     bounties:any[]
 }

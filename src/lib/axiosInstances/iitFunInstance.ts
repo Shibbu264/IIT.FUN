@@ -8,8 +8,8 @@ import { toast } from "sonner";
 // Import Redux store
 
 const axiosInstance = axios.create({
-  baseURL: process.env.BASE_URL,
-  timeout: 5000,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  timeout: 10000,
   headers: { "Content-Type": "application/json" },
 });
 

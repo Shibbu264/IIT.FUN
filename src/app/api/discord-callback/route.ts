@@ -95,7 +95,7 @@ export async function GET(req:any) {
       },
     });
 
-    return NextResponse.redirect(new URL("/",req.url));
+    return NextResponse.redirect(new URL("/profile/me",req.url));
   } catch (error) {
     console.error("Error connecting Discord account:", error);
     return NextResponse.redirect(new URL("/500",req.url));
