@@ -1,7 +1,8 @@
 import { getServerSession } from "next-auth";
 import Landing from "@/components/Landing/Landing";
 import Dashboard from "@/components/Dashboard/Dashboard";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/utils";
+
 
 
 
