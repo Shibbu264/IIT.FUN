@@ -38,7 +38,7 @@ export function AppSidebar() {
         },
         {
             name: "Profile",
-            href: "/profile",
+            href: "/profile/me",
             icon: UserCircle,
         },
         {

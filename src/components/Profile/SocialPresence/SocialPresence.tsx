@@ -88,6 +88,13 @@ export default function SocialPresence() {
   ];
 
   return (
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2 md:gap-3">
+      <h1 className="md:text-2xl text-lg lg:text-3xl">
+      Social Presence
+      </h1>
+      <p className="md:text-lg text-primaryGreen">Link your profiles from established social media to earn points and airdrops.</p>
+      </div>
     <div className="flex flex-wrap max-md:justify-center w-fit gap-4 md:gap-8">
       {socialPlatforms.map((platform, index) => (
         <SocialBox
@@ -96,6 +103,7 @@ export default function SocialPresence() {
           variant={getVariant(platform.title)} // Dynamic variant
         />
       ))}
+    </div>
     </div>
   );
 }

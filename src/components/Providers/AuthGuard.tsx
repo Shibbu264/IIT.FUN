@@ -13,6 +13,7 @@ import UserDropdown from "../UserDropdown/UserDropdown";
 import Notification from "../Notification/Notification";
 import { SocialAccount } from "@prisma/client";
 import axiosInstance from "@/lib/axiosInstances/iitFunInstance";
+import NFT from "../NFT/NFT";
 
 const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();
@@ -120,6 +121,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6 md:hidden" />
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">
                 <Notification />
+                <NFT/>
                 <UserDropdown />
             </div>
         </div>}

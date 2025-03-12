@@ -4,19 +4,19 @@ import prisma from '@/lib/prisma'; // Ensure you have the correct import for Pri
 export async function POST(req: Request) {
     try {
         const body = await req.json(); // Parse the request body
-        const { email } = body; // Assuming email is sent in the request body
+        const { username } = body; // Assuming email is sent in the request body
 
         // Fetch user from the database
         const user = await prisma.user.findUnique({
-            where: { email },
-            include:{
-                socialAccounts:true,
-                bounties:true,
-                communityCalls:true
+            where: { username },
+            include: {
+                bounties: true,
+                communityCalls: true,
+                socialAccounts: true
             }
         });
 
-        return NextResponse.json(user);
+        return NextResponse.json({ ...user, socialAccounts: [] });
     }
     catch (error) {
         console.log('Error fetching me', error);

@@ -17,7 +17,7 @@ export default function UserDropdown() {
             <DropdownMenuContent className='bg-black p-2'>
                 <DropdownMenuLabel className='text-primaryGreen'>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className='!cursor-pointer flex justify-between p-3 hover:bg-gray-800' onClick={() => signOut().then(() => {
+                <DropdownMenuItem className='!cursor-pointer flex justify-between p-3 hover:bg-gray' onClick={() => signOut().then(() => {
                     window.location.reload();
                     toast("Signed out successfully !")
                 })}>
