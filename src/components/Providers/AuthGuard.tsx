@@ -20,16 +20,14 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     const pathname = usePathname();
     const { user } = useAppSelector(state => state.user);
     const { wallet } = useWallet()
-    console.log(user)
+
     function updateToken(provider: "discord" | "twitter") {
-        console.log("hello", user?.SocialAccount)
         if (!user?.[provider]) return;
-        if (!user?.SocialAccount) return;
-        console.log("helloqtt")
-        const accountIndex = user.SocialAccount.findIndex((acc: any) => acc.provider === provider);
+        if (!user?.socialAccounts) return;
+        const accountIndex = user?.socialAccounts.findIndex((acc: any) => acc.provider === provider);
         if (accountIndex === -1) return;
 
-        const account = user.SocialAccount[accountIndex];
+        const account = user?.socialAccounts[accountIndex];
 
         if (account?.expiresAt && new Date(account.expiresAt).getTime() < Date.now()) {
             axiosInstance("/api/refresh-token-" + provider, {
@@ -40,7 +38,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 .then(res => res.data)
                 .then((data: { accessToken: string; expiresAt: string }) => {
                     if (data?.accessToken && data?.expiresAt) {
-                        const updatedSocialAccounts: any = [...(user.SocialAccount ?? [])];
+                        const updatedSocialAccounts: any = [...(user.socialAccounts ?? [])];
                         updatedSocialAccounts[accountIndex] = {
                             ...account,
                             accessToken: data.accessToken,
@@ -92,6 +90,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             }
         }
         if (user) {
+            console.log(user)
             if (user.discord) {
                 updateToken("discord")
             }

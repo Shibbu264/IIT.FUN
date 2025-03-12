@@ -12,9 +12,9 @@ export default function SocialPresence() {
     if (!user) return "not-connected";
     
     const providerKey = provider.toLowerCase(); // Convert title to lowercase key
-    const account = user.SocialAccount?.find((acc: any) => acc.provider === providerKey);
+    const account = user.socialAccounts?.find((acc: any) => acc.provider === providerKey);
     
-    if (user.SocialAccount?.some(acc => acc.provider === providerKey)) {
+    if (user.socialAccounts?.some(acc => acc.provider === providerKey)) {
       const currentTime = Date.now();
       if (account?.expiresAt && new Date(account.expiresAt).getTime() < currentTime) {
         return "active-not-connected";

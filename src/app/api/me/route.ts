@@ -10,7 +10,7 @@ export async function POST(req: Request) {
         const user = await prisma.user.findUnique({
             where: { email },
             include:{
-                SocialAccount:true,
+                socialAccounts:true,
                 bounties:true
             }
         });

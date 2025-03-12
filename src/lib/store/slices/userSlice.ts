@@ -6,7 +6,7 @@ interface User {
     email: string;
     image: string;
     wallet: any;
-    SocialAccount?: SocialAccount[];
+    socialAccounts?: SocialAccount[];
     InstiId: boolean;
     discord: boolean;
     twitter: boolean;
@@ -14,6 +14,7 @@ interface User {
     username:string|null;
     instituteName?:string|null;
     points:number;
+    bounties:any[]
 }
 
 interface SocialAccount {

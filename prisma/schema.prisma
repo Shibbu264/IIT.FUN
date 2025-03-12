@@ -8,23 +8,25 @@ datasource db {
 }
 
 model User {
-  email          String?         @unique
+  email          String?             @unique
   name           String?
-  createdAt      DateTime        @default(now())
+  createdAt      DateTime            @default(now())
   image          String?
-  points         Int             @default(0)
-  wallet         String?         @unique
-  id             Int             @id @default(autoincrement())
-  InstiId        Boolean?        @default(false)
-  discord        Boolean?        @default(false)
-  twitter        Boolean?        @default(false)
-  telegram       Boolean?        @default(false)
-  username       String?         @unique
+  points         Int                 @default(0)
+  wallet         String?             @unique
+  id             Int                 @id @default(autoincrement())
+  InstiId        Boolean?            @default(false)
+  discord        Boolean?            @default(false)
+  twitter        Boolean?            @default(false)
+  telegram       Boolean?            @default(false)
+  username       String?             @unique
   InstituteName  String?
   socialAccounts SocialAccount[]
   bounties       UserBounty[]
+  communityCalls UserCommunityCall[]
 }
 
+// add type link communityCalls
 model Bounty {
   id          Int          @id @default(autoincrement())
   title       String
@@ -37,11 +39,35 @@ model Bounty {
   users       UserBounty[]
 }
 
+model CommunityCall {
+  id          Int                 @id @default(autoincrement())
+  title       String
+  description String
+  image       String
+  amount      Int?
+  unit        String?
+  Link        String?
+  date        String
+  users       UserCommunityCall[]
+}
+
+model UserCommunityCall {
+  id              Int           @id @default(autoincrement())
+  userId          Int
+  communityCallId Int
+  pointsEarned    Int?
+  attended        Boolean @default(false)
+  communityCall   CommunityCall @relation(fields: [communityCallId], references: [id])
+  user            User          @relation(fields: [userId], references: [id])
+
+  @@unique([userId, communityCallId])
+}
+
 model UserBounty {
   id           Int    @id @default(autoincrement())
   userId       Int
   bountyId     Int
-  pointsEarned Int
+  pointsEarned Int?
   bounty       Bounty @relation(fields: [bountyId], references: [id])
   user         User   @relation(fields: [userId], references: [id])
 
