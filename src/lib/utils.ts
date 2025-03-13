@@ -124,6 +124,7 @@ export const authOptions = {
       }
       return false; // Reject sign-in
     },
+    callbacks: { async redirect({ url, baseUrl }: any) { return baseUrl }, },
   },
   // Add any additional NextAuth configuration here
 };
