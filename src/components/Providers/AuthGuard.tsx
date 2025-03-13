@@ -14,13 +14,17 @@ import Notification from "../Notification/Notification";
 import { SocialAccount } from "@prisma/client";
 import axiosInstance from "@/lib/axiosInstances/iitFunInstance";
 import NFT from "../NFT/NFT";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Avatar, AvatarFallback, AvatarImage } from "../Ui/Avatar";
 
 const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();
     const dispatch = useDispatch();
     const pathname = usePathname();
     const { user } = useAppSelector(state => state.user);
-    const { wallet } = useWallet()
+    const { wallet } = useWallet();
+    const { toggleSidebar } = useSidebar()
+    const isMobile = useIsMobile()
 
     function updateToken(provider: "discord" | "twitter") {
         if (!user?.[provider]) return;
@@ -71,6 +75,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 }));
             }
             wallet?.adapter.disconnect();
+            return;
         }
 
         if (status == "authenticated") {
@@ -114,15 +119,18 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
     }
-    const { toggleSidebar } = useSidebar()
+
 
     return <div className="w-full min-h-[100vh] min-h-[100dvh]">
         {status == "authenticated" && <div className="w-[90%] max-md:w-full max-md:bg-primaryBlack z-40 sticky top-0  flex items-center justify-start p-4 md:py-6 h-16 md:h-24">
-            <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6 md:hidden" />
+            <Avatar onClick={toggleSidebar} className='border-secondaryGreen max-md:w-9 max-md:h-9  md:hidden border-2'>
+                <AvatarImage className='' src={user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
+                <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">
                 <Notification />
                 <NFT />
-                <UserDropdown />
+                {!isMobile && <UserDropdown />}
             </div>
         </div>}
         {children}
