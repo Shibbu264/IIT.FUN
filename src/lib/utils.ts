@@ -130,8 +130,8 @@ export const authOptions = {
 };
 
 export function getBadgeFromPoints(points: number) {
-  if (points <= 100) { return "Beginner"; }
-  if (points <= 200) { return "Intermediate"; }
-  if (points <= 300) { return "Contributor"; }
-  if (points <= 400) { return "OG Builder"; }
+  if (points <= 300) { return "Beginner"; }
+  if (points <= 500) { return "Intermediate"; }
+  if (points <= 600) { return "Contributor"; }
+  if (points >= 800) { return "OG Builder"; }
 }
