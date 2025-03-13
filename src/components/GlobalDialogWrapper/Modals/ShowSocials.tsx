@@ -64,7 +64,7 @@ export default function ShowSocials({ prompts }: { prompts: any[] }) {
   const socialLinks = generateSocialLinks();
 
   return (
-    <DialogContent className="max-w-md p-6 rounded-xl">
+    <DialogContent className="md:max-w-md !w-screen bg-gray max-md:!border-none  max-md:!min-h-[90vh] max-md:!min-h-[90dvh] p-6 rounded-xl">
       <DialogHeader className="text-center">
         <div className="mx-auto bg-gradient-to-br from-indigo-100 to-blue-100 p-4 rounded-full mb-4">
           <Handshake className="h-12 w-12 text-indigo-600" />

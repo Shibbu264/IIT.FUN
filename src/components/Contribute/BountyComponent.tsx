@@ -22,7 +22,7 @@ export default function BountyComponent({ job }: { job: Job }) {
                 }
             }))}
             key={id}
-            className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-900 text-white p-4 sm:p-6 md:p-8 border border-lime-500 hover:bg-gray-800 transition cursor-pointer"
+            className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-900 text-white p-4 sm:p-6 md:p-6 border border-lime-500 hover:bg-gray-800 transition cursor-pointer"
         >
             {/* Left Section */}
             <div className="flex items-center gap-4 mb-4 sm:mb-0">
