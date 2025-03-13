@@ -116,7 +116,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     }
     const { toggleSidebar } = useSidebar()
 
-    return <div className="w-full">
+    return <div className="w-full min-h-[100vh] min-h-[100dvh]">
         {status == "authenticated" && <div className="w-[90%] max-md:w-full max-md:bg-primaryBlack z-40 sticky top-0  flex items-center justify-start p-4 md:py-6 h-16 md:h-24">
             <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6 md:hidden" />
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">

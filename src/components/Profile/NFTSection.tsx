@@ -3,6 +3,7 @@ import { useAppSelector } from '@/lib/store/store';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React from 'react'
 import Loader from '../Ui/Loader';
+import { cn } from '@/lib/utils';
 
 export default function NFTSection() {
     const { user } = useAppSelector(state => state.searchUser)
@@ -25,7 +26,7 @@ export default function NFTSection() {
             , {
                 headers: {
                     'x-api-key': 'dMV2JLYJiEYQL5J-',
-                    "X-Custom-Error": "none" 
+                    "X-Custom-Error": "none"
                 }
             }),
     })
@@ -60,7 +61,7 @@ export default function NFTSection() {
                 </h1>
                 <p className="md:text-lg text-primaryGreen">Your collection of NFTs here.</p>
             </div>
-            <div className="flex flex-wrap max-md:justify-center w-fit gap-4 md:gap-8">
+            <div className={cn("flex flex-wrap  max-md:justify-center w-fit gap-4 md:gap-8", collections?.length == 0 && "mx-auto")}>
                 {isLoading ?
                     <Loader />
                     :
@@ -81,7 +82,7 @@ export default function NFTSection() {
 
                     ))
                         :
-                        <span className='text-xl inline-block text-center mx-auto text-primaryGreen'>No NFTs Owned Yet</span>}
+                        <span className='text-xl  text-center mx-auto text-primaryGreen'>No NFTs Owned Yet</span>}
             </div>
         </div>
     )

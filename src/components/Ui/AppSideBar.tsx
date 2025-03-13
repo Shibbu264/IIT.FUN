@@ -67,7 +67,7 @@ export function AppSidebar() {
                             }`}
                         >
                             <item.icon className="w-8 h-8 group-data-[collapsible=icon]:mx-auto min-w-8" />
-                            <span className="group-data-[collapsible=icon]:hidden md:text-xl text-lg">
+                            <span className="group-data-[collapsible=icon]:hidden md:text-xl ">
                                 {item.name}
                             </span>
                         </Link>
