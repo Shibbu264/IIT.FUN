@@ -5,10 +5,11 @@ export default function PartnersDiv() {
             <div className="flex flex-wrap justify-center gap-8 px-4">
                 <img src="/vara-logo-white.jpeg" alt="Vara" className="h-12 w-auto" />
                 <img src="/citrae.jpeg" alt="Citrea" className="h-12 w-auto" />
+                <img src="/showdown.jpeg" alt="Aptos" className="h-12 w-auto" />
                 <img src="/nh.jpeg" alt="Nakamoto Hub" className="h-12 w-auto" />
                 <img src="/zo.jpeg" alt="ZKSync" className="h-12 w-auto" />
-                <img src="/nodops.jpeg" alt="NodOps" className="h-12 w-auto" />
-                <img src="/aptos.jpeg" alt="Aptos" className="h-12 w-auto" />
+                <img src="/monad.jpeg" alt="NodOps" className="h-12 w-auto" />
+                
             </div>
         </div>
     );
