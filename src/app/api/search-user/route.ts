@@ -16,7 +16,7 @@ export async function POST(req: Request) {
             }
         });
 
-        return NextResponse.json({ ...user, socialAccounts: [] });
+        return NextResponse.json({ ...user, socialAccounts: [], bounties: user?.bounties?.length, communityCalls: user?.communityCalls?.length });
     }
     catch (error) {
         console.log('Error fetching me', error);

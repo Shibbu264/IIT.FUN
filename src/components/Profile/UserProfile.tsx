@@ -17,7 +17,7 @@ export default function UserProfile() {
 
     const shareToTwitter = async () => {
           const tweetText = encodeURIComponent(
-            `I just earned the ${getBadgeFromPoints(user?.points??0)} badge with ${user?.bounties.length} contributions and ${user?.points} points! 🎉 Check it out here: https://iit.fun/profile/${user?.username} #IIT.FUN`
+            `I just earned the ${getBadgeFromPoints(user?.points??0)} badge with ${user?.bounties} contributions and ${user?.points} points! 🎉 Check it out here: https://iit.fun/profile/${user?.username} #IIT.FUN`
           );
     
           // Optional: Add image support via backend (see "Backend Integration" below)

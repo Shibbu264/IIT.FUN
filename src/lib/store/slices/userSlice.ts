@@ -15,8 +15,8 @@ export interface User {
     InstituteName?:string|null;
     telegramId?:string;
     points:number;
-    bounties:any[];
-    communityCalls:any[];
+    bounties:number;
+    communityCalls:number;
 }
 
 export interface SocialAccount {

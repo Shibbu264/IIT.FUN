@@ -204,7 +204,6 @@ export default function NFTButton() {
 
   return (
     <div className="flex flex-col gap-6 mt-12">
-    <h1>Hello Qtt</h1>
       <ButtonList
         guardList={guards}
         candyMachine={candyMachine}

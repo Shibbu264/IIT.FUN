@@ -9,14 +9,14 @@ export async function POST(req: Request) {
         // Fetch user from the database
         const user = await prisma.user.findUnique({
             where: { email },
-            include:{
-                socialAccounts:true,
-                bounties:true,
-                communityCalls:true
+            include: {
+                socialAccounts: true,
+                bounties: true,
+                communityCalls: true
             }
         });
 
-        return NextResponse.json(user);
+        return NextResponse.json({ ...user, bounties: user?.bounties?.length, communityCalls: user?.communityCalls.length });
     }
     catch (error) {
         console.log('Error fetching me', error);

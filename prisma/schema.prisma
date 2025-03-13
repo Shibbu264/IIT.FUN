@@ -36,6 +36,7 @@ model Bounty {
   unit        String
   Link        String
   deadline    String
+  group       String?
   users       UserBounty[]
 }
 

@@ -23,10 +23,10 @@ export default function Statistics() {
         queryKey: ['getNFT', user?.wallet],
         queryFn: () => axiosInstance.get(
             `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${user?.wallet}`, {
-                headers: {
-                    'x-api-key': 'dMV2JLYJiEYQL5J-'
-                }
+            headers: {
+                'x-api-key': 'dMV2JLYJiEYQL5J-'
             }
+        }
         ),
     })
 
@@ -42,8 +42,8 @@ export default function Statistics() {
     const stats = [
         { icon: <FaStar size={24} />, value: user?.points, label: 'points' },
         { icon: <FaTrophy size={24} />, value: 1, label: 'drop-out rank' },
-        { icon: <FaHandHoldingHeart size={24} />, value: user?.bounties?.length, label: 'Contributions' },
-        { icon: <FaUsers size={24} />, value: user?.communityCalls?.length, label: 'Community calls' },
+        { icon: <FaHandHoldingHeart size={24} />, value: user?.bounties as number, label: 'Contributions' },
+        { icon: <FaUsers size={24} />, value: user?.communityCalls as number, label: 'Community calls' },
     ];
 
     if (nfts) { stats.unshift({ icon: <FaWallet size={24} />, value: nfts.length, label: 'NFTs owned' }) }
