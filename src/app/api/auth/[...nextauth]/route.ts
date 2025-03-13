@@ -1,4 +1,4 @@
-import { authOptions, getInstituteNameFromEmail, validateEmail } from "@/lib/utils";
+import { authOptions, getInstituteNameFromEmail } from "@/lib/utils";
 import NextAuth from "next-auth";
 
 
