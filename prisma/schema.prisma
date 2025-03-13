@@ -22,6 +22,7 @@ model User {
   InstituteName  String?
   telegram       Boolean?            @default(false)
   telegramId     String?
+  lastSignIn     DateTime?
   socialAccounts SocialAccount[]
   bounties       UserBounty[]
   communityCalls UserCommunityCall[]

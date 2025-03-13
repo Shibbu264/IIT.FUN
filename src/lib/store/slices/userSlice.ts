@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface User {
-    id:number;
+    id: number;
     name: string;
     email: string;
     image: string;
@@ -10,13 +10,14 @@ export interface User {
     InstiId: boolean;
     discord: boolean;
     twitter: boolean;
-    telegram:boolean;
-    username:string|null;
-    InstituteName?:string|null;
-    telegramId?:string;
-    points:number;
-    bounties:number;
-    communityCalls:number;
+    telegram: boolean;
+    username: string | null;
+    InstituteName?: string | null;
+    telegramId?: string;
+    points: number;
+    bounties: number;
+    communityCalls: number;
+    lastSignin: Date;
 }
 
 export interface SocialAccount {
@@ -36,7 +37,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null as User | null,
-        nfts:[] as any[]
+        nfts: [] as any[]
     },
     reducers: {
         setUser(state, action: PayloadAction<any>) {
@@ -50,14 +51,14 @@ const userSlice = createSlice({
         clearUser(state) {
             state.user = null;
         },
-        setNFT(state,action){
-            state.nfts=action.payload
+        setNFT(state, action) {
+            state.nfts = action.payload
         }
     },
 });
 
 // Export actions
-export const { setUser, clearUser,setNFT } = userSlice.actions;
+export const { setUser, clearUser, setNFT } = userSlice.actions;
 
 // Export reducer
 export default userSlice.reducer;

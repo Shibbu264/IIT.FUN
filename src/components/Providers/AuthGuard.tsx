@@ -3,7 +3,7 @@ import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { setUser } from "@/lib/store/slices/userSlice";
 import { useAppSelector } from "@/lib/store/store";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { BellIcon, PanelLeft } from "lucide-react";
+import { BellIcon, CoinsIcon, PanelLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -113,8 +113,13 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                     }
                 ))
             }
+            axiosInstance.post("/api/daily-signin", { email: user?.email }).then((res) => {
+                if (res.data.points) {
+                    dispatch(setUser({ ...user, points: user.points + 20 }))
+                }
+            })
         }
-    }, [session, status, dispatch, pathname, user]);
+    }, [session, status, dispatch, pathname]);
 
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
@@ -126,6 +131,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             <PanelLeft onClick={toggleSidebar} className=' max-md:w-9 max-md:h-9  md:hidden ' />
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">
                 <Notification />
+                <span className="flex items-center gap-1"><CoinsIcon className="text-yellow-400 animate-spin-slow" />{user?.points}</span>
                 <NFT />
                 {!isMobile && <UserDropdown />}
             </div>

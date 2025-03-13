@@ -76,7 +76,8 @@ export default {
 	},
 	animation: {
 		'mirror-flip': 'mirror-flip 4s ease-in-out infinite',
-		spin: 'spin 1s linear infinite'
+		spin: 'spin 1s linear infinite',
+		'spin-slow': 'spin 3s linear infinite'
 	},
 	plugins: [require("tailwindcss-animate")]
 } satisfies Config;
