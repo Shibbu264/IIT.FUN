@@ -51,7 +51,7 @@ export default function SocialPresence() {
   const socialPlatforms = [
     {
       title: "Institute Id",
-      description: "Verify your Institute Id to get 50 points",
+      description: "From IIT ? Verify your IIT email Id to get 50 points",
       points: 50,
       buttonText: user?.InstiId ? "Verified" : "Verify",
       icon: <FaBuilding />,

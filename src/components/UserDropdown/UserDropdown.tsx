@@ -13,7 +13,7 @@ export default function UserDropdown() {
             <DropdownMenuTrigger>
                 <Avatar className='border-secondaryGreen max-md:w-8 max-md:h-8 hover:scale-105 border-2'>
                     <AvatarImage className='' src={session?.data?.user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>{session?.data?.user?.name?.slice(0,2)}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent sideOffset={16} align={isMobile?"end":"center"} className='bg-black p-2'>

@@ -4,12 +4,6 @@ import { twMerge } from "tailwind-merge"
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/lib/prisma";
 
-export const validateEmail = (email: string): boolean => {
-  // Check if the email ends with .ac.in and contains the specified substrings
-  const regex = /^(?=.*(iitbhu|itbhu|iitr|iitk|iitp|iitm|iitb|iitd|iitj)).*\.ac\.in$/;
-  return regex.test(email);
-};
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -86,7 +80,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user }: any) {
       // Validate the user's email
-      if (user.email && validateEmail(user.email)) {
+      if (user.email) {
         // Check if the user already exists in the database
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
