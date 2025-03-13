@@ -34,7 +34,8 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             axiosInstance("/api/refresh-token-" + provider, {
                 params: {
                     refreshToken: account?.refreshToken
-                }
+                },
+                headers: { "X-Custom-Error": "none" }
             })
                 .then(res => res.data)
                 .then((data: { accessToken: string; expiresAt: string }) => {
@@ -91,7 +92,6 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             }
         }
         if (user) {
-            console.log(user)
             if (user.discord) {
                 updateToken("discord")
             }
@@ -121,7 +121,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             <PanelLeft onClick={toggleSidebar} width={24} height={24} className="h-6 w-6 md:hidden" />
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">
                 <Notification />
-                <NFT/>
+                <NFT />
                 <UserDropdown />
             </div>
         </div>}

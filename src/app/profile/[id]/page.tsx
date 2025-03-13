@@ -70,20 +70,18 @@ export default function page() {
 
     const checkSocialFollowing = async () => {
         const promptLinks = [
-            { title: "discord", connected: true },
             { title: "twitter", connected: false },
-            { title: "telegram", connected: false }
+            { title: "telegram", connected: user?.telegram }
         ];
 
         if (user?.discord) {
-            // const isMember = await checkUserJoinedChannel('1222164512497467473');
-            //     promptLinks.push({title:"discord",connected:isMember});
+            const isMember = await checkUserJoinedChannel('1222164512497467473');
+                promptLinks.push({title:"discord",connected:isMember});
         }
 
-        // console.log(promptLinks)
-        // if (promptLinks.length > 0) {
-        //     dispatch(openDialog({ type: "showSocials", data: { prompts: promptLinks } }))
-        // }
+        if (promptLinks.length > 0) {
+            dispatch(openDialog({ type: "showSocials", data: { prompts: promptLinks } }))
+        }
     };
 
 

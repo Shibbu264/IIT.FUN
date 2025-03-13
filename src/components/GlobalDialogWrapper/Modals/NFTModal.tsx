@@ -24,7 +24,8 @@ export default function NFTModal({ address }: { address: any }) {
             `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${address}`
             , {
                 headers: {
-                    'x-api-key': 'dMV2JLYJiEYQL5J-'
+                    'x-api-key': 'dMV2JLYJiEYQL5J-',
+                    "X-Custom-Error": "none" 
                 }
             }),
     })

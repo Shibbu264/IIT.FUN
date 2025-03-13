@@ -19,12 +19,12 @@ export default function UserBountiesTab() {
         isLoading ?
             <Loader /> :
             <div className="space-y-4">
-                {data?.data?.bounties.length === 0 ? (
+                {data?.data?.userBounties.length === 0 ? (
                     <p className="text-gray-400">No bounties available</p>
                 ) : (
-                    data?.data?.bounties.map((job: any) => (
+                    data?.data?.userBounties.map((job: any) => (
                         <a
-                            href={job.Link}
+                            href={job.bounty.Link}
                             target="_blank"
                             rel="noopener noreferrer"
                             key={job.id}
@@ -33,16 +33,16 @@ export default function UserBountiesTab() {
                             {/* Left Section */}
                             <div className="flex items-center gap-4 mb-4 sm:mb-0">
                                 <img
-                                    src={job.image}
-                                    alt={job.title}
+                                    src={job.bounty.image}
+                                    alt={job.bounty.title}
                                     className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-700 flex-shrink-0"
                                 />
                                 <div>
                                     <h2 className="font-semibold text-sm sm:text-base">
-                                        <span>{job.title}</span>
+                                        <span>{job.bounty.title}</span>
                                     </h2>
                                     <p className="text-xs sm:text-sm text-gray-400">
-                                        {job.description}
+                                        {job.bounty.description}
                                     </p>
                                 </div>
                             </div>
@@ -50,10 +50,10 @@ export default function UserBountiesTab() {
                             {/* Right Section */}
                             <div className="text-right flex items-center space-x-2">
                                 <p className="font-semibold text-sm sm:text-base">
-                                    {job.amount}
+                                    {job.bounty.amount}
                                 </p>
                                 <p className="text-xs sm:text-sm text-gray-400">
-                                    {job.unit}
+                                    {job.bounty.unit}
                                 </p>
                             </div>
                         </a>

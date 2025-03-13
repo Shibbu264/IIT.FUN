@@ -24,7 +24,8 @@ export default function Statistics() {
         queryFn: () => axiosInstance.get(
             `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${user?.wallet}`, {
             headers: {
-                'x-api-key': 'dMV2JLYJiEYQL5J-'
+                'x-api-key': 'dMV2JLYJiEYQL5J-',
+                "X-Custom-Error": "none" 
             }
         }
         ),
