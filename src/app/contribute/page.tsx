@@ -7,6 +7,7 @@ import axiosInstance from "@/lib/axiosInstances/iitFunInstance";
 import Loader from "@/components/Ui/Loader";
 import AllBountiesTab from "@/components/Contribute/Tabs/AllBountiesTab";
 import UserBountiesTab from "@/components/Contribute/Tabs/UserBountiesTab";
+import CompletedBountiesTab from "@/components/Contribute/Tabs/CompletedBountyTab";
 
 
 
@@ -28,6 +29,9 @@ export default function Page() {
         </TabsContent>
         <TabsContent className="flex flex-1 px-2 flex-col" value="registered">
           <UserBountiesTab />
+        </TabsContent>
+        <TabsContent className="flex flex-1 px-2 flex-col" value="completed">
+          <CompletedBountiesTab/>
         </TabsContent>
       </Tabs>
     </div>

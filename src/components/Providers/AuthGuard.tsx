@@ -6,7 +6,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { BellIcon, CoinsIcon, PanelLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSidebar } from "../Ui/sidebar";
 import UserDropdown from "../UserDropdown/UserDropdown";
@@ -23,8 +23,9 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     const pathname = usePathname();
     const { user } = useAppSelector(state => state.user);
     const { wallet } = useWallet();
-    const { toggleSidebar } = useSidebar()
-    const isMobile = useIsMobile()
+    const { toggleSidebar } = useSidebar();
+    const isMobile = useIsMobile();
+    const firstTime = useRef(false);
 
     function updateToken(provider: "discord" | "twitter") {
         if (!user?.[provider]) return;
@@ -79,24 +80,28 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
         }
 
         if (status == "authenticated") {
-            if (!user) {
-                fetch('/api/me', {
-                    method: 'POST', // Use 'POST' if you want to send data in the body
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: session?.user?.email }), // Include the email in the request body
+            fetch('/api/me', {
+                method: 'POST', // Use 'POST' if you want to send data in the body
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: session?.user?.email }), // Include the email in the request body
+            })
+                .then(response => response.json())
+                .then(data => {
+                    dispatch(setUser(data))
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        dispatch(setUser(data))
-                    })
-                    .catch(error => {
-                        console.error('Error:', error); // Handle any errors
-                    });
-            }
+                .catch(error => {
+                    console.error('Error:', error); // Handle any errors
+                });
         }
+    }, [status, dispatch, pathname]);
+
+    useEffect(() => {
+        if (firstTime.current) { return; }
         if (user) {
+            firstTime.current = true;
+            console.log(user)
             if (user.discord) {
                 updateToken("discord")
             }
@@ -119,7 +124,8 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 }
             })
         }
-    }, [session, status, dispatch, pathname]);
+        console.log("helloqt")
+    }, [user])
 
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
