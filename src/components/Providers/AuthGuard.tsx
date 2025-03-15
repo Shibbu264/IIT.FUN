@@ -101,7 +101,6 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
         if (firstTime.current) { return; }
         if (user) {
             firstTime.current = true;
-            console.log(user)
             if (user.discord) {
                 updateToken("discord")
             }

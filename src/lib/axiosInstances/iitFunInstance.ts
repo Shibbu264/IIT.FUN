@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
         toast.warning(response.data.reason, { duration: 2000 })
       }
       else {
-        toast.warning(`${response.data.points} points awarded!`, { duration: 5000 })
+        toast.warning(`${response.data.points} points awarded!`, { duration: 6000,position:"top-center" })
       }
     }
     return response;
