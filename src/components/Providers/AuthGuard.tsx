@@ -16,6 +16,7 @@ import axiosInstance from "@/lib/axiosInstances/iitFunInstance";
 import NFT from "../NFT/NFT";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Avatar, AvatarFallback, AvatarImage } from "../Ui/Avatar";
+import { toast } from "sonner";
 
 const AuthGuardProvider = ({ children }: { children: any }) => {
     const { data: session, status } = useSession();

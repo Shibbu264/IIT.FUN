@@ -23,10 +23,10 @@ axiosInstance.interceptors.response.use(
     }
     if (response.data.points) {
       if (response.data.reason) {
-        toast.warning(response.data.reason, { duration: 2000 })
+        toast.warning(response.data.reason, { duration: 4000,position:"top-center",closeButton:true })
       }
       else {
-        toast.warning(`${response.data.points} points awarded!`, { duration: 6000,position:"top-center" })
+        toast.warning(`${response.data.points} points awarded!`, { duration: 4000,position:"top-center",closeButton:true  })
       }
     }
     return response;

@@ -17,8 +17,9 @@ export async function POST(req: Request) {
     const bounties = await prisma.bounty.findMany({
       where: { id: { notIn: registeredBountyIds } },
     });
+    const groups = [...new Set(bounties.map((bounty) => bounty.group))];
 
-    return NextResponse.json({ bounties });
+    return NextResponse.json({ bounties, groups });
   } catch (error) {
     console.error("Error fetching Bounties:", error);
     return NextResponse.json({ error: "Failed to fetch Bounties" }, { status: 500 });

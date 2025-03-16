@@ -20,7 +20,7 @@ export default function CompletedBountiesTab() {
             <Loader /> :
             <div className="space-y-4">
                 {data?.data?.userBounties.length === 0 ? (
-                    <p className="text-gray-400">No bounties available</p>
+                    <p className="text-gray-400 text-lg text-center mt-6">No bounties available</p>
                 ) : (
                     data?.data?.userBounties.filter((job: any) => job.attended == true).map((job: any) => (
                         <a

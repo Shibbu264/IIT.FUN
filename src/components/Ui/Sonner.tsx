@@ -11,10 +11,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
+     
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       toastOptions={{
-        
+        duration:2000,
         classNames: {
           toast:
             "group toast md:!text-xl max-md:!text-lg group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",

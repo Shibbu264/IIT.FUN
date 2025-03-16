@@ -22,6 +22,7 @@ export default function Page() {
         <TabsList className="flex px-4 justify-start  gap-3 w-full">
           <TabsTrigger className="" value="active">Active</TabsTrigger>
           <TabsTrigger value="registered">Registered</TabsTrigger>
+          <TabsTrigger value="completed">Completed</TabsTrigger>
         </TabsList>
 
         <TabsContent className="flex flex-1 px-2 flex-col" value="active">
