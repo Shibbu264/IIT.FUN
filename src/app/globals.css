@@ -34,3 +34,16 @@ body {
   background: var(--background);
   font-family: "Inria Sans", sans-serif;
 }
+
+.glass-bg {
+  backdrop-filter: blur(8px); /* Applies blur to the background */
+  -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
+  background-color: rgb(2, 30, 2); /* Semi-transparent background */
+  
+  /* Border and shadow for depth */
+  border: 1px solid var(--primaryGreen);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Text styling */
+  color: #CBFC02;
+}
