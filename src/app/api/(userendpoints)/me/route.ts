@@ -12,7 +12,7 @@ export async function POST(req: Request) {
             include: {
                 socialAccounts: true,
                 bounties: true,
-                communityCalls: true
+                communityCalls: true,
             }
         });
 

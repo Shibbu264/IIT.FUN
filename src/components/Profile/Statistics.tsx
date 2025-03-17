@@ -56,7 +56,7 @@ export default function Statistics() {
             </h1>
             <div className="flex flex-wrap max-md:justify-center w-fit gap-4 md:gap-8">
                 {stats.map((stat, index) => (
-                    <Card key={index} className="flex border-secondaryGray bg-gray shadow-custom  gap-4 md:p-8 p-4 max-md:w-[80%] md:min-w-[250px]">
+                    <Card key={index} className="flex border-secondaryGray bg-gray shadow-custom shadow-gray  gap-4 md:p-8 p-4 max-md:w-[80%] md:min-w-[250px]">
                         <div className='mt-1'>{stat.icon}</div>
                         <div>
                             <p className="text-xl font-semibold">{stat.value}</p>

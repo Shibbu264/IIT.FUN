@@ -36,14 +36,13 @@ body {
 }
 
 .glass-bg {
-  backdrop-filter: blur(8px); /* Applies blur to the background */
-  -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
-  background-color: rgb(2, 30, 2); /* Semi-transparent background */
+  backdrop-filter: blur(10px) brightness(1.2); /* Smooth glass effect */
+  -webkit-backdrop-filter: blur(10px) brightness(1.2); /* Safari support */
+  background: rgba(10, 49, 10, 0.5); /* Semi-transparent dark green */
   
-  /* Border and shadow for depth */
-  border: 1px solid var(--primaryGreen);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  
-  /* Text styling */
-  color: #CBFC02;
+  /* Border and glow effect */
+  border: 1px solid var(--primaryGreen); /* Neon green border */
+  border-radius: 8px; /* Smooth corners */
+  box-shadow: 0px 0px 10px rgba(77, 94, 9, 0.6); /* Neon glow */
+  color: var(--primaryGreen); /* Bright neon green */
 }

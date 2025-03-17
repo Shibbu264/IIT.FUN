@@ -34,7 +34,7 @@ const SocialBox: React.FC<SocialBoxProps> = ({ variant, title, description, poin
             className={cn(
                 "p-4 rounded-2xl w-64",
                 "text-primaryWhite bg-primaryBlack",
-                isConnected()?"border-primaryGreen !shadow-custom shadow-secondaryGreen  border":"border-secondaryBlack"
+                isConnected()?"border-primaryGreen shadow-custom   border":"border-secondaryBlack"
             )}
         >
             <div className="flex justify-between items-center max-md:items-start mb-2">

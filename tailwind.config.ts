@@ -9,7 +9,7 @@ export default {
 	theme: {
 		extend: {
 			boxShadow: {
-				'custom': '0px 0px 10px rgba(0, 0, 0, 0.1)', // Custom shadow
+				'custom': '0px 0px 10px var(--primaryGreen)',
 			},
 			colors: {
 				background: "var(--background)",
