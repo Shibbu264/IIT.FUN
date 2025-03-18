@@ -16,17 +16,17 @@ export default function Page() {
 
 
   return (
-    <div className="flex flex-col h-full px-4">
-      <Tabs className="h-full flex flex-col gap-6" defaultValue="active">
-        <TabsList className="flex gap-4 w-fit">
+    <div className="flex flex-col max-h-[100%]">
+      <Tabs className="max-md:mt-6 flex flex-col gap-6 h-full md:min-h-[88vh] min-h-[85vh]" defaultValue="active">
+        <TabsList className="flex px-4 justify-start  gap-3 w-full">
           <TabsTrigger className="" value="active">Active</TabsTrigger>
           <TabsTrigger value="registered">Registered</TabsTrigger>
         </TabsList>
 
-        <TabsContent className="flex h-full flex-col" value="active">
+        <TabsContent className="flex flex-1 px-2 flex-col" value="active">
           <AllBountiesTab />
         </TabsContent>
-        <TabsContent className="flex h-full flex-col" value="registered">
+        <TabsContent className="flex flex-1 px-2 flex-col" value="registered">
           <UserBountiesTab />
         </TabsContent>
       </Tabs>

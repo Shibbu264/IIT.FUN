@@ -5,6 +5,7 @@ import { UserLeaderboard } from "@/components/Leaderboard/user-leader";
 import { TopRankers } from "@/components/Leaderboard/top-ranker";
 
 export default function Leaderboard() {
+
   return (
     <div className="min-h-screen text-white">
       <div className="container mx-auto px-4 py-8">

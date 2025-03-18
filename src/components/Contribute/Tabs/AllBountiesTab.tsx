@@ -18,13 +18,15 @@ export default function AllBountiesTab() {
     return (
         isLoading ?
             <Loader /> :
-            <div className="space-y-4">
+            <div className="space-y-4 max-h-[80vh] overflow-y-auto">
                 {data?.data?.bounties.length === 0 ? (
                     <p className="text-gray-400">No bounties available</p>
                 ) : (
                     data?.data?.bounties.map((job: any, index: number) => (
-                        <BountyComponent key={index} job={job} />
-                    ))
+                        <>
+                            <BountyComponent key={index} job={job} />
+                            <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} /> <BountyComponent key={index} job={job} />
+                        </>))
                 )}
             </div>
     )

@@ -4,17 +4,19 @@ import { Avatar, AvatarFallback, AvatarImage } from '../Ui/Avatar';
 import { signOut, useSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { LogOutIcon } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 export default function UserDropdown() {
-    const session = useSession()
+    const session = useSession();
+    const isMobile = useIsMobile()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <Avatar className='border-secondaryGreen max-md:w-6 max-md:h-6 hover:scale-105 border-2'>
+                <Avatar className='border-secondaryGreen max-md:w-8 max-md:h-8 hover:scale-105 border-2'>
                     <AvatarImage className='' src={session?.data?.user?.image ?? "/sponge.jpeg"} alt="@shadcn" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='bg-black p-2'>
+            <DropdownMenuContent sideOffset={16} align={isMobile?"end":"center"} className='bg-black p-2'>
                 <DropdownMenuLabel className='text-primaryGreen'>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className='!cursor-pointer flex justify-between p-3 hover:bg-gray' onClick={() => signOut().then(() => {
@@ -22,8 +24,8 @@ export default function UserDropdown() {
                     toast("Signed out successfully !")
                 })}>
                     <span>Logout</span>
-                    <LogOutIcon color='red'/>
-                    </DropdownMenuItem>
+                    <LogOutIcon color='red' />
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )
