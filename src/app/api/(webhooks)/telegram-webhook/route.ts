@@ -22,7 +22,7 @@ export async function POST(req: Request) {
             data: { telegramId: from.id.toString(), telegram: true, points: { increment: 50 } },
           });
 
-          return NextResponse.json({ message: `User ${username} verified successfully!` });
+          return NextResponse.json({ message: `User ${username} verified successfully!`,points:50 });
         } else {
           return NextResponse.json({
             message: existingUser ? "User already verified" : `No user found with username ${username}`,

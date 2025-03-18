@@ -62,7 +62,7 @@ export function AppSidebar() {
                             key={item.name}
                             href={item.href}
                             className={`flex md:h-[60px] items-center gap-3 px-4 py-2 rounded-lg transition-colors ${pathname === item.href
-                                ? "bg-primaryGreen text-primaryBlack"
+                                ? "glass-bg"
                                 : "hover:border-secondaryGreen hover:border"
                                 }`}
                         >

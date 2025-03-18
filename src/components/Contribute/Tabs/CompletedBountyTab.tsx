@@ -8,7 +8,7 @@ import Loader from "@/components/Ui/Loader";
 import { useAppSelector } from "@/lib/store/store";
 
 
-export default function UserBountiesTab() {
+export default function CompletedBountiesTab() {
     const { user } = useAppSelector(state => state.user)
     const { data, isLoading, isError } = useQuery({
         enabled: !!user?.id,
@@ -22,7 +22,7 @@ export default function UserBountiesTab() {
                 {data?.data?.userBounties.length === 0 ? (
                     <p className="text-gray-400 text-lg text-center mt-6">No bounties available</p>
                 ) : (
-                    data?.data?.userBounties.map((job: any) => (
+                    data?.data?.userBounties.filter((job: any) => job.attended == true).map((job: any) => (
                         <a
                             href={job.bounty.Link}
                             target="_blank"

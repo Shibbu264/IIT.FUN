@@ -9,7 +9,7 @@ export default {
 	theme: {
 		extend: {
 			boxShadow: {
-				'custom': '0px 0px 10px rgba(0, 0, 0, 0.1)', // Custom shadow
+				'custom': '0px 0px 10px var(--primaryGreen)',
 			},
 			colors: {
 				background: "var(--background)",
@@ -76,7 +76,8 @@ export default {
 	},
 	animation: {
 		'mirror-flip': 'mirror-flip 4s ease-in-out infinite',
-		spin: 'spin 1s linear infinite'
+		spin: 'spin 1s linear infinite',
+		'spin-slow': 'spin 3s linear infinite'
 	},
 	plugins: [require("tailwindcss-animate")]
 } satisfies Config;

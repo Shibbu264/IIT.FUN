@@ -18,8 +18,16 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     const customMessage = response.config?.headers?.["X-Custom-Error"];
-    if (response.data.message && customMessage!="none") {
+    if (response.data.message && customMessage != "none") {
       toast.success(response.data.message);
+    }
+    if (response.data.points) {
+      if (response.data.reason) {
+        toast.warning(response.data.reason, { duration: 4000,position:"top-center",closeButton:true })
+      }
+      else {
+        toast.warning(`${response.data.points} points awarded!`, { duration: 4000,position:"top-center",closeButton:true  })
+      }
     }
     return response;
   },
@@ -31,7 +39,7 @@ axiosInstance.interceptors.response.use(
       toast.error("Unauthorized request");
     } else {
       if (customMessage == "none") {
-         
+
       }
       else if (customMessage) {
         toast.error(customMessage);

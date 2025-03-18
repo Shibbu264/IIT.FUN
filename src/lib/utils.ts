@@ -4,12 +4,6 @@ import { twMerge } from "tailwind-merge"
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/lib/prisma";
 
-export const validateEmail = (email: string): boolean => {
-  // Check if the email ends with .ac.in and contains the specified substrings
-  const regex = /^(?=.*(iitbhu|itbhu|iitr|iitk|iitp|iitm|iitb|iitd|iitj)).*\.ac\.in$/;
-  return regex.test(email);
-};
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -86,7 +80,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user }: any) {
       // Validate the user's email
-      if (user.email && validateEmail(user.email)) {
+      if (user.email) {
         // Check if the user already exists in the database
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
@@ -124,13 +118,14 @@ export const authOptions = {
       }
       return false; // Reject sign-in
     },
+    callbacks: { async redirect({ url, baseUrl }: any) { return baseUrl }, },
   },
   // Add any additional NextAuth configuration here
 };
 
 export function getBadgeFromPoints(points: number) {
-  if (points <= 100) { return "Beginner"; }
-  if (points <= 200) { return "Intermediate"; }
-  if (points <= 300) { return "Contributor"; }
-  if (points <= 400) { return "OG Builder"; }
+  if (points <= 300) { return "Beginner"; }
+  if (points <= 500) { return "Intermediate"; }
+  if (points <= 600) { return "Contributor"; }
+  if (points >= 800) { return "OG Builder"; }
 }
