@@ -14,6 +14,7 @@ import ShowSocials from './Modals/ShowSocials';
 import VerifyEmail from './Modals/VerifyEmail';
 import JoinTelegram from './Modals/JoinTelegram';
 import BountyRegistration from './Modals/BountyRegistration';
+import RSVPModal from './Modals/RSVPModal';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
@@ -44,6 +45,8 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
         return <JoinTelegram {...data} />
       case 'bountyRegistration':
         return <BountyRegistration {...data} />
+      case 'rsvp':
+        return <RSVPModal {...data} />
       default:
         return null;
     }

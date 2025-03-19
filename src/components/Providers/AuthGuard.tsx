@@ -130,6 +130,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
     }
+    dispatch(openDialog({type:'rsvp'}))
 
 
     return <div className="w-full min-h-[100vh] min-h-[100dvh]">
