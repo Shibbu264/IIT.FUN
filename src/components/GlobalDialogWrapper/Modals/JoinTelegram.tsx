@@ -15,7 +15,7 @@ export default function JoinTelegram() {
                 <DialogTitle className="text-center font-bold !text-2xl ">Join Our Community!</DialogTitle>
                 <DialogDescription className="text-center !text-lg mt-2">
                     Join <span className='text-primaryGreen'>IIT.FUN </span> channel and verify your membership in our <span className='text-lg text-primaryGreen'>verify-members</span> group by sending
-                     <span className='text-primaryGreen text-lg block'>{"/verify <your iit.fun username>"}</span>
+                     <span className='text-primaryGreen text-xl block'>{"/verify your_iit.fun_username"}</span>
                 </DialogDescription>
             </DialogHeader>
 

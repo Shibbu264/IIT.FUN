@@ -95,6 +95,8 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 .catch(error => {
                     console.error('Error:', error); // Handle any errors
                 });
+
+                dispatch(openDialog({type:'rsvp'}))
         }
     }, [status, dispatch, pathname]);
 
@@ -124,13 +126,12 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 }
             })
         }
-        console.log("helloqt")
     }, [user])
 
     if (status === "unauthenticated" && protectedRoutes.includes(pathname)) {
         return null;
     }
-    dispatch(openDialog({type:'rsvp'}))
+
 
 
     return <div className="w-full min-h-[100vh] min-h-[100dvh]">

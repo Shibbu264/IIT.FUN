@@ -54,6 +54,7 @@ model CommunityCall {
   date        String
   group       String?
   eligibilityPoints Int @default(0)
+  code        String?
   users       UserCommunityCall[]
 }
 
