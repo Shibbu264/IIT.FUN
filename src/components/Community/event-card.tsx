@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Calendar, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "../Ui/Button";
 
 export type CardStatus =
   | "default"
@@ -55,10 +56,7 @@ export default function EventCard({
               You need{" "}
               <span className="text-[#c1ff00] font-bold">{pointsNeeded}</span>{" "}
               more points to unlock access.{" "}
-              <span className=" text-black text-lg">
-                📈
-              </span>{" "}
-              Grind More.
+              <span className=" text-black text-lg">📈</span> Grind More.
             </p>
           </div>
         ) : null}
@@ -85,38 +83,45 @@ export default function EventCard({
             </p>
 
             <div className="flex gap-2">
-              <button
+              <Button
                 onClick={onJoin}
                 disabled={status === "locked" || status === "limit-exceeded"}
+                variant={
+                  status === "not-approached"
+                    ? "active"
+                    : status === "limit-exceeded"
+                    ? "passive"
+                    : status === "default"
+                    ? "passive"
+                    : "default"
+                }
                 className={cn(
                   "px-14 py-2 rounded text-sm font-medium transition-colors",
-                  status === "not-approached" &&
-                    "text-[#c1ff00] bg-black border-2 border-[#c1ff00] hover:text-black hover:bg-[#c1ff00]",
-                  status === "limit-exceeded" &&
-                    "bg-zinc-800 text-white hover:bg-zinc-700 cursor-not-allowed ",
-                  status === "default" &&
-                    "bg-zinc-800 text-white hover:bg-zinc-700",
                   status === "locked" && "pointer-events-none "
                 )}
               >
                 Join Now
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={onRSVP}
                 disabled={status === "locked" || status === "not-approached"}
+                variant={
+                  status === "not-approached"
+                    ? "passive"
+                    : status === "limit-exceeded"
+                    ? "active"
+                    : status === "default"
+                    ? "passive"
+                    : "default"
+                }
                 className={cn(
                   "px-14 py-2 rounded text-sm font-medium transition-colors",
-                  status === "not-approached" &&
-                    "bg-zinc-800 text-white hover:bg-zinc-700 cursor-not-allowed",
-                  status === "limit-exceeded" &&
-                    "text-[#c1ff00] bg-black hover:text-black hover:bg-[#c1ff00] border-2 border-[#c1ff00]",
-                  status === "default" &&
-                    "bg-zinc-800 text-white hover:bg-zinc-700",
+
                   status === "locked" && "pointer-events-none"
                 )}
               >
                 RSVP
-              </button>
+              </Button>
             </div>
           </div>
 
