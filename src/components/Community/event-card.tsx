@@ -17,11 +17,14 @@ export interface EventCardProps {
   description: string;
   date: string;
   time: string;
+  type: string;
   imageUrl?: string;
   status?: CardStatus;
   pointsNeeded?: number;
   onJoin?: () => void;
   onRSVP?: () => void;
+  className?: string;
+  onRegister?:()=>void
 }
 
 export default function EventCard({
@@ -34,11 +37,14 @@ export default function EventCard({
   pointsNeeded = 100,
   onJoin,
   onRSVP,
+  type,
+  onRegister,
+  className
 }: EventCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="w-full max-w-lg">
+    <div className={cn("w-full max-w-lg", className)}>
       <div
         className={`bg-black rounded-lg overflow-hidden relative`}
         onMouseEnter={() => setIsHovered(true)}
@@ -82,46 +88,55 @@ export default function EventCard({
               {description}
             </p>
 
-            <div className="flex gap-2">
-              <Button
-                onClick={onJoin}
-                disabled={status === "locked" || status === "limit-exceeded"}
-                variant={
-                  status === "not-approached"
-                    ? "active"
-                    : status === "limit-exceeded"
-                    ? "passive"
-                    : status === "default"
-                    ? "passive"
-                    : "default"
-                }
-                className={cn(
-                  "px-14 py-2 rounded text-sm font-medium transition-colors",
-                  status === "locked" && "pointer-events-none "
-                )}
-              >
-                Join Now
-              </Button>
-              <Button
-                onClick={onRSVP}
-                disabled={status === "locked" || status === "not-approached"}
-                variant={
-                  status === "not-approached"
-                    ? "passive"
-                    : status === "limit-exceeded"
-                    ? "active"
-                    : status === "default"
-                    ? "passive"
-                    : "default"
-                }
-                className={cn(
-                  "px-14 py-2 rounded text-sm font-medium transition-colors",
+            <div className="flex w-full gap-2">
+              {
+                type=="upcoming"?
+                <Button onClick={onRegister} size={"lg"} className="w-1/2">
+                  Register
+                </Button>
+                :
+                <>
+                  <Button
+                    onClick={onJoin}
+                    disabled={status === "locked" || status === "limit-exceeded"}
+                    variant={
+                      status === "not-approached"
+                        ? "active"
+                        : status === "limit-exceeded"
+                          ? "passive"
+                          : status === "default"
+                            ? "passive"
+                            : "default"
+                    }
+                    className={cn(
+                      "px-14 py-2 rounded text-sm font-medium transition-colors",
+                      status === "locked" && "pointer-events-none "
+                    )}
+                  >
+                    Join Now
+                  </Button>
+                  <Button
+                    onClick={onRSVP}
+                    disabled={status === "locked" || status === "not-approached"}
+                    variant={
+                      status === "not-approached"
+                        ? "passive"
+                        : status === "limit-exceeded"
+                          ? "active"
+                          : status === "default"
+                            ? "passive"
+                            : "default"
+                    }
+                    className={cn(
+                      "px-14 py-2 rounded text-sm font-medium transition-colors",
 
-                  status === "locked" && "pointer-events-none"
-                )}
-              >
-                RSVP
-              </Button>
+                      status === "locked" && "pointer-events-none"
+                    )}
+                  >
+                    RSVP
+                  </Button>
+                </>
+              }
             </div>
           </div>
 
