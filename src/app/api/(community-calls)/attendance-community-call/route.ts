@@ -15,12 +15,12 @@ export async function POST(req: Request) {
     try {
         const { id,code} = await req.json();
         // Create a new UserCommunityCall entry
-        const userCommunityCall = await prisma.userCommunityCall.findUnique({
+        const communityCall = await prisma.communityCall.findUnique({
             where: {
                 id: id
             }
         });
-        if(userCommunityCall?.code==code){
+        if(communityCall?.code==code){
             return NextResponse.json({ message: "Attendance marked !s"});
         }
 
