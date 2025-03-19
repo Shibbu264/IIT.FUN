@@ -117,7 +117,7 @@ export default function EventCard({
                   </Button>
                   <Button
                     onClick={onRSVP}
-                    disabled={status === "locked" || status === "not-approached"}
+                    disabled={status === "locked" || status === "limit-exceeded"}
                     variant={
                       status === "not-approached"
                         ? "passive"

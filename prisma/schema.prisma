@@ -55,6 +55,9 @@ model CommunityCall {
   group       String?
   eligibilityPoints Int @default(0)
   code        String?
+  online      Boolean   @default(true)
+  meetlink    String?  
+  ended       Boolean   @default(false)  
   users       UserCommunityCall[]
 }
 

@@ -29,7 +29,7 @@ export function AppSidebar() {
         },
         {
             name: "Community Calls",
-            href: "/community",
+            href: "/community-calls",
             icon: Users,
         },
         {

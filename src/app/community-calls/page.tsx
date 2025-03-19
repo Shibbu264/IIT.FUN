@@ -8,19 +8,23 @@ import { useAppSelector } from "@/lib/store/store";
 import Loader from "@/components/Ui/Loader";
 import EventCard, { CardStatus } from "@/components/Community/event-card";
 import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { openDialog } from "@/lib/store/slices/dialogSlice";
 
 
 // Helper function to determine event status
 const getCardStatus = (
   userPoints: number = 0,
   eventPoints: number = 0,
-  eventDate: string
+  eventDate: string,
+  mode:string,
+  ended:boolean
 ): CardStatus => {
   const today = new Date();
   const eventDateObj = new Date(eventDate);
 
   if (userPoints < eventPoints) return "locked"; // Not enough points
-  if (eventDateObj < today) return "limit-exceeded"; // Event has passed
+  if (!ended && mode!="online") return "limit-exceeded"; // Event has passed
   if (eventDateObj > today) return "not-approached"; // Future event
 
   return "default"; // Normal case
@@ -29,6 +33,7 @@ const getCardStatus = (
 export default function Page() {
   const [type, setType] = useState<"upcoming" | "registered" | "attended">("upcoming");
   const user = useAppSelector((state) => state.user?.user);
+  const dispatch = useDispatch()
 
   const fetchCommunityCalls = async () => {
     const params: any = { type, id: user?.id };
@@ -66,6 +71,17 @@ export default function Page() {
           ) : (
             data.map((call: any) => (
               <EventCard
+               onJoin={()=>window.open(call?.meetLink,'_blank')}
+                onRegister={() => dispatch(openDialog({
+                  type: "communityCallRegistration",
+                  data: { communityCall: call }
+                }))}
+                onRSVP={()=>dispatch(openDialog({
+                  type:"rsvp",
+                  data:{
+                    id:call?.id
+                  }
+                }))}
                 type={type}
                 className="max-w-[60%]"
                 key={call.id}
@@ -75,7 +91,7 @@ export default function Page() {
                 time={format(new Date(call.date), 'p') || "TBA"}
                 imageUrl={call.image || "/placeholder.svg"}
                 pointsNeeded={call.eligibilityPoints || 0}
-                status={getCardStatus(user?.points || 0, call.eligibilityPoints || 0, call.date)}
+                status={getCardStatus(user?.points || 0, call.eligibilityPoints || 0, call.date,call?.mode,call?.ended)}
               />
             ))
           )}

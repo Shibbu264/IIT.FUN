@@ -18,7 +18,7 @@ export default function RSVPModal({ id }: { id: string }) {
   };
 
   return (
-    <DialogContent className="md:w-md !w-screen bg-gray-900 max-md:max-w-[90%] text-white p-6 rounded-xl">
+    <DialogContent className="md:w-md !w-screen bg-primaryBlack max-md:max-w-[90%] text-white p-6 rounded-xl">
       {mutation.isSuccess ? (
         <div className="text-center">
           <h2 className="text-xl font-bold">GG, Attendance Locked! <Lock className="inline" />🔥</h2>

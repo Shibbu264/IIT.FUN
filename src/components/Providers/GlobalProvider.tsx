@@ -18,11 +18,10 @@ import { SidebarProvider } from "../Ui/sidebar";
 
 
 
-
+export const queryClient = new QueryClient();
 
 const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     const network = clusterApiUrl("devnet");
-    const queryClient = new QueryClient();
     const session = useSession();
     const wallets = useMemo(
         () => [
