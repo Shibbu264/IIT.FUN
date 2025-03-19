@@ -24,7 +24,9 @@ const getCardStatus = (
   const eventDateObj = new Date(eventDate);
 
   if (userPoints < eventPoints) return "locked"; // Not enough points
-  if (!ended && mode!="online") return "limit-exceeded"; // Event has passed
+  if (mode!="online") return "limit-exceeded"; 
+  if(ended)  return "ended"
+  // Event has passed
   if (eventDateObj > today) return "not-approached"; // Future event
 
   return "default"; // Normal case

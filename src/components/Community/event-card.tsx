@@ -10,7 +10,8 @@ export type CardStatus =
   | "default"
   | "limit-exceeded"
   | "not-approached"
-  | "locked";
+  | "locked"
+  | "ended";
 
 export interface EventCardProps {
   title: string;
@@ -24,7 +25,7 @@ export interface EventCardProps {
   onJoin?: () => void;
   onRSVP?: () => void;
   className?: string;
-  onRegister?:()=>void
+  onRegister?: () => void
 }
 
 export default function EventCard({
@@ -90,52 +91,52 @@ export default function EventCard({
 
             <div className="flex w-full gap-2">
               {
-                type=="upcoming"?
-                <Button onClick={onRegister} size={"lg"} className="w-1/2">
-                  Register
-                </Button>
-                :
-                <>
-                  <Button
-                    onClick={onJoin}
-                    disabled={status === "locked" || status === "limit-exceeded"}
-                    variant={
-                      status === "not-approached"
-                        ? "active"
-                        : status === "limit-exceeded"
-                          ? "passive"
-                          : status === "default"
-                            ? "passive"
-                            : "default"
-                    }
-                    className={cn(
-                      "px-14 py-2 rounded text-sm font-medium transition-colors",
-                      status === "locked" && "pointer-events-none "
-                    )}
-                  >
-                    Join Now
+                type == "upcoming" ?
+                  <Button onClick={onRegister} size={"lg"} className="w-1/2">
+                    Register
                   </Button>
-                  <Button
-                    onClick={onRSVP}
-                    disabled={status === "locked" || status === "limit-exceeded"}
-                    variant={
-                      status === "not-approached"
-                        ? "passive"
-                        : status === "limit-exceeded"
+                  :
+                  <>
+                    <Button
+                      onClick={onJoin}
+                      disabled={status === "locked" || status === "limit-exceeded"}
+                      variant={
+                        status === "not-approached"
                           ? "active"
-                          : status === "default"
+                          : status === "limit-exceeded"
                             ? "passive"
-                            : "default"
-                    }
-                    className={cn(
-                      "px-14 py-2 rounded text-sm font-medium transition-colors",
+                            : status === "default"
+                              ? "passive"
+                              : "default"
+                      }
+                      className={cn(
+                        "px-14 py-2 rounded text-sm font-medium transition-colors",
+                        status === "locked" && "pointer-events-none "
+                      )}
+                    >
+                      Join Now
+                    </Button>
+                    <Button
+                      onClick={onRSVP}
+                      disabled={status === "locked" || status === "ended"}
+                      variant={
+                        status === "not-approached"
+                          ? "passive"
+                          : status === "limit-exceeded"
+                            ? "active"
+                            : status === "default"
+                              ? "passive"
+                              : "default"
+                      }
+                      className={cn(
+                        "px-14 py-2 rounded text-sm font-medium transition-colors",
 
-                      status === "locked" && "pointer-events-none"
-                    )}
-                  >
-                    RSVP
-                  </Button>
-                </>
+                        status === "locked" && "pointer-events-none"
+                      )}
+                    >
+                      RSVP
+                    </Button>
+                  </>
               }
             </div>
           </div>
