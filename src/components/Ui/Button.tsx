@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         disabled: "bg-secondaryBlack border-secondaryGray text-secondaryGray cursor-not-allowed opacity-50",
         active: "text-primaryGreen bg-black border-2 border-primaryGreen hover:text-black hover:bg-primaryGreen",
-        passive : "bg-zinc-800 text-white hover:bg-zinc-700"
+        passive: "bg-zinc-800 text-white hover:bg-zinc-700"
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -48,7 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }),loading && "cursor-not-allowed opacity-70 hover:scale-100")}
+        className={cn(buttonVariants({ variant, size, className }), loading && "cursor-not-allowed opacity-70 hover:scale-100")}
         ref={ref}
         disabled={variant === "disabled" || props.disabled}
         {...props}
@@ -57,7 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <Audio
             height="100"
             width="200"
-            color="black"
+            color={variant == "secondary" ? "green" : "black"}
             ariaLabel="loading"
           />
         ) : (

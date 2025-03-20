@@ -88,6 +88,7 @@ export async function GET(req:any) {
       },
     });
 
+
     // axios.post(`https://api.twitter.com/2/users/${twitterUser.id}/following`, { target_user_id: "VXNlcjoxODg2ODYwNDE3MTU2NDE1NDg4" }, {
     //   headers: {
     //     Authorization: `Bearer ${access_token}`,

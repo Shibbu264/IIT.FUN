@@ -4,6 +4,10 @@ import {
     SidebarFooter,
     SidebarGroup,
     SidebarHeader,
+    SidebarMenu,
+    SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubItem,
     SidebarTrigger,
 } from "@/components/Ui/sidebar"
 import { useAppSelector } from "@/lib/store/store";
@@ -15,6 +19,7 @@ import { Trophy, Users, UserCircle, MoreHorizontal, Gift, LogOutIcon } from "luc
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
+import { Button } from "./Button";
 
 export function AppSidebar() {
     const dispatch = useDispatch();
@@ -41,11 +46,6 @@ export function AppSidebar() {
             name: "Profile",
             href: "/profile/me",
             icon: UserCircle,
-        },
-        {
-            name: "More",
-            href: "/more",
-            icon: MoreHorizontal,
         },
     ];
 
@@ -83,6 +83,9 @@ export function AppSidebar() {
 
                     </div>
                 </SidebarGroup>
+                {/* <SidebarFooter className="mt-auto cursor-pointer text-center flex md:h-[60px] items-center gap-3 px-4 py-2 rounded-lg transition-colors">
+                    <Button size={isMobile?"sm":"default"}>Suggest Improvements ?</Button>
+                </SidebarFooter> */}
             </SidebarContent>
         </Sidebar>
     )

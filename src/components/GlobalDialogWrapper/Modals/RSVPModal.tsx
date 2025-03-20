@@ -5,12 +5,16 @@ import React, { useState } from 'react';
 import { CheckCircle, Lock } from 'lucide-react';
 import axiosInstance from '@/lib/axiosInstances/iitFunInstance';
 import { useMutation } from '@tanstack/react-query';
+import { useAppSelector } from '@/lib/store/store';
+import { queryClient } from '@/components/Providers/GlobalProvider';
 
 export default function RSVPModal({ id }: { id: string }) {
   const [code, setCode] = useState('');
+  const {user}=useAppSelector(state=>state.user)
 
   const mutation = useMutation({
-    mutationFn: (code: string) => axiosInstance.post("/api/attendance-community-call", { id: id, code: code }),
+    mutationFn: (code: string) => axiosInstance.post("/api/attendance-community-call", { id: id, code: code,userId:user?.id }),
+    onSuccess:()=>queryClient.invalidateQueries({queryKey:["communityCalls","registered", user?.id]})
   });
 
   const handleSubmit = () => {

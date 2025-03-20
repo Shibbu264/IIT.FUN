@@ -118,7 +118,7 @@ export default function EventCard({
                     </Button>
                     <Button
                       onClick={onRSVP}
-                      disabled={status === "locked" || status === "ended"}
+                      disabled={status === "locked" || status === "ended" || type=="attended"}
                       variant={
                         status === "not-approached"
                           ? "passive"

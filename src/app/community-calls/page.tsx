@@ -71,7 +71,7 @@ export default function Page() {
           ) : data?.length == 0 ? (
             <p className="text-center mt-8">No such Community Calls.</p>
           ) : (
-            data.map((call: any) => (
+            data?.map((call: any) => (
               <EventCard
                onJoin={()=>window.open(call?.meetLink,'_blank')}
                 onRegister={() => dispatch(openDialog({
