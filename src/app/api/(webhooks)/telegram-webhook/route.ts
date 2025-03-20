@@ -4,11 +4,16 @@ import prisma from "@/lib/prisma";
 const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN; 
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-async function sendTelegramMessage(chatId: number, message: string) {
+async function sendTelegramMessage(chatId: number, message: string, threadId?: number) {
   await fetch(TELEGRAM_API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "Markdown" }),
+    body: JSON.stringify({ 
+      chat_id: chatId, 
+      ...(threadId && { message_thread_id: threadId }), // Use threadId if available
+      text: message, 
+      parse_mode: "Markdown" 
+    }),
   });
 }
 
@@ -17,11 +22,12 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     if (body.message) {
-      const { text, from, chat } = body.message;
+      const { text, from, chat, message_thread_id } = body.message; // Extract thread ID
+
       if (text?.startsWith("/verify ")) {
         const username = text.split(" ")[1]?.trim();
         if (!username) {
-          await sendTelegramMessage(chat.id, `❌ *${from.first_name}*, Username missing in command.`);
+          await sendTelegramMessage(chat.id, `❌ *${from.first_name}*, Username missing in command.`, message_thread_id);
           return NextResponse.json({ message: "Username missing in command" });
         }
 
@@ -35,14 +41,16 @@ export async function POST(req: Request) {
 
           await sendTelegramMessage(
             chat.id,
-            `✅ *${from.first_name}* verified *${username}* successfully! (+50 points)`
+            `✅ *${from.first_name}* verified *${username}* successfully! (+50 points)`,
+            message_thread_id
           );
           return NextResponse.json({ message: `User ${username} verified successfully!`, points: 50 });
         } else {
           const responseMessage = existingUser
             ? `⚠️ *${from.first_name}*, user *${username}* is already verified.`
-            : `❌ *${from.first_name}*, no user found with username *${username}*.`;
-          await sendTelegramMessage(chat.id, responseMessage);
+            : `❌ *${from.first_name}*, no user found with username *${username}*.`; 
+
+          await sendTelegramMessage(chat.id, responseMessage, message_thread_id);
           return NextResponse.json({ message: responseMessage });
         }
       }
