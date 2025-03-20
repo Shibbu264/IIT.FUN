@@ -10,7 +10,7 @@ export default function RSVPModal({ id }: { id: string }) {
   const [code, setCode] = useState('');
 
   const mutation = useMutation({
-    mutationFn: (code: string) => axiosInstance.post("/attendance-community-call", { id: id, code: code }),
+    mutationFn: (code: string) => axiosInstance.post("/api/attendance-community-call", { id: id, code: code }),
   });
 
   const handleSubmit = () => {
