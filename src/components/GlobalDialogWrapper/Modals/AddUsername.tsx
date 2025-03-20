@@ -35,7 +35,7 @@ export default function AddUsername({ closable = true }: { closable: boolean }) 
         <DialogContent className='max-w-72 flex flex-col items-center' closable={closable}>
             <SmilePlusIcon className="h-24 w-24" />
             <h1 className='text-lg'>Hey Degen, Let's Add your username first!</h1>
-            <Input className='!h-12 !text-xl' placeholder='BountyHunter69' value={username} onChange={(e) => setUsername(e.target.value)} type='text' />
+            <Input className='!h-12 !text-xl' placeholder='BountyHunter69' value={username} onChange={(e) => setUsername(e.target.value.split(' ').join(''))} type='text' />
             <Button loading={updateUsernameMutation.isPending} className='w-full' size="lg" onClick={()=>updateUsernameMutation.mutate()}>Add Username</Button>
         </DialogContent>
     );
