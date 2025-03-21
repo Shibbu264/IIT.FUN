@@ -56,8 +56,8 @@ export async function POST(req: NextRequest) {
 
     // Send verification email
     const response = await resend.emails.send({
-      from: "iit.fun@resend.dev",
-      to: "shivanshu264@gmail.com",
+      from: "iit.fun",
+      to: email,
       subject: "Verify Your Institution Email",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
