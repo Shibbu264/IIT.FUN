@@ -42,7 +42,7 @@ export default function Statistics() {
 
     const stats = [
         { icon: <FaStar size={24} />, value: user?.points, label: 'points' },
-        { icon: <FaTrophy size={24} />, value: 1, label: 'drop-out rank' },
+        // { icon: <FaTrophy size={24} />, value: 1, label: 'drop-out rank' },
         { icon: <FaHandHoldingHeart size={24} />, value: user?.bounties as number, label: 'Contributions' },
         { icon: <FaUsers size={24} />, value: user?.communityCalls as number, label: 'Community calls' },
     ];

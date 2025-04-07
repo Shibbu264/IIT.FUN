@@ -40,7 +40,7 @@ export default function VerifyEmail() {
 
     const mutation = useMutation({
         mutationFn: async () => {
-            return await axiosInstance.post("/api/verify-institution", { instituteName: selectedIIT, email });
+            return await axiosInstance.post("/api/verify-institution", { instituteName: selectedIIT, email,userId:user?.id});
         },
         onSuccess: () => {
             setClosable(false);

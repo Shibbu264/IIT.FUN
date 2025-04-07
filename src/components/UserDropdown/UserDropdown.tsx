@@ -5,9 +5,11 @@ import { signOut, useSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { LogOutIcon } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useAppSelector } from '@/lib/store/store';
 export default function UserDropdown() {
     const session = useSession();
-    const isMobile = useIsMobile()
+    const isMobile = useIsMobile();
+    const {user}=useAppSelector(state=>state.user)
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
@@ -17,7 +19,7 @@ export default function UserDropdown() {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent sideOffset={16} align={isMobile?"end":"center"} className='bg-black p-2'>
-                <DropdownMenuLabel className='text-primaryGreen'>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel className='text-primaryGreen'>{user?.username}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className='!cursor-pointer flex justify-between p-3 hover:bg-gray' onClick={() => signOut().then(() => {
                     window.location.reload();

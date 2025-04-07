@@ -11,7 +11,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Step 1: Initialize the verification process
 export async function POST(req: NextRequest) {
   try {
-    const { email, instituteName } = await req.json();
+    const { userId,email, instituteName } = await req.json();
 
     if (!email || !instituteName) {
       return NextResponse.json(
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     // Update the institution name immediately
     await prisma.user.update({
-      where: { email },
+      where: { id:userId },
       data: { InstituteName: instituteName },
     });
 
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Generate verification URL
-    const verificationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify-institution?token=${token}`;
+    const verificationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify-institution?token=${token}&userId=${userId}`;
 
     // Send verification email
     const response = await resend.emails.send({
@@ -72,7 +72,6 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
-    console.log(response)
     return NextResponse.json({
       message: "Verification email sent. Please check your inbox.",
       updated: true,
@@ -91,6 +90,7 @@ export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
     const token = url.searchParams.get("token");
+    const userId = url.searchParams.get("userId");
 
     if (!token) {
       return NextResponse.json(
@@ -134,7 +134,7 @@ export async function GET(req: NextRequest) {
 
     // Update user record with institution ID and award points
     await prisma.user.update({
-      where: { email:"shivanshu.ranjan.che22@itbhu.ac.in" },
+      where: { id:Number(userId) },
       data: {
         InstiId: true,
         points: { increment: 50 },

@@ -15,6 +15,7 @@ export default function AllBountiesTab() {
     
     const getAllBountiesQuery = useQuery({
         queryKey: ["bounties"],
+        enabled:!!user?.id,
         queryFn: () => axiosInstance.post("/api/get-all-bounties", { id: user?.id }),
     });
 

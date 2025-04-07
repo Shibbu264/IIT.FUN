@@ -11,8 +11,8 @@ import { closeDialog } from '@/lib/store/slices/dialogSlice';
 import { Handshake, Smile, SmilePlusIcon } from 'lucide-react';
 import { setUser } from '@/lib/store/slices/userSlice';
 
-export default function AddUsername({ closable = true }: { closable: boolean }) {
-    const [username, setUsername] = useState("");
+export default function AddUsername({ closable = true,username:usernamee,type="add" }: { closable: boolean,username?:string,type?:"add"|"edit" }) {
+    const [username, setUsername] = useState(usernamee??"");
     const user=useAppSelector(state=>state.user.user);
     const dispatch=useDispatch();
     
@@ -34,9 +34,9 @@ export default function AddUsername({ closable = true }: { closable: boolean }) 
     return (
         <DialogContent className='max-w-72 flex flex-col items-center' closable={closable}>
             <SmilePlusIcon className="h-24 w-24" />
-            <h1 className='text-lg'>Hey Degen, Let's Add your username first!</h1>
+            {type=="add" && <h1 className='text-lg'>Hey Degen, Let's Add your username first!</h1>}
             <Input className='!h-12 !text-xl' placeholder='BountyHunter69' value={username} onChange={(e) => setUsername(e.target.value.split(' ').join(''))} type='text' />
-            <Button loading={updateUsernameMutation.isPending} className='w-full' size="lg" onClick={()=>updateUsernameMutation.mutate()}>Add Username</Button>
+            <Button loading={updateUsernameMutation.isPending} className='w-full' size="lg" onClick={()=>updateUsernameMutation.mutate()}>{type=="edit"?"Update":"Add"} Username</Button>
         </DialogContent>
     );
 }

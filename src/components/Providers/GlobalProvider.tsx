@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppSidebar } from "../Ui/AppSideBar";
 import { useSession } from "next-auth/react";
 import { SidebarProvider } from "../Ui/sidebar";
+import Loader from "../Ui/Loader";
 
 
 
@@ -47,7 +48,9 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
                                         {session?.status == "unauthenticated" &&
                                             <Navbar />}
                                         <AuthGuardProvider>
-                                            {children}
+                                            {session?.status=="loading"?
+                                            <Loader variant="full"/>:
+                                            children}
                                         </AuthGuardProvider>
                                     </SidebarProvider>
                                 </GlobalDialogWrapper>

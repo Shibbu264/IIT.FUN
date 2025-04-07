@@ -13,6 +13,7 @@ import { useAppSelector } from '@/lib/store/store';
 import { useQuery } from '@tanstack/react-query';
 import { LoaderCircle, TwitterIcon } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
@@ -33,7 +34,6 @@ export default function ProfilePageClientWrapper() {
             enabled: !!(session?.status === "authenticated" && selfUser),
             queryFn: async () => {
                 if (id === "me") {
-                    console.log("qt", selfUser)
                     return selfUser;
                 }
                 else {
@@ -46,7 +46,6 @@ export default function ProfilePageClientWrapper() {
 
     useEffect(() => {
         if (getSearchUser.isFetched) {
-            console.log(getSearchUser.data)
             dispatch(setSearchUser(getSearchUser.data))
         }
         if (getSearchUser.isError) {
@@ -91,7 +90,9 @@ export default function ProfilePageClientWrapper() {
             <Loader />
             :
             <div className='md:w-[80%] max-md:w-full md:gap-8 mx-auto gap-6 flex flex-col md:px-6 max-md:p-4'>
-                <div className='w-full mx-auto aspect-[630/150] rounded-md bg-gray' />
+                <div className='w-full rounded-[8px] relative mx-auto aspect-[1420/460]  bg-gray'>
+                <Image className='rounded-md' layout='fill' alt='' src={"/Frame 8.jpeg"}/>
+                </div>
                 <UserProfile />
                 {self && <><div className='w-full h-px md:mt-6 bg-primaryGray' />
                     <SocialPresence />

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 
-function getRandomQuote() {
+export function getRandomQuote() {
     const quotes = [
         "Enter the matrix. Build the future.",
         "Smartest degens in the room.",
