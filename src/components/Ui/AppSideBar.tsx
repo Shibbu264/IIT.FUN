@@ -52,7 +52,7 @@ export function AppSidebar() {
     return (
         <Sidebar className="!h-full" defaultValue="open" collapsible={isMobile ? "offcanvas" : "icon"}>
             <SidebarHeader className="flex md:h-24 h-16 !flex-row items-center justify-between">
-                <img src="/iitfun.gif" className="lg:w-36 w-24 group-data-[collapsible=icon]:hidden"/>
+                <img src="/iitfun.jpeg" className="lg:w-36 w-24 group-data-[collapsible=icon]:hidden"/>
                 <SidebarTrigger />
             </SidebarHeader>
             <SidebarContent>
