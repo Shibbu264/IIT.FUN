@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+
 export type UserData = {
   rank: string;
   username: string;
@@ -7,28 +8,26 @@ export type UserData = {
   points: number;
 };
 
-const userData: UserData[] = [
-  {
-    rank: "#4",
-    username: "username",
-    institute: "institute name",
-    points: 234,
-  },
-  {
-    rank: "#4",
-    username: "username",
-    institute: "institute name",
-    points: 234,
-  },
-  {
-    rank: "#4",
-    username: "username",
-    institute: "institute name",
-    points: 234,
-  },
-];
 export async function POST(req: Request) {
   try {
+    const users = await prisma.user.findMany({
+      select: {
+        username: true,
+        InstituteName: true,
+        points: true,
+      },
+      orderBy: {
+        points: "desc",
+      },
+    });
+
+    const userData: UserData[] = users.map((user, index) => ({
+      rank: `#${index + 1}`,
+      username: user.username || "Anonymous",
+      institute: user.InstituteName || "No Institute",
+      points: user.points,
+    }));
+
     return NextResponse.json({ userData });
   } catch (error) {
     console.error("Error fetching user leaderboard:", error);
