@@ -57,7 +57,7 @@ export default function WalletModal() {
     const data = await response.json();
     console.log(data)
     if (data.success) {
-      dispatch(setUser({ ...user, wallet: wallet }))
+      dispatch(setUser(data?.user))
     };
     dispatch(closeDialog())
     setLoading(-1)

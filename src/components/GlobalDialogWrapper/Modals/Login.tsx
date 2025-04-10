@@ -8,10 +8,10 @@ import { toast } from 'sonner'
 
 export function getRandomQuote() {
     const quotes = [
-        "Enter the matrix. Build the future.",
+        "Escape the matrix. Build the future.",
         "Smartest degens in the room.",
         "Web3 isn't ready for what's coming.",
-        "Login? More like mint your fate.",
+        "Mint your fate.",
         "IITians don't join. They lead.",
         "Tap in. Take over.",
         "This isn't a website. It's a portal.",

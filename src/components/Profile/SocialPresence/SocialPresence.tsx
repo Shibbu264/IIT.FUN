@@ -1,19 +1,29 @@
 import React from "react";
 import { useAppSelector } from "@/lib/store/store";
-import { Twitter, Send, Github } from "lucide-react";
+import { Twitter, Send, Github, Wallet } from "lucide-react";
 import SocialBox from "./SocialBox";
 import { connectDiscord, connectTwitter } from "@/lib/services/socialConnect";
 import { FaBuilding, FaDiscord } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { openDialog } from "@/lib/store/slices/dialogSlice";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 
 
 export default function SocialPresence() {
   const user = useAppSelector(state => state.user.user); // Get user from Redux
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const {connected}=useWallet();
 
   const getVariant = (provider: string) => {
+    if(provider=="Wallet"){
+      if(connected){
+        return "connected"
+      }
+      else {
+        return "not-connected"
+      }
+    }
     if (provider == "Institute Id") {
       if (user?.InstiId) {
         return "connected"
@@ -84,6 +94,14 @@ export default function SocialPresence() {
       buttonText: user?.telegram ? "Joined Telegram" : "Join Telegram !",
       icon: <Send size={20} className="text-primaryWhite" />,
       onClick: () => dispatch(openDialog({ type: "joinTelegram" }))
+    },
+    {
+      title: "Wallet",
+      description: "Connect Wallet and get airdrops and NFTs",
+      points: 50,
+      buttonText: connected ? "Connected Wallet" : "Connect Wallet",
+      icon: <Wallet size={20} className="text-primaryWhite" />,
+      onClick: () => dispatch(openDialog({ type: "wallet" }))
     },
   ];
 

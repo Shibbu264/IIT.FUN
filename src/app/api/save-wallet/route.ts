@@ -6,10 +6,25 @@ export async function POST(request: Request) {
 
     try {
         // Update the wallet key in the user object
-        const updatedUser = await prisma.user.update({
+        const user = await prisma.user.findUnique({
             where: { email },
-            data: { wallet },
         });
+        let updatedUser;
+        if (!user?.wallet) {
+            const pointsToAward = 50;
+            updatedUser = await prisma.user.update({
+                where: { email },
+                data: {
+                    wallet,
+                    points: { increment: pointsToAward },
+                },
+            });
+        } else {
+            updatedUser = await prisma.user.update({
+                where: { email },
+                data: { wallet },
+            });
+        }
 
         // Convert BigInt values to strings
         const userResponse = JSON.parse(JSON.stringify(updatedUser, (key, value) =>
