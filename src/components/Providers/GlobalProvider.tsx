@@ -1,7 +1,6 @@
 "use client"
 import { Provider } from "react-redux";
 import store from "@/lib/store/store";
-import { SessionProvider } from "next-auth/react";
 import GlobalDialogWrapper from "@/components/GlobalDialogWrapper/GlobalDialogWrapper";
 import Navbar from "@/components/Ui/navbar";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
@@ -12,15 +11,19 @@ import AuthGuardProvider from "./AuthGuard";
 import { useMemo } from "react";
 import { UmiProvider } from "../NFTUtils/UmiProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AppSidebar } from "../Ui/AppSideBar";
+import { useSession } from "next-auth/react";
+import { SidebarProvider } from "../Ui/sidebar";
+import Loader from "../Ui/Loader";
 
 
 
 
-
+export const queryClient = new QueryClient();
 
 const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     const network = clusterApiUrl("devnet");
-    const queryClient = new QueryClient();
+    const session = useSession();
     const wallets = useMemo(
         () => [
             new PhantomWalletAdapter(),
@@ -33,27 +36,29 @@ const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     let endpoint = "https://api.devnet.solana.com";
     return (
         <Provider store={store}>
-            <SessionProvider>
-                <QueryClientProvider client={queryClient}>
-                    <ConnectionProvider endpoint={network}>
-                        <WalletProvider wallets={wallets} autoConnect>
-                            <WalletModalProvider>
-                                <UmiProvider endpoint={endpoint}>
-                                    <GlobalDialogWrapper>
-                                        <div className="flex  flex-col items-center w-full justify-center">
-                                            <Navbar />
-                                            <div className="mb-16" />
-                                            <AuthGuardProvider>
-                                                {children}
-                                            </AuthGuardProvider>
-                                        </div>
-                                    </GlobalDialogWrapper>
-                                </UmiProvider>
-                            </WalletModalProvider>
-                        </WalletProvider>
-                    </ConnectionProvider>
-                </QueryClientProvider>
-            </SessionProvider>
+            <QueryClientProvider client={queryClient}>
+                <ConnectionProvider endpoint={network}>
+                    <WalletProvider wallets={wallets} autoConnect>
+                        <WalletModalProvider>
+                            <UmiProvider endpoint={endpoint}>
+                                <GlobalDialogWrapper>
+                                    <SidebarProvider>
+                                        {session?.status == "authenticated" &&
+                                            <AppSidebar />}
+                                        {session?.status == "unauthenticated" &&
+                                            <Navbar />}
+                                        <AuthGuardProvider>
+                                            {session?.status=="loading"?
+                                            <Loader variant="full"/>:
+                                            children}
+                                        </AuthGuardProvider>
+                                    </SidebarProvider>
+                                </GlobalDialogWrapper>
+                            </UmiProvider>
+                        </WalletModalProvider>
+                    </WalletProvider>
+                </ConnectionProvider>
+            </QueryClientProvider>
         </Provider>
     );
 };

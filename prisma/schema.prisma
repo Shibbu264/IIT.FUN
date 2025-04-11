@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,23 +6,118 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id        BigInt  @id @default(autoincrement())
-  name      String?
-  email     String? @unique
-  wallet    String? @unique
-  points    Int? @default(0)
-  image     String?
-  createdAt DateTime @default(now())
+  email          String?             @unique
+  name           String?
+  createdAt      DateTime            @default(now())
+  image          String?
+  points         Int                 @default(0)
+  wallet         String?             @unique
+  id             Int                 @id @default(autoincrement())
+  InstiId        Boolean?            @default(false)
+  discord        Boolean?            @default(false)
+  twitter        Boolean?            @default(false)
+  username       String?             @unique
+  InstituteName  String?
+  telegram       Boolean?            @default(false)
+  telegramId     String?
+  lastSignIn     DateTime?
+  socialAccounts SocialAccount[]
+  bounties       UserBounty[]
+  communityCalls UserCommunityCall[]
+  role           String              @default("user")
+  notifications   Notification[]
 }
 
 model Bounty {
-  id Int @id @default(autoincrement())
-  title String
+  id          Int          @id @default(autoincrement())
+  title       String
   description String
-  image String
-  amount Int
-  unit String
-  Link String
-  deadline String
+  image       String
+  amount      Int
+  unit        String
+  Link        String
+  deadline    String
+  group       String?
+  users       UserBounty[]
+}
+
+model CommunityCall {
+  id          Int                 @id @default(autoincrement())
+  title       String
+  description String
+  image       String
+  amount      Int?
+  unit        String?
+  Link        String?
+  date        String
+  group       String?
+  eligibilityPoints Int @default(0)
+  code        String?
+  online      Boolean   @default(true)
+  meetlink    String?  
+  ended       Boolean   @default(false)  
+  users       UserCommunityCall[]
+}
+
+model UserCommunityCall {
+  id              Int           @id @default(autoincrement())
+  userId          Int
+  communityCallId Int
+  pointsEarned    Int?
+  attended        Boolean       @default(false)
+  communityCall   CommunityCall @relation(fields: [communityCallId], references: [id])
+  user            User          @relation(fields: [userId], references: [id])
+
+  @@unique([userId, communityCallId])
+}
+
+model UserBounty {
+  id           Int    @id @default(autoincrement())
+  userId       Int
+  bountyId     Int
+  pointsEarned Int?
+  bounty       Bounty @relation(fields: [bountyId], references: [id])
+  user         User   @relation(fields: [userId], references: [id])
+
+  @@unique([userId, bountyId])
+}
+
+model SocialAccount {
+  id           Int       @id @default(autoincrement())
+  provider     String
+  providerId   String
+  username     String?
+  profileUrl   String?
+  userId       Int
+  createdAt    DateTime  @default(now())
+  accessToken  String
+  expiresAt    DateTime?
+  refreshToken String?   @unique
+  user         User      @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerId])
+}
+
+model VerificationToken {
+  id         String   @id @default(uuid())
+  token      String   @unique
+  identifier String
+  type       String
+  metadata   String?
+  expires    DateTime
+  createdAt  DateTime @default(now())
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  type  String 
+  title  String
+  description String
+  link     String
+  actionLink String?
+  rejectLink String?
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }

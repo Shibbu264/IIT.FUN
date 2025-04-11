@@ -9,6 +9,15 @@ import Login from './Modals/Login';
 import WalletModal from './Modals/WalletModal';
 import NFTModal from './Modals/NFTModal';
 import { usePathname } from 'next/navigation';
+import AddUsername from './Modals/AddUsername';
+import ShowSocials from './Modals/ShowSocials';
+import VerifyEmail from './Modals/VerifyEmail';
+import JoinTelegram from './Modals/JoinTelegram';
+import BountyRegistration from './Modals/BountyRegistration';
+import RSVPModal from './Modals/RSVPModal';
+import CommunityCallRegistration from './Modals/CommunityCallRegistration';
+import NFTMintingModal from './Modals/NFTMinting';
+import CoinInfo from './Modals/CoinInfo';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
@@ -17,12 +26,9 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
 
   useEffect(() => {
     if (isOpen && pathname != data?.pathname) {
-      console.log('here2')
       dispatch(closeDialog())
     }
   }, [pathname])
-
-
 
   const renderComponentFromType = () => {
     switch (type) {
@@ -31,9 +37,27 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
       case 'wallet':
         return <WalletModal {...data} />;
       case 'nftModal':
-        return <NFTModal {...data} />     // Replace with your actual component
+        return <NFTModal {...data} />
+      case 'addUsername':
+        return <AddUsername {...data} />
+      case 'showSocials':
+        return <ShowSocials {...data} />
+        case 'coinInfo':
+          return <CoinInfo {...data} />  
+      case 'verifyEmail':
+        return <VerifyEmail {...data} />
+      case 'joinTelegram':
+        return <JoinTelegram {...data} />
+      case 'bountyRegistration':
+        return <BountyRegistration {...data} />
+      case 'communityCallRegistration':
+        return <CommunityCallRegistration {...data} />
+      case 'rsvp':
+        return <RSVPModal {...data} />
+      case 'mintingNFT':
+        return <NFTMintingModal {...data} />
       default:
-        return null; // Or a default component
+        return null;
     }
   };
 

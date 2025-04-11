@@ -1,5 +1,6 @@
 "use client"
 
+import { CoinsIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner } from "sonner"
 
@@ -10,9 +11,12 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
+     
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
+      position="top-center"
       toastOptions={{
+        duration:2000,
         classNames: {
           toast:
             "group toast md:!text-xl max-md:!text-lg group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
@@ -22,6 +26,9 @@ const Toaster = ({ ...props }: ToasterProps) => {
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
         },
+      }}
+      icons={{
+        warning:<CoinsIcon className="text-yellow-400"/>
       }}
       {...props}
     />

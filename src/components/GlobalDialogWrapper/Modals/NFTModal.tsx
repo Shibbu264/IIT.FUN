@@ -1,19 +1,11 @@
-import NFTButton from '@/components/NFTbutton/NFTButton';
 import { DialogContent } from '@/components/Ui/Dialog';
 import React, { useEffect, useState } from 'react'
 import { Audio } from 'react-loader-spinner';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axiosInstances/iitFunInstance';
 
 export default function NFTModal({ address }: { address: any }) {
-    const apiKey = process.env.ApiKey;
-    const myHeaders = new Headers();
-    myHeaders.append("x-api-key", "dMV2JLYJiEYQL5J-");
 
-    const requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
 
     const fetchMetadata = async (nft: { metadata_uri: string }) => {
         try {
@@ -26,14 +18,23 @@ export default function NFTModal({ address }: { address: any }) {
         }
     };
 
+    const getNFTMutation = useMutation({
+        mutationKey: ['getNFT', address],
+        mutationFn: () => axiosInstance.get(
+            `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${address}`
+            , {
+                headers: {
+                    'x-api-key': 'dMV2JLYJiEYQL5J-',
+                    "X-Custom-Error": "none" 
+                }
+            }),
+    })
+
     const fetchCollections = async () => {
-        const response = await fetch(
-            `https://api.shyft.to/sol/v1/wallet/collections?network=devnet&wallet_address=${address}`,
-            requestOptions as any
-        );
-        const data = await response.json();
-        const collections = data.result.collections || [];
-        
+        const data = await getNFTMutation.mutateAsync()
+
+        const collections = data?.data?.result.collections || [];
+
         // Fetch metadata for all collections
         const updatedCollections = await Promise.all(collections.map(async (collection: any) => {
             const nftsWithImages = await Promise.all(collection.nfts.map(async (nft: { metadata_uri: string }) => {
@@ -42,7 +43,7 @@ export default function NFTModal({ address }: { address: any }) {
             }));
             return { ...collection, nfts: nftsWithImages };
         }));
-        
+
         return updatedCollections;
     };
 
@@ -56,14 +57,14 @@ export default function NFTModal({ address }: { address: any }) {
             <h2 className="text-2xl font-bold text-primaryGreen mb-4">NFT Collections</h2>
             {/* <NFTButton/> */}
             {isLoading ?
-            <div className='h-full flex flex-col items-center justify-center mx-auto'>
-                <Audio
-                    height="90"
-                    width="90"
-                    color="green"
-                    ariaLabel="loading"
-                /> 
-                </div>:
+                <div className='h-full flex flex-col items-center justify-center mx-auto'>
+                    <Audio
+                        height="90"
+                        width="90"
+                        color="green"
+                        ariaLabel="loading"
+                    />
+                </div> :
                 collections?.length == 0 ?
                     <>You haven't minted any NFTs yet</>
                     :

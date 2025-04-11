@@ -20,7 +20,7 @@ export default function Landing() {
     ];
 
     return (
-        <div className={`flex flex-col max-md:px-4 w-full justify-center items-center mx-auto text-primaryGray`}>
+        <div className={`flex flex-col md:mt-24 mt-16 max-md:px-4 w-full justify-center items-center mx-auto text-primaryGray`}>
             {/* Text Section */}
             <motion.div
             initial={{ opacity: 0, y: 50 }}

@@ -12,6 +12,9 @@
   --primaryWhite: #FFFFFD;
   --primaryGray: #333333;
   --bgBlack: #151515;
+  --destructive: #FF0000;
+  --systemGray:#131313;
+  --secondaryGray:#7B7B7B;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +33,16 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Inria Sans", sans-serif;
+}
+
+.glass-bg {
+  backdrop-filter: blur(10px) brightness(1.2); /* Smooth glass effect */
+  -webkit-backdrop-filter: blur(10px) brightness(1.2); /* Safari support */
+  background: rgba(10, 49, 10, 0.5); /* Semi-transparent dark green */
+  
+  /* Border and glow effect */
+  border: 1px solid var(--primaryGreen); /* Neon green border */
+  border-radius: 8px; /* Smooth corners */
+  box-shadow: 0px 0px 10px rgba(77, 94, 9, 0.6); /* Neon glow */
+  color: var(--primaryGreen); /* Bright neon green */
 }

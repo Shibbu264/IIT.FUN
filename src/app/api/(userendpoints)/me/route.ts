@@ -9,15 +9,17 @@ export async function POST(req: Request) {
         // Fetch user from the database
         const user = await prisma.user.findUnique({
             where: { email },
+            include: {
+                socialAccounts: true,
+                bounties: true,
+                communityCalls: true,
+            }
         });
 
-        // Handle BigInt conversion for user.id if necessary
-        const responseUser = user ? { ...user, id: user.id.toString() } : null;
-
-        return NextResponse.json(responseUser);
+        return NextResponse.json({ ...user, bounties: user?.bounties?.length, communityCalls: user?.communityCalls.length });
     }
     catch (error) {
-        console.log('Error fetching bounties:', error);
-        return NextResponse.json({ error: 'Failed to fetch bounties' }, { status: 500 });
+        console.log('Error fetching me', error);
+        return NextResponse.json({ error: 'Failed to fetch me' }, { status: 500 });
     }
 }

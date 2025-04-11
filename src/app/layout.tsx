@@ -6,9 +6,11 @@ import { Inria_Sans } from 'next/font/google';
 import GlobalProvider from "@/components/Providers/GlobalProvider";
 import Head from "next/head";
 import { Analytics } from '@vercel/analytics/react';
+import SessionProviderClient from "@/components/Providers/SessionProviderClient";
 
 
-const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'],variable: "--font-inria-sans", });
+
+const inriaSans = Inria_Sans({ subsets: ['latin'], weight: ['700'], variable: "--font-inria-sans", });
 
 
 const geistSans = Geist({
@@ -55,7 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <Head>
+      <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap"
           rel="stylesheet"
@@ -70,11 +72,13 @@ export default function RootLayout({
       <body
         className={`${inriaSans.variable} relative antialiased`}
       >
-        <GlobalProvider>
+        <SessionProviderClient>
+          <GlobalProvider>
             {children}
             <Toaster />
-        </GlobalProvider>
-        <Analytics/>
+          </GlobalProvider>
+        </SessionProviderClient>
+        <Analytics />
       </body>
     </html >
   );

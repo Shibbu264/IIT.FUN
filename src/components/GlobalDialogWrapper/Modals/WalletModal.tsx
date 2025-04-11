@@ -57,14 +57,14 @@ export default function WalletModal() {
     const data = await response.json();
     console.log(data)
     if (data.success) {
-      dispatch(setUser({ ...user, wallet: wallet }))
+      dispatch(setUser(data?.user))
     };
     dispatch(closeDialog())
     setLoading(-1)
   };
 
   return (
-    <DialogContent className='flex flex-col gap-2'>
+    <DialogContent className='flex flex-col max-md:w-[90%] gap-2'>
       <h2 className='font-bold text-xl'>Connect to a Wallet</h2>
       <div className='flex flex-col gap-3'>
         {installedWallets.map((wallet: Wallet, index) => (

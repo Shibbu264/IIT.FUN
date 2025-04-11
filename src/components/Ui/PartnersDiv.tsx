@@ -10,6 +10,7 @@ export default function PartnersDiv() {
                 <img src="/zo.jpeg" alt="ZKSync" className="h-12 w-auto" />
                 <img src="/monad.jpeg" alt="NodOps" className="h-12 w-auto" />
                 
+
             </div>
         </div>
     );
