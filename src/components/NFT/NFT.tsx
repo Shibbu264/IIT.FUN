@@ -4,7 +4,6 @@ import { Button } from "../Ui/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "../Ui/Popover";
 import { Avatar, AvatarFallback, AvatarImage } from "../Ui/Avatar";
 import { setUser } from "@/lib/store/slices/userSlice";
-import NFTButton from "../NFTbutton/NFTButton";
 import { openDialog } from "@/lib/store/slices/dialogSlice";
 import { toast } from "sonner";
 import { useAppSelector } from '@/lib/store/store';
@@ -13,7 +12,7 @@ import { useDispatch } from 'react-redux';
 
 export default function NFT() {
     const session = useSession();
-    const { publicKey, select, disconnect, connected,wallet } = useWallet();
+    const { publicKey, select, disconnect, connected, wallet } = useWallet();
     const { user } = useAppSelector(state => state.user)
     const dispatch = useDispatch()
 
@@ -30,29 +29,16 @@ export default function NFT() {
                                     address: wallet?.adapter.publicKey?.toString()
                                 }
                             }))} variant="outline">My NFTs</Button>
-                            <Popover>
-                                <PopoverTrigger className='relative'>
-                                    <p className='text-primaryGreen md:text-sm max-md:text-[10px] absolute max-md:-top-2 -top-4 -right-4'>Mint!</p>
-                                    <Avatar>
+                            <div onClick={()=>dispatch(openDialog({
+                                type:'mintingNFT'
+                            }))} className='relative cursor-pointer'>
+                                <p className='text-primaryGreen md:text-sm max-md:text-[10px] absolute max-md:-top-2 -top-4 -right-4'>Mint!</p>
+                                <Avatar>
 
-                                        <AvatarImage src={wallet?.adapter?.icon} alt="@shadcn" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                </PopoverTrigger>
-                                <PopoverContent className='bg-black md:p-6 max-md:p-4'>
-                                    <div className='max-md:text-lg text-xl'>My Wallets</div>
-                                    <div className='!cursor-pointer rounded-xl flex max-md:flex-col gap-3 md:items-center'
-                                    >
-                                        <span className='max-md:max-w-[90%] whitespace-normal overflow-x-auto'>{user?.wallet}</span>
-                                        <Button className='mr-auto' onClick={() => disconnect().finally(() => {
-                                            dispatch(setUser({ ...user, wallet: null }))
-                                        })} variant="destructive"> Disconnect </Button></div>
-                                    <div className='bg-gray-700 h-px ml-2 mb-2 w-[90%]' />
-                                    <div>
-                                        <NFTButton />
-                                    </div>
-                                </PopoverContent>
-                            </Popover>
+                                    <AvatarImage src={wallet?.adapter?.icon} alt="@shadcn" />
+                                    <AvatarFallback>CN</AvatarFallback>
+                                </Avatar>
+                            </div>
                         </div>
                     ) : (
                         <button className='text-secondaryGreen' onClick={() => dispatch(openDialog({

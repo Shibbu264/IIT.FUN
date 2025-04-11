@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     const instituteData: InstituteData[] = institutesData.map(
       (institute, index) => ({
         rank: `#${index + 1}`,
-        name: institute.InstituteName || "Unknown Institute",
+        name: institute.InstituteName || "IIT Dholakpur",
         contributors: `${institute._count.id}`,
         points: institute._sum.points || 0,
       })

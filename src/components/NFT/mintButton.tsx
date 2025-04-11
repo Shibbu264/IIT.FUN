@@ -44,6 +44,8 @@ import { verifyTx } from "../NFTUtils/verifyTx";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { toast } from "sonner";
 import { Button } from "../Ui/Button";
+import { useDispatch } from "react-redux";
+import { closeDialog } from "@/lib/store/slices/dialogSlice";
 
 const updateLoadingText = (
   loadingText: string | undefined,
@@ -72,7 +74,7 @@ const fetchNft = async (
     jsonMetadata = await fetchJsonMetadata(umi, digitalAsset.metadata.uri);
   } catch (e) {
     console.error(e);
-    toast("Nft could not be fetched!", {
+    toast.error("Nft could not be fetched!", {
       description: "Please check your Wallet instead.",
       duration: 900,
     });
@@ -110,7 +112,7 @@ const mintClick = async (
     console.error("no guard defined!");
     return;
   }
-
+  const dispatch=useDispatch();
   let buyBeer = true;
   console.log("buyBeer", process.env.NEXT_PUBLIC_BUYMARKBEER)
 
@@ -295,14 +297,15 @@ const mintClick = async (
       setMintsCreated(newMintsCreated);
       onOpen();
     }
-    toast(
+    toast.success(
       "Minting Successful!", {
       description: "Your NFT has been successfully minted.",
       duration: 3000,
     });
+    dispatch(closeDialog());
   } catch (e) {
     console.error(`minting failed because of ${e}`);
-    toast("Your mint failed!", {
+    toast.error("Your mint failed!", {
       description: "Please try again.",
       duration: 900,
     });
@@ -509,7 +512,17 @@ export function ButtonList({
   }
 
   const listItems = buttonGuardList.map((buttonGuard, index) => (
+    guardList.find((elem) => elem.label === buttonGuard.label)
+      ?.minting ?
+      <div className="flex flex-col items-center gap-2">
+      <img className="w-36 h-36" src="/nftmint.gif"/>
+      <p>{guardList.find((elem) => elem.label === buttonGuard.label)
+        ?.loadingText}
+        </p>
+        </div>
+      : 
     <Button
+     className="w-full"
       variant={"outline"}
       onClick={() =>
         mintClick(
@@ -528,7 +541,7 @@ export function ButtonList({
         )
       }
       key={buttonGuard.label}
-      size="sm"
+      size="lg"
 
       disabled={!buttonGuard.allowed}
       loading={
@@ -536,11 +549,7 @@ export function ButtonList({
           ?.minting
       }
     >
-      {guardList.find((elem) => elem.label === buttonGuard.label)
-        ?.minting ?
-        guardList.find((elem) => elem.label === buttonGuard.label)
-          ?.loadingText
-        : buttonGuard.buttonLabel}
+{buttonGuard.buttonLabel}
     </Button>
   ));
 

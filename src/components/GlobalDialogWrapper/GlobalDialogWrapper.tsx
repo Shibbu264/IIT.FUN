@@ -16,6 +16,8 @@ import JoinTelegram from './Modals/JoinTelegram';
 import BountyRegistration from './Modals/BountyRegistration';
 import RSVPModal from './Modals/RSVPModal';
 import CommunityCallRegistration from './Modals/CommunityCallRegistration';
+import NFTMintingModal from './Modals/NFTMinting';
+import CoinInfo from './Modals/CoinInfo';
 
 export default function GlobalDialogWrapper({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
@@ -40,6 +42,8 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
         return <AddUsername {...data} />
       case 'showSocials':
         return <ShowSocials {...data} />
+        case 'coinInfo':
+          return <CoinInfo {...data} />  
       case 'verifyEmail':
         return <VerifyEmail {...data} />
       case 'joinTelegram':
@@ -50,6 +54,8 @@ export default function GlobalDialogWrapper({ children }: { children: ReactNode 
         return <CommunityCallRegistration {...data} />
       case 'rsvp':
         return <RSVPModal {...data} />
+      case 'mintingNFT':
+        return <NFTMintingModal {...data} />
       default:
         return null;
     }

@@ -108,13 +108,13 @@ export function TopRankers({ type }: TopRankersProps) {
     fetchData();
   }, [type]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center text-center my-8">
-        <Audio height="50" width="50" color={"gray"} ariaLabel="loading" />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center text-center my-8">
+  //       <Audio height="50" width="50" color={"gray"} ariaLabel="loading" />
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return <div className="text-center text-red-500 py-8">{error}</div>;

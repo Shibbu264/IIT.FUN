@@ -134,7 +134,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
             <PanelLeft onClick={toggleSidebar} className=' max-md:w-9 max-md:h-9  md:hidden ' />
             <div className="flex bg-primaryBlack py-2  px-6 rounded-md ml-auto md:gap-8 gap-4 items-center">
                 <Notification />
-                <span className="flex items-center gap-1"><CoinsIcon className="text-yellow-400 animate-spin-slow" />{user?.points}</span>
+                <span onClick={()=>dispatch(openDialog({type:'coinInfo'}))}  className="flex cursor-pointer items-center gap-1"><CoinsIcon className="text-yellow-400  " />{user?.points}</span>
                 <NFT />
                 {!isMobile && <UserDropdown />}
             </div>
