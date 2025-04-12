@@ -74,7 +74,7 @@ export default function ProfilePageClientWrapper() {
         ];
 
         if (user?.discord) {
-            const isMember = await checkUserJoinedChannel('1222164512497467473');
+            const isMember = await checkUserJoinedChannel('1360365187869442258');
                 promptLinks.push({title:"discord",connected:isMember});
         }
 

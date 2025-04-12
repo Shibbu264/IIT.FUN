@@ -23,7 +23,7 @@ export default function NFT() {
 
                     {connected ? (
                         <div className='flex gap-3 items-center'>
-                            <Button onClick={() => dispatch(openDialog({
+                            <Button className='max-md:h-8' onClick={() => dispatch(openDialog({
                                 type: 'nftModal',
                                 data: {
                                     address: wallet?.adapter.publicKey?.toString()
@@ -33,9 +33,9 @@ export default function NFT() {
                                 type:'mintingNFT'
                             }))} className='relative cursor-pointer'>
                                 <p className='text-primaryGreen md:text-sm max-md:text-[10px] absolute max-md:-top-2 -top-4 -right-4'>Mint!</p>
-                                <Avatar>
+                                <Avatar className='max-md:w-8 max-md:h-8'>
 
-                                    <AvatarImage src={wallet?.adapter?.icon} alt="@shadcn" />
+                                    <AvatarImage className='' src={wallet?.adapter?.icon} alt="@shadcn" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                             </div>

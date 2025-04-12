@@ -29,7 +29,7 @@ export default function ShowSocials({ prompts }: { prompts: any[] }) {
         case 'discord':
           socialLinks.push({ 
             title: 'Discord', 
-            link: 'https://discord.com/channels/1022510020736331806/1022611302310477834',
+            link: 'https://discord.com/channels/1360365187869442258/1360365850846298199',
             icon: <FaDiscord className="h-6 w-6" />,
             color: 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200',
             connected:prompt.connected

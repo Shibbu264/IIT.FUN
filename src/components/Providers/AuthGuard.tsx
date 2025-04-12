@@ -136,7 +136,7 @@ const AuthGuardProvider = ({ children }: { children: any }) => {
                 <Notification />
                 <span onClick={()=>dispatch(openDialog({type:'coinInfo'}))}  className="flex cursor-pointer items-center gap-1"><CoinsIcon className="text-yellow-400  " />{user?.points}</span>
                 <NFT />
-                {!isMobile && <UserDropdown />}
+                {<UserDropdown />}
             </div>
         </div>}
         {children}

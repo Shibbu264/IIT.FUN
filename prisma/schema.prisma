@@ -41,6 +41,7 @@ model Bounty {
   deadline    String
   group       String?
   users       UserBounty[]
+  completed   Boolean @default(false)
 }
 
 model CommunityCall {
@@ -51,7 +52,7 @@ model CommunityCall {
   amount      Int?
   unit        String?
   Link        String?
-  date        String
+  date        DateTime
   group       String?
   eligibilityPoints Int @default(0)
   code        String?

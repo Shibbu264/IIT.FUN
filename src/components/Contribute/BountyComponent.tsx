@@ -40,10 +40,12 @@ export default function BountyComponent({ job }: { job: Job }) {
             </div>
 
             {/* Right Section */}
-            <div className="text-right flex items-center space-x-2">
-                <p className="font-semibold text-sm sm:text-base">{amount}</p>
-                <p className="text-xs sm:text-sm text-gray-400">{unit}</p>
-            </div>
+            {amount > 0 &&
+                <div className="text-right flex items-center space-x-2">
+                    <p className="font-semibold text-sm sm:text-base">{amount}</p>
+                    <p className="text-xs sm:text-sm text-gray-400">{unit}</p>
+                </div>
+            }
         </div>
     );
 }

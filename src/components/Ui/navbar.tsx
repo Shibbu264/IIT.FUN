@@ -5,18 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { openDialog } from '@/lib/store/slices/dialogSlice';
 import { Button } from "./Button";
-import { signOut, useSession } from 'next-auth/react';
-import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './Dropdown';
-import { toast } from 'sonner';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { useAppSelector } from '@/lib/store/store';
-import { setUser } from '@/lib/store/slices/userSlice';
-import NFTButton from '../NFT/NFTButton';
-import { Popover, PopoverContent, PopoverTrigger } from './Popover';
-import { AppSidebar } from './AppSideBar';
-import { SidebarTrigger, useSidebar } from './sidebar';
-import { PanelLeft } from 'lucide-react';
+
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
