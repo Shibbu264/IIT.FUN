@@ -15,7 +15,8 @@ export async function POST(req: Request) {
 
     // Fetch only the bounties that are NOT in userBounty table
     const bounties = await prisma.bounty.findMany({
-      where: { id: { notIn: registeredBountyIds } },
+      where: 
+        { id: { notIn: registeredBountyIds },completed:false },
     });
     const groups = [...new Set(bounties.map((bounty) => bounty.group))];
 
