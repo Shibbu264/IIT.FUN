@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { closeDialog } from '@/lib/store/slices/dialogSlice';
 import { Handshake, Smile, SmilePlusIcon } from 'lucide-react';
 import { setUser } from '@/lib/store/slices/userSlice';
+import { setSearchUser } from '@/lib/store/slices/searchSlice';
 
 export default function AddUsername({ closable = true,username:usernamee,type="add" }: { closable: boolean,username?:string,type?:"add"|"edit" }) {
     const [username, setUsername] = useState(usernamee??"");
@@ -25,6 +26,7 @@ export default function AddUsername({ closable = true,username:usernamee,type="a
         onSuccess: (response:any) => {
           dispatch(closeDialog())
           dispatch(setUser(response.data.user))
+          dispatch(setSearchUser(response.data.user))
         },
         onError: (error: any) => {
             // Handle error
