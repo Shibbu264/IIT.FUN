@@ -12,7 +12,6 @@ export async function GET(req:any) {
     if (!code || !state) {
         return new Response(JSON.stringify({ error: "Missing code or state" }), { status: 400 });
     }
-    console.log(code,state)
     const { email } = JSON.parse(decodeURIComponent(state));
 
     // Exchange the authorization code for an access token
